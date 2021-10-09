@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
             $table->text('address')->nullable();
             $table->string('phoneNo',255)->nullable();
             $table->string('mobileNo',255)->nullable();
-            $table->integer('studentAcademicYear', );
+            $table->integer('studentAcademicYear');
             $table->integer('studentClass')->default(0);
             $table->integer('studentSection')->default(0);
             $table->string('religion',255);

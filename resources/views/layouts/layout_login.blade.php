@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-            <link rel="icon" type="image/png" sizes="16x16" href="https://kharagny.com/zoser3/assets/images/favicon.png">
-        <title>Zoser | Sign in</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="https://kharagny.com/zoser3/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-            <link href="https://kharagny.com/zoser3/assets/css/style.css" rel="stylesheet">
-        <link href="https://kharagny.com/zoser3/assets/css/custom.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <title>@yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin &amp; Dashboard Template" name="description">
+    <meta content="Themesbrand" name="author">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+
+    <link href="{{asset('assets/libs/metrojs/release/MetroJs.Full/MetroJs.min.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Css -->
+    <link href="{{asset('assets/css/bootstrap-dark.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="{{asset('assets/css/app-dark.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
+
 </head>
-<body class="loginMark" style="background-image:url('https://kharagny.com/zoser3/assets/images/login-register.jpg'); background-color:#c0c0c0;;background-attachment:fixed; background-repeat: repeat-y;background-size: cover;" cz-shortcut-listen="true">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <div class="preloader" style="display: none;">
-        <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle> </svg>
+<body class="auth-body-bg" cz-shortcut-listen="true">
+
+    <div class="container-fluid">
+        <!-- Log In page -->
+        <div class="row">
+            @yield('contect')
+            <!-- end col -->
+
+            <div class="col-lg-9 p-0 vh-100  d-flex justify-content-center">
+                <div class="accountbg d-flex align-items-center">
+                    <div class="account-title text-center text-white">
+                        <h4 class="mt-3 text-white">Welcome To <span class="text-warning">AMEZIA</span> </h4>
+                        <h1 class="text-white">Let's Get Started</h1>
+                        <p class="mt-3 font-size-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                            laoreet tellus ut tincidunt euismod.</p>
+                        <div class="border w-25 mx-auto border-warning"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- End Log In page -->
     </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
 
-    @yield('contect')
 
-    <script src="{{asset('plugins/jquery/jQuery-2.1.4.min.js')}}"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{asset('plugins/bootstrap/js/tether.min.js')}}"></script>
-    <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{asset('js/jquery.slimscroll.js')}}"></script>
-    <!--Wave Effects -->
-    <script src="{{asset('js/waves.js')}}"></script>
-    <!--stickey kit -->
-        <script src="{{asset('plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
 
-    <script src="{{asset('js/custom.min.js')}}"></script>
-    
+     <!-- JAVASCRIPT -->
+     <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
 
+        <!--Morris Chart-->
+
+        <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script>
+        <script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script>
+        <script src="{{asset('assets/libs/jquery-knob/jquery.knob.min.js')}}"></script>
+        <script src="{{asset('assets/libs/metrojs/release/MetroJs.Full/MetroJs.min.js')}}"></script>
+
+        <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
+
+        <script src="{{asset('assets/js/app.js')}}"></script>
+
+
+
+        <i title="Raphaël Colour Picker" style="display: none; color: transparent;"></i>
 
 </body>
 </html>

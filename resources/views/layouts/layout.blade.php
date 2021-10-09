@@ -2,486 +2,764 @@
 <html lang="en">
 
 <head>
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="SolutionsBricks.com">
-   
-    <title>@yield("title")</title>
-    <link href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('css/colors/blue.css')}}" id="theme" rel="stylesheet">
-    <link href="{{asset('css/custom.css')}}" id="theme" rel="stylesheet">
-    <link href="{{asset('css/intlTelInput.css')}}" rel="stylesheet">
-    <link href="{{asset('plugins/global-calendars/jquery.calendars.picker.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('css/summernote.css')}}" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <title>@yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin &amp; Dashboard Template" name="description">
+    <meta content="Themesbrand" name="author">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+
+    <link href="{{asset('assets/libs/metrojs/release/MetroJs.Full/MetroJs.min.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Css -->
+    <link href="{{asset('assets/css/bootstrap-dark.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="{{asset('assets/css/app-dark.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
+
 </head>
 
-<body class="fix-header fix-sidebar card-no-border ng-scope mini-sidebar"  cz-shortcut-listen="true">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <div class="preloader" style="display: none;">
-        <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
-        </svg>
-    </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-    <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar topbarSticky no-print" >
-            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#/">
-                        <span style="display: none;">
-                            <img src="https://kharagny.com/zoser3/assets/images/logo-dark.png" alt="homepage" class="dark-logo">
-                            <img src="https://kharagny.com/zoser3/assets/images/logo-light.png" class="light-logo" alt="homepage">
-                        </span>
-                    </a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav mr-auto mt-md-0 ">
-                        <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="icon-arrow-left-circle ti-menu"></i></a> </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav my-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://kharagny.com/zoser3/dashboard/profileImage/1" alt="user" class="profile-pic"></a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="https://kharagny.com/zoser3/dashboard/profileImage/1" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>mohamed mohamed omar</h4>
-                                                <p class="text-muted">admin@example.com</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <a href="portal#/account/invoices" class="dropdown-item"><i class="ti-wallet"></i> My Invoices</a> <a href="portal#/messages" class="dropdown-item"><i class="mdi mdi-message-text-outline"></i> Messages</a>
-                                    <div class="dropdown-divider"></div> <a href="portal#/account" class="dropdown-item"><i class="ti-settings"></i> Account Settings</a>
-                                    <div class="dropdown-divider"></div> <a href="https://kharagny.com/zoser3/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown" style="width:45px;">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-language"></i></a>
-                            <div class="dropdown-menu  dropdown-menu-right">
-                                <a class="dropdown-item active" >English</a>
-                                <a class="dropdown-item ">Arabic</a>
-                                <a class="dropdown-item ">French</a>
-                                <a class="dropdown-item ">Dutch</a>
-                                <a class="dropdown-item ">German</a>
-                                <a class="dropdown-item ">Hindi</a>
-                                <a class="dropdown-item ">Italian</a>
-                                <a class="dropdown-item ">Turkish</a>
-                                <a class="dropdown-item ">Russian</a>
-                                <a class="dropdown-item " >Spanish</a>
-                                <a class="dropdown-item " >Portuguse</a>
-                                <a class="dropdown-item " >Bengali</a>
-                                <a class="dropdown-item " >Chineese</a>
-                                <a class="dropdown-item " >Indonesian</a>
-                                <a class="dropdown-item " >Romanian</a>
-                                <a class="dropdown-item " >Thai</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown" style="width:45px;">
-                            <a href="https://kharagny.com/zoser3/logout" class="nav-link text-muted waves-effect waves-dark"> <i class="fa fa-power-off"></i></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="right-side-toggle text-muted nav-link " href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-view-grid"></i></a>
-                        </li>
+<body>
 
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar enableSlimScroller no-print" style="padding-bottom: 60px; overflow: visible;">
-            <!-- Sidebar scroll-->
-            <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height: 100%;">
-                <div class="scroll-sidebar" style="overflow: visible hidden; width: auto; height: 100%;">
-                    <!-- User profile -->
-                    <div class="user-profile">
-                        <!-- User profile image -->
-                        <div class="profile-img"> <img src="#" alt="user" width="50" height="50"> </div>
-                        <!-- User profile text-->
-                        <div class="profile-text"> <a href="javascript:void(0)" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">mohamed mohamed omar <span class="caret"></span></a>
-                            <div class="dropdown-menu animated flipInY">
-                                <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Invoices</a> <a href="#" class="dropdown-item"><i class="mdi mdi-message-text-outline"></i> Messages</a>
-                                <div class="dropdown-divider"></div> <a href="#" class="dropdown-item"><i class="ti-settings"></i> Account Settings</a>
-                                <div class="dropdown-divider"></div> <a href="#" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+    <body data-topbar="dark" cz-shortcut-listen="true" class="">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="index.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="17">
+                                </span>
+                            </a>
+
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="17">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+
+                        <!-- Tools -->
+                        <div class="d-none d-sm-block ms-1">
+                            <div class="dropdown">
+                                <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-plus-box-multiple"></i>
+                                    <span class="d-none d-xl-inline-block ms-1">Tools</span>
+                                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Photoshop</a>
+                                    <a href="javascript:void(0);" class="dropdown-item">Visual Studio</a>
+                                    <a href="javascript:void(0);" class="dropdown-item">Sublime Text 3</a>
+                                    <a href="javascript:void(0);" class="dropdown-item">Phpstorm</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- End User profile text-->
-                    <!-- Sidebar navigation-->
-                    <nav class="sidebar-nav">
-                        <ul id="sidebarnav">
-                            <li><a class="aj scrollTop" href="" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">Welcome Office</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="{{url('/visitors')}}">Visitors</a></li>
-                                    <li><a class="aj scrollTop" href="{{url('/phone_calls')}}">Phone Calls</a></li>
-                                    <li><a class="aj scrollTop" href="#">Postal</a></li>
-                                    <li><a class="aj scrollTop" href="#">Contact Messages</a></li>
-                                    <li><a class="aj scrollTop" href="#">Enquiries</a></li>
-                                    <li><a class="aj scrollTop" href="#">Complaints</a></li>
-                                    <li><a class="aj scrollTop" href="#">Office Categories</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-video"></i><span class="hide-menu">Online Meetings</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-message-text-outline"></i><span class="hide-menu">Messages</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-cellphone-iphone"></i><span class="hide-menu">Mail / SMS</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-telegram"></i><span class="hide-menu">Mobile Notifications</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-calendar-text"></i><span class="hide-menu">Calendar</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-timelapse"></i><span class="hide-menu">Classes Schedule</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-timelapse"></i><span class="hide-menu">Virtual Classes Schedule</span></a></li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-check-all"></i><span class="hide-menu">Attendance</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="#">Take Attendance</a></li>
-                                    <li><a class="aj scrollTop" href="#">Attendance Report</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-check"></i><span class="hide-menu">Staff Attendance</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="#">Take Attendance</a></li>
-                                    <li><a class="aj scrollTop" href="#">Attendance Report</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-airplane"></i><span class="hide-menu">Vacation</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="#">Request vacation</a></li>
-                                    <li><a class="aj scrollTop" href="#">Approve vacation</a></li>
-                                    <li><a class="aj scrollTop" href="#">My vacations</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-library"></i><span class="hide-menu">Library</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="#">Issue Book</a></li>
-                                    <li><a class="aj scrollTop" href="#">Return Book</a></li>
-                                    <li><a class="aj scrollTop" href="#">List Books</a></li>
-                                    <li><a class="aj scrollTop" href="#">Manage Subscription</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-folder-multiple-image"></i><span class="hide-menu">Media Center</span></a></li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-briefcase"></i><span class="hide-menu">Employees</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="#">Employees</a></li>
-                                    <li><a class="aj scrollTop" href="#">Teachers</a></li>
-                                    <li><a class="aj scrollTop" href="#">Departments</a></li>
-                                    <li><a class="aj scrollTop" href="#">Designations</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-account-multiple-outline"></i><span class="hide-menu">Students</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="#">Students</a></li>
-                                    <li><a class="aj scrollTop" href="#">Students Admission</a></li>
-                                    <li><a class="aj scrollTop" href="#">Student Categories</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Parents</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-arrange-send-backward"></i><span class="hide-menu">Grade levels</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-cloud-download"></i><span class="hide-menu">Study Material</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Homework</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-file-pdf"></i><span class="hide-menu">Assignments</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-playlist-check"></i><span class="hide-menu">Exams List</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Online Exams</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">News Board</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-calendar-clock"></i><span class="hide-menu">Events</span></a></li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-sitemap"></i><span class="hide-menu">Classes</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="#">Classes</a></li>
-                                    <li><a class="aj scrollTop" href="#">sections</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-book-open-page-variant"></i><span class="hide-menu">Subjects</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-certificate"></i><span class="hide-menu">Certificates</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-certificate"></i><span class="hide-menu">ID Cards</span></a></li>
-                            <li><a class="aj scrollTop" href="#" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i><span class="hide-menu">Reports</span></a></li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">frontend CMS</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="#">Control Pages</a></li>
-                                    <li><a class="aj scrollTop" href="#">frontend CMS Settings</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="has-arrow" aria-expanded="false"><i class="mdi mdi-settings"></i><span class="hide-menu">Administrative tasks</span></a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a class="aj scrollTop" href="#">Academic Years</a></li>
-                                    <li><a class="aj scrollTop" href="#">Promotion</a></li>
-                                    <li><a class="aj scrollTop" href="#">Mail / SMS Templates</a></li>
-                                    <li><a class="aj scrollTop" href="#">Polls</a></li>
-                                    <li><a class="aj scrollTop" href="#">Dormitories</a></li>
-                                    <li><a class="aj scrollTop" href="#">General Settings</a></li>
-                                    <li><a class="aj scrollTop" href="#">Languages</a></li>
-                                    <li><a class="aj scrollTop" href="#">Administrators</a></li>
-                                    <li><a class="aj scrollTop" href="#">Permission Roles</a></li>
-                                    <li><a class="aj scrollTop" href="#">School Terms</a></li>
-                                    <li><a class="aj scrollTop" href="#">DB Export</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- End Sidebar navigation -->
-                </div>
-                <div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; left: 1px; height: 88.2236px;"></div>
-                <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div>
-            </div>
-            <!-- End Sidebar scroll-->
-            <!-- Bottom points-->
-            <div class="sidebar-footer">
-                <!-- item-->
-                <a href="#" class="link" data-toggle="tooltip" title="" data-original-title="Account Settings"><i class="ti-settings"></i></a>
-                <!-- item-->
-                <a href="#" class="link" data-toggle="tooltip" title="" data-original-title="Messages"><i class="mdi mdi-gmail"></i></a> <!-- item-->
-                <a href="#" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="mdi mdi-power"></i></a>
-            </div>
-            <!-- End Bottom points-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper" style="min-height: 484px;">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ngView:  -->
-                @yield("contect") 
 
-                <div class="right-sidebar shw-rside" style="display: block; overflow: visible;">
-                    <div class="slimScrollDiv" style="position: relative; overflow: visible hidden; width: auto; height: 100%;">
-                        <div class="slimscrollright" style="overflow: hidden; width: auto; height: 100%;">
-                            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
-                            <div class="r-panel-body">
-                                <ul id="themecolors" class="m-t-20">
-                                    <li><b>With Light sidebar</b></li>
-                                    <li><a  href="javascript:void(0)" data-theme="default" class="default-theme" >1</a></li>
-                                    <li><a  href="javascript:void(0)" data-theme="green" class="green-theme" >2</a></li>
-                                    <li><a href="javascript:void(0)" data-theme="red" class="red-theme" >3</a></li>
-                                    <li><a  href="javascript:void(0)" data-theme="blue" class="blue-theme working" >4</a></li>
-                                    <li><a  href="javascript:void(0)" data-theme="purple" class="purple-theme" >5</a></li>
-                                    <li><a  href="javascript:void(0)" data-theme="megna" class="megna-theme" >6</a></li>
-                                    <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
-                                    <li><a  href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme" >7</a></li>
-                                    <li><a  href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme" >8</a></li>
-                                    <li><a  href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme" >9</a></li>
-                                    <li><a  href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme" >10</a></li>
-                                    <li><a  href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme" >11</a></li>
-                                    <li><a  href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme" >12</a></li>
-                                </ul>
-                                <br>
-                                <span class="d-block">Change Academic Year</span>
-                                <form class="form ng-pristine ng-valid">
-                                    <div class="form-group m-t-10 row">
-                                        <div class="col-12">
-                                            <select class="form-control ng-pristine ng-valid" id="selectedAcYear">
-                                                <!-- ngRepeat: year in $root.dashboardData.academicYear -->
-                                                <!-- ngIf: year.isDefault == '0' -->
-                                                <!-- end ngRepeat: year in $root.dashboardData.academicYear -->
-                                                <!-- ngRepeat: year in $root.dashboardData.academicYear -->
-                                                <!-- ngIf: year.isDefault == '1' -->
-                                                <option  value="1"  class="ng-binding ng-scope" selected="selected">2021 - Default academic year</option><!-- end ngIf: year.isDefault == '1' -->
-                                                <!-- end ngRepeat: year in $root.dashboardData.academicYear -->
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-b-0">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success btn-flat pull-right ng-binding" >Change Year</button>
+                        <div class="d-none d-lg-inline-block">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-target="#search-wrap">
+                                <i class="mdi mdi-airplane me-2 font-size-16"></i>Landing
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <!-- Search input -->
+                    <div class="search-wrap" id="search-wrap">
+                        <div class="search-bar">
+                            <input class="search-input form-control" placeholder="Search">
+                            <a href="#" class="close-search toggle-search" data-target="#search-wrap">
+                                <i class="mdi mdi-close-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="dropdown d-none d-lg-inline-block">
+                            <button type="button" class="btn header-item toggle-search noti-icon waves-effect" data-target="#search-wrap">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                        </div>
+
+                        <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
+
+                                <form class="p-3">
+                                    <div class="m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 460.169px;"></div>
-                        <div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+
+                        <div class="dropdown d-none d-md-block">
+                            <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="me-2" src="assets/images/flags/us.jpg" alt="Header Language" height="16"> English <span class="mdi mdi-chevron-down"> </span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <img src="assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle"> German </span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <img src="assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle"> Italian </span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <img src="assets/images/flags/french.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle"> French </span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <img src="assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle"> Spanish </span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle"> Russian </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Notification -->
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon waves-effect notification-step" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge bg-danger rounded-pill">2</span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
+                                <div class="p-3">
+                                    <h6 class="m-0">Notifications (258) </h6>
+                                </div>
+
+                                <div data-simplebar="init" style="max-height: 230px;">
+                                    <div class="simplebar-wrapper" style="margin: 0px;">
+                                        <div class="simplebar-height-auto-observer-wrapper">
+                                            <div class="simplebar-height-auto-observer"></div>
+                                        </div>
+                                        <div class="simplebar-mask">
+                                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                                <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;">
+                                                    <div class="simplebar-content" style="padding: 0px;">
+                                                        <a href="" class="text-reset notification-item">
+                                                            <div class="d-flex align-items-start">
+                                                                <div class="avatar-xs me-3">
+                                                                    <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                                        <i class="mdi mdi-cart-outline"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <h6 class="mb-1 font-size-15">Your order is placed</h6>
+                                                                    <div class="text-muted">
+                                                                        <p class="mb-1 font-size-12">Dummy text of the printing and typesetting
+                                                                            industry.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <a href="" class="text-reset notification-item">
+                                                            <div class="d-flex align-items-start">
+                                                                <div class="avatar-xs me-3">
+                                                                    <span class="avatar-title bg-warning rounded-circle font-size-16">
+                                                                        <i class="mdi mdi-message"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <h6 class="mb-1 font-size-15">New Message received</h6>
+                                                                    <div class="text-muted">
+                                                                        <p class="mb-1 font-size-12">You have 87 unread messages</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <a href="" class="text-reset notification-item">
+                                                            <div class="d-flex align-items-start">
+                                                                <div class="avatar-xs me-3">
+                                                                    <span class="avatar-title bg-info rounded-circle font-size-16">
+                                                                        <i class="mdi mdi-help"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <h6 class="mb-1 font-size-15">Your order is placed</h6>
+                                                                    <div class="text-muted">
+                                                                        <p class="mb-1 font-size-12">It is a long established fact that a reader will
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <a href="" class="text-reset notification-item">
+                                                            <div class="d-flex align-items-start">
+                                                                <div class="avatar-xs me-3">
+                                                                    <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                                        <i class="mdi mdi-cart-outline"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <h6 class="mb-1 font-size-15">Your order is placed</h6>
+                                                                    <div class="text-muted">
+                                                                        <p class="mb-1 font-size-12">Dummy text of the printing and typesetting
+                                                                            industry.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <a href="" class="text-reset notification-item">
+                                                            <div class="d-flex align-items-start">
+                                                                <div class="avatar-xs me-3">
+                                                                    <span class="avatar-title bg-danger rounded-circle font-size-16">
+                                                                        <i class="mdi mdi-cart-outline"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <h6 class="mb-1 font-size-15">Your order is placed</h6>
+                                                                    <div class="text-muted">
+                                                                        <p class="mb-1 font-size-12">Dummy text of the printing and typesetting
+                                                                            industry.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="simplebar-placeholder" style="width: 0px; height: 0px;"></div>
+                                    </div>
+                                    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                                        <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>
+                                    </div>
+                                    <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
+                                        <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none; height: 130px;"></div>
+                                    </div>
+                                </div>
+                                <div class="p-2 border-top d-grid">
+                                    <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
+                                        <i class="mdi mdi-arrow-right-circle me-1"></i> View all
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- full-screen -->
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                                <i class="mdi mdi-fullscreen"></i>
+                            </button>
+                        </div>
+
+                        <!-- User -->
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect user-step" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="assets/images/users/user-1.jpg" alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1">Amelia</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="#"><i class="dripicons-user d-inline-block text-muted me-2"></i>
+                                    Profile</a>
+                                <a class="dropdown-item" href="#"><i class="dripicons-wallet d-inline-block text-muted me-2"></i> My
+                                    Wallet</a>
+                                <a class="dropdown-item d-block" href="#"><i class="dripicons-gear d-inline-block text-muted me-2"></i> Settings</a>
+                                <a class="dropdown-item" href="#"><i class="dripicons-lock d-inline-block text-muted me-2"></i> Lock
+                                    screen</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="dripicons-exit d-inline-block text-muted me-2"></i>
+                                    Logout</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="mdi mdi-spin mdi-cog"></i>
+                            </button>
+                        </div>
+
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
-            </div>
-            <div class="preloader" id="overlay" style="opacity: 0.9; display: none;">
-                <svg class="circular" viewBox="25 25 50 50">
-                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
-                </svg>
-            </div>
-            <footer class="footer">
-                All Rights Reserved. - <a target="_BLANK" href="https://kharagny.com/zoser3/terms">School Terms</a>
-            </footer>
-        </div>
+            </header>
 
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
-    </div>
-    <div class="modal fade ng-scope" visible="$root.media_manager" data-backdrop="static">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title ng-binding"></h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body" >
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
 
-                    <form class="ng-scope ng-pristine ng-valid">
-                        <div>
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs tabsItem" role="tablist">
-                                <li class="nav-item" role="presentation"><a  class="nav-link active ng-hide" href="#mm_upload_tab" aria-controls="mm_upload_tab" role="tab" data-toggle="tab">Upload</a></li>
-                                <li class="nav-item" role="presentation"><a  class="nav-link active ng-hide"  href="#mm_library" aria-controls="mm_library" role="tab" data-toggle="tab">Files Library</a></li>
-                            </ul>
+                <div data-simplebar="init" class="h-100">
+                    <div class="simplebar-wrapper" style="margin: 0px;">
+                        <div class="simplebar-height-auto-observer-wrapper">
+                            <div class="simplebar-height-auto-observer"></div>
+                        </div>
+                        <div class="simplebar-mask">
+                            <div class="simplebar-offset" style="right: -16.8px; bottom: 0px;">
+                                <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                    <div class="simplebar-content" style="padding: 0px;">
 
-                            <!-- Tab panes -->
-                            <div class="tab-content tabcontent-border">
+                                        <!--- Sidemenu -->
+                                        <div id="sidebar-menu" class="mm-active">
+                                            <!-- Left Menu Start -->
+                                            <ul class="metismenu list-unstyled mm-show" id="side-menu">
+                                                <li class="menu-title">Main</li>
 
-                                <div role="tabpanel" class="tab-pane active p-20 ng-hide" id="mm_upload_tab" ng-show="$root.show_uploader == true">
+                                                <li class="mm-active">
+                                                    <a href="javascript: void(0);" class="waves-effect mm-active">
+                                                        <i class="mdi mdi-speedometer"></i>
+                                                        <span class="badge rounded-pill bg-danger float-end">9+</span>
+                                                        <span>Dashboards</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse mm-show" aria-expanded="false">
+                                                        <li class="mm-active"><a href="{{url('/home')}}" class="active">Dashboard 1</a></li>
+                                                        <!-- <li><a href="index-2.html">Dashboard 2</a></li> -->
+                                                    </ul>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-email-variant"></i>
+                                                        <span>Welcome Office</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="email-inbox.html">Visitors</a></li>
+                                                        <li><a href="email-read.html">Phone Calls</a></li>
+                                                        <li><a href="email-compose.html">Postal</a></li>
+                                                        <li><a href="email-read.html">Contact Messages</a></li>
+                                                        <li><a href="email-compose.html">Enquiries</a></li>
+                                                        <li><a href="email-read.html">Complaints</a></li>
+                                                        <li><a href="email-compose.html">Office Categories</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Calender -->
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Online Meetings</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Messages</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Mail / SMS</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Mobile Notifications</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Calendar</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Classes Schedule</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Virtual Classes Schedule</span>
+                                                    </a>
+                                                </li>
+                                                <!-- <li class="menu-title">Components</li> -->
+
+                                                <!-- UI Elements -->
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-briefcase-check"></i>
+                                                        <span>Attendance</span>
+                                                    </a>
+
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/attendance">Take Attendance</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/attendance_report">Attendance Report</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Advanced UI -->
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-buffer"></i>
+                                                        <span>Staff Attendance</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/staffAttendance">Take Attendance</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/staffAttendance_report">Attendance Report</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Forms -->
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-clipboard-outline"></i>
+                                                        <span>Vacation</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/vacation">Request vacation</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/vacation/approve">Approve vacation</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/vacation/mine">My vacations</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Charts -->
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-chart-arc"></i>
+                                                        <span>Library</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/library_issues">Issue Book</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/library_return">Return Book</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/library">List Books</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/lib_subscription">Manage Subscription</a></li>
+                                                    </ul>
+
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Media Center</span>
+                                                    </a>
+                                                </li>
+                                                <!-- Table -->
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-format-list-bulleted-type"></i>
+                                                        <span>Employees</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/employees">Employees</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/teachers">Teachers</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/departments">Departments</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/designations">Designations</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- Icons -->
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-album"></i>
+                                                        <span>Students</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/students">Students</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/students/admission">Students Admission</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/student/categories">Student Categories</a></li>
+                                                    </ul>
+
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Parents</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Grade levels</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Study Material</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Homework</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Assignments</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Exams List</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Online Exams</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>News Board</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Events</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-album"></i>
+                                                        <span>Classes</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/classes">Classes</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/sections">sections</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Subjects</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Certificates</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>ID Cards</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="calendar.html" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>Reports</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-album"></i>
+                                                        <span>frontend CMS</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/frontend/pages">Control Pages</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/frontend/settings">frontend CMS Settings</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-album"></i>
+                                                        <span>Classes</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/academicYear">Academic Years</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/promotion">Promotion</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/mailsmsTemplates">Mail / SMS Templates</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/polls">Polls</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/dormitories">Dormitories</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/settings">General Settings</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/languages">Languages</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/admins">Administrators</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/roles">Permission Roles</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/terms">School Terms</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/dbexports">DB Export</a></li>
+                                                    </ul>
+
+                                                </li>
+                                                <!-- Layouts -->
 
 
-                                    <div  class="drop-box ng-pristine ng-valid">Click to select files or drop here</div>
-
-                                    <ul  class="ml_uploaded_images ng-hide">
-                                        <!-- ngRepeat: file in $root.mm_files -->
-                                    </ul>
-                                    <ul  class="ml_uploaded_images">
-                                        <li style="font:smaller">
-                                            <img ngf-thumbnail="$root.mm_files"  class="ng-hide">
-                                            <div class="image_progress ng-hide" >
-                                                <div class="image_progress_inner ng-binding"  >%</div>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-
-
+                                            </ul>
+                                        </div>
+                                        <!-- Sidebar -->
+                                    </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane p-20 active ng-hide" id="mm_library"   onshow="alert('ee')">
+                            </div>
+                        </div>
+                        <div class="simplebar-placeholder" style="width: auto; height: 965px;"></div>
+                    </div>
+                    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                        <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>
+                    </div>
+                    <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                        <div class="simplebar-scrollbar simplebar-visible" style="transform: translate3d(0px, 116px, 0px); display: block; height: 187px;"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
 
-                                    <ul class="ml_uploaded_images">
-                                        <!-- ngRepeat: file in gallery_images -->
-                                    </ul>
-                                    <div  class="mm_load_more">
-                                        <img class="mm_load_more_loading" src="assets/images/loading.gif">
-                                        Load More
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <div class="page-content">
+                   @yield('content')
+                    <!-- container-fluid -->
+                </div>
+
+                <!-- End Page-content -->
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>2021 © Amezia.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div data-simplebar="init" class="h-100">
+                <div class="simplebar-wrapper" style="margin: 0px;">
+                    <div class="simplebar-height-auto-observer-wrapper">
+                        <div class="simplebar-height-auto-observer"></div>
+                    </div>
+                    <div class="simplebar-mask">
+                        <div class="simplebar-offset" style="right: -16.8px; bottom: 0px;">
+                            <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                <div class="simplebar-content" style="padding: 0px;">
+                                    <div class="rightbar-title px-3 py-4">
+                                        <a href="javascript:void(0);" class="right-bar-toggle float-end">
+                                            <i class="mdi mdi-close noti-icon"></i>
+                                        </a>
+                                        <h5 class="m-0">Settings</h5>
+                                    </div>
+
+                                    <!-- Settings -->
+                                    <hr>
+                                    <h6 class="text-center mb-0">Choose Layouts</h6>
+
+                                    <div class="p-4">
+                                        <div class="mb-2">
+                                            <img src="assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="">
+                                        </div>
+                                        <div class="form-check form-switch mb-3">
+                                            <input type="checkbox" class="form-check-input theme-choice" id="light-mode-switch" checked="">
+                                            <label class="custom-control-label" for="light-mode-switch">Light Mode</label>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <img src="assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="">
+                                        </div>
+                                        <div class="form-check form-switch mb-3">
+                                            <input type="checkbox" class="form-check-input theme-choice" id="dark-mode-switch" data-bsstyle="assets/css/bootstrap-dark.min.css" data-appstyle="assets/css/app-dark.min.css">
+                                            <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <img src="assets/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="">
+                                        </div>
+                                        <div class="form-check form-switch mb-5">
+                                            <input type="checkbox" class="form-check-input theme-choice" id="rtl-mode-switch" data-appstyle="assets/css/app-rtl.min.css">
+                                            <label class="custom-control-label" for="rtl-mode-switch">RTL Mode</label>
+                                        </div>
+
+
                                     </div>
 
                                 </div>
-
                             </div>
-
-                        </div>
-                    </form>
-                    <div class="row ng-scope">
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-danger waves-effect waves-light pull-right">Cancel</button>
-                            <button type="button" style="margin: 5px;" class="btn btn-info waves-effect waves-light pull-right">Select / Upload</button>
                         </div>
                     </div>
-
-
+                    <div class="simplebar-placeholder" style="width: auto; height: 855px;"></div>
                 </div>
-            </div>
-        </div>
-    </div>
-    @yield("contect")
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <input type="hidden" id="rooturl" value="https://kharagny.com/zoser3/">
-    <input type="hidden" id="utilsScript" value="https://kharagny.com/zoser3/assets/js/utils.js">
-    <script src="{{asset('plugins/jquery/jQuery-2.1.4.min.js')}}"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{URL::asset('plugins/bootstrap/js/tether.min.js')}}"></script>
-    <script src="{{asset('plugins/bootstrap/js/popper.min.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
-
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{asset('js/jquery.slimscroll.js')}}"></script>
-    <!--Wave Effects -->
-    <script src="{{asset('js/waves.js')}}"></script>
-    <!--Menu sidebar -->
-    <script src="{{asset('js/sidebarmenu.js')}}"></script>
-    <!--stickey kit -->
-    <script src="{{asset('plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
-    <!--Custom JavaScript -->
-    <script src="{{asset('plugins/echarts/echarts-all.js')}}"></script>
-
-    <script src="{{asset('js/custom.min.js')}}"></script>
-    <!-- ============================================================== -->
-    <!-- Style switcher -->
-    <!-- ============================================================== -->
-    <script src="{{asset('js/OraSchool.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/intlTelInput.min.js')}}"></script>
-    <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
-    <script src="{{asset('js/summernote.js')}}"></script>
-    <script src="{{asset('plugins/toast-master/js/jquery.toast.js')}}"></script>
-    <script src="{{asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
-    <script src="{{asset('js/jquery.colorbox-min.js')}}"></script>
-    <script src="{{asset('js/moment.min.js')}}"></script>
-    <script src="{{asset('plugins/humanize-duration/humanize-duration.js')}}"></script>
-
-    <script type="text/javascript" src="{{asset('plugins/global-calendars/jquery.plugin.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('plugins/global-calendars/jquery.calendars.all.js')}}"></script>
-
-
-
-
-    <div id="cboxOverlay" style="display: none;"></div>
-    <div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;">
-        <div id="cboxWrapper">
-            <div>
-                <div id="cboxTopLeft" style="float: left;"></div>
-                <div id="cboxTopCenter" style="float: left;"></div>
-                <div id="cboxTopRight" style="float: left;"></div>
-            </div>
-            <div style="clear: left;">
-                <div id="cboxMiddleLeft" style="float: left;"></div>
-                <div id="cboxContent" style="float: left;">
-                    <div id="cboxTitle" style="float: left;"></div>
-                    <div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button>
-                    <div id="cboxLoadingOverlay" style="float: left;"></div>
-                    <div id="cboxLoadingGraphic" style="float: left;"></div>
+                <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                    <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>
                 </div>
-                <div id="cboxMiddleRight" style="float: left;"></div>
-            </div>
-            <div style="clear: left;">
-                <div id="cboxBottomLeft" style="float: left;"></div>
-                <div id="cboxBottomCenter" style="float: left;"></div>
-                <div id="cboxBottomRight" style="float: left;"></div>
-            </div>
+                <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                    <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: block; height: 286px;"></div>
+                </div>
+            </div> <!-- end slimscroll-menu-->
         </div>
-        <div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div>
-    </div><label tabindex="-1" style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height: 0px; border: none; margin: 0px; padding: 0px;">upload<input type="file" ></label>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
+
+        <!--Morris Chart-->
+
+        <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script>
+        <script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script>
+        <script src="{{asset('assets/libs/jquery-knob/jquery.knob.min.js')}}"></script>
+        <script src="{{asset('assets/libs/metrojs/release/MetroJs.Full/MetroJs.min.js')}}"></script>
+
+        <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
+
+        <script src="{{asset('assets/js/app.js')}}"></script>
+
+
+
+        <i title="Raphaël Colour Picker" style="display: none; color: transparent;"></i>
+    </body>
 </body>
 
 </html>
