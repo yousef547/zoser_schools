@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class subject extends Model
 {
     use HasFactory;
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+            // ->withPivot('subjectTitle', 'passGrade', 'finalGrade','photo')
+            // ->withTimestamps();
+    }
 }
