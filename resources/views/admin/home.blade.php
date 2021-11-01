@@ -177,7 +177,7 @@ HomePage
                 <div class="card profile">
                     <div class="card-body">
                         <div class="text-center">
-                            <img src='{{asset("assets/images/$authUser->photo")}}' alt="" class="rounded-circle img-thumbnail avatar-xl">
+                            <img src='{{asset("uploads/$authUser->photo")}}' alt="" class="rounded-circle img-thumbnail avatar-xl">
                             <div class="online-circle">
                                 <i class="fas fa-circle text-success"></i>
                             </div>

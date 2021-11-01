@@ -46,25 +46,28 @@ HomePage
             <div class="card-body" data-select2-id="7">
                 @include('admin.inc.massage')
 
-                <form method="post" action="{{url('/admin/teacher/store')}}" enctype="multipart/form-data">
+                <form method="post" action="{{url('/admin/teacher/update')}}" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="id" value="{{$infoId}}">
                     <label class="form-label">Full Name *</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" name="fullName"  placeholder="Full Name">
+                            <input class="form-control" type="text" name="fullName" value="{{$user->fullName}}" placeholder="Full Name">
                         </div>
                     </div>
                     <label class="form-label">Username *</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" name="username"  placeholder="Username">
+                            <input class="form-control" type="text" name="username" value="{{$user->username}}" placeholder="Username">
                         </div>
-                    </div><label class="form-label">Email address *</label>
+                    </div>
+                    <label class="form-label">Email address *</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" name="email"  placeholder="Email address">
+                            <input class="form-control" type="text" name="email" value="{{$user->email}}"  placeholder="Email address">
                         </div>
-                    </div><label class="form-label">Password *</label>
+                    </div>
+                    <label class="form-label">Password *</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
                             <input class="form-control" type="password" name="password" placeholder="Password">
@@ -73,51 +76,51 @@ HomePage
                     <label class="form-label">Gender</label>
                     <div class="mb-3 row p-3">
                         <div class="form-check my-2">
-                            <input type="radio" id="customRadio1" name="customRadio" class="form-check-input" value="male">
+                            <input type="radio" id="customRadio1" {{$user->gender == 'male' ? "checked" : "" }} checked name="customRadio" class="form-check-input" value="male">
                             <label class="form-check-label" for="customRadio1">Male</label>
                         </div>
                         <div class="form-check my-2">
-                            <input type="radio" id="customRadio1" name="customRadio" class="form-check-input" value="fmale">
+                            <input type="radio" id="customRadio1" {{$user->gender == 'fmale' ? 'checked' : '' }} name="customRadio" class="form-check-input" value="fmale">
                             <label class="form-check-label" for="customRadio1">Female</label>
                         </div>
                     </div>
                     <label class="form-label">Bairth day</label>
                     <div class="mb-0 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="date" name="birthday" id="example-date-input">
+                            <input class="form-control" type="date" value="{{$user->birthday}}" name="birthday" id="example-date-input">
                         </div>
                     </div>
                     <label class="form-label mt-2">Address</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" name="address" id="subject2" placeholder="Address">
+                            <input class="form-control" type="text" name="address" value="{{$user->address}}" id="subject2" placeholder="Address">
                         </div>
                     </div>
                     <label class="form-label">Zoom Link</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" name="zoomLink" id="" placeholder="Zoom Link">
+                            <input class="form-control" type="text" name="zoomLink" value="{{$user->zoomLink}}" placeholder="Zoom Link">
                         </div>
                     </div>
 
                     <label class="form-label">Phone No</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="tel" name="phoneNo" id="" placeholder="Phone No">
+                            <input class="form-control" type="tel" name="phoneNo" value="{{$user->phoneNo}}" placeholder="Phone No">
                         </div>
                     </div>
 
                     <label class="form-label">Mobile No</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="tel" name="mobileNo" id="telephone" placeholder="Mobile No">
+                            <input class="form-control" type="tel" name="mobileNo" id="telephone" value="{{$user->mobileNo}}" placeholder="Mobile No">
                         </div>
                     </div>
 
                     <label class="form-label">Biometric ID</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="number" name="biometric_id" id="subject2" placeholder="Phone No">
+                            <input class="form-control" type="number" name="biometric_id" value="{{$user->biometric_id}}"  placeholder="Phone No">
                         </div>
                     </div>
 
@@ -143,7 +146,7 @@ HomePage
                     </label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" name="user_position" id="subject2" placeholder="Phone No">
+                            <input class="form-control" type="text"  value="{{$user->user_position}}" name="user_position" id="subject2" placeholder="Phone No">
                         </div>
                     </div>
 
@@ -173,22 +176,23 @@ HomePage
                     <!-- <input type="file" name="img"> -->
                     </div>
                     <label class="col-md-3 my-2 control-label">Communication</label>
+                    <!-- <span>{{json_encode([0])}}</span> -->
                     <div class="col-md-9">
                         <div class="checkbox my-2">
                             <div class="form-check">
-                                <input type="checkbox" name="communication[]" value="Mail" checked class="form-check-input" id="customCheck02" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                <input type="checkbox" name="communication[]" value="Mail" checked class="form-check-input" {{str_contains($user->comVia, 'Mail') ? "checked" : "" }} id="customCheck02" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                 <label class="form-check-label" for="customCheck02">Mail</label>
                             </div>
                         </div>
                         <div class="checkbox my-2">
                             <div class="form-check">
-                                <input type="checkbox" name="communication[]" value="SMS"  class="form-check-input" checked="" id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                <input type="checkbox" name="communication[]" value="SMS"  class="form-check-input" {{str_contains($user->comVia, 'SMS') ? "checked" : "" }}  id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                 <label class="form-check-label" for="customCheck3">SMS</label>
                             </div>
                         </div>
                         <div class="checkbox my-2">
                             <div class="form-check">
-                                <input type="checkbox" name="communication[]" value="phone" class="form-check-input" checked="" id="customCheck5" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                <input type="checkbox" name="communication[]" value="phone" class="form-check-input" {{str_contains($user->comVia, 'phone') ? "checked" : "" }}   id="customCheck5" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                 <label class="form-check-label" for="customCheckDisabled">Phone</label>
                                 
                             </div>

@@ -36,7 +36,6 @@ HomePage
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        {{$title}}
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
@@ -295,7 +294,7 @@ HomePage
     }
 
     function goActive(id) {
-        $.get("teacher/active/" + id, function(data, status) {
+        $.get("active/" + id, function(data, status) {
             if ($("#a_" + id).hasClass("text-success")) {
                 $("#a_" + id).removeClass('text-success')
                 $("#a_" + id).addClass('text-danger')
@@ -305,28 +304,13 @@ HomePage
             }
         })
     }
-
-
-
-    function goActive(id) {
-        $.get("teacher/active/" + id, function(data, status) {
-            if ($("#a_" + id).hasClass("text-success")) {
-                $("#a_" + id).removeClass('text-success')
-                $("#a_" + id).addClass('text-danger')
-            } else if ($("#a_" + id).hasClass("text-danger")) {
-                $("#a_" + id).removeClass('text-danger')
-                $("#a_" + id).addClass('text-success')
-            }
-        })
-    }
-
 
     function passId(id) {
         $('.teacherId').val(id);
     }
 
     function deleteTeacher(id) {
-        $.get("teacher/delete/" + id, function(data, status) {
+        $.get("delete/" + id, function(data, status) {
             console.log(data.msg);
             $("#t_" + id).addClass('d-none');
         })

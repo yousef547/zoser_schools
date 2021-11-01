@@ -40,69 +40,24 @@ HomePage
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Teacher</h4>
+                <h4 class="mb-0 font-size-18">employee</h4>
             </div>
         </div>
     </div>
     <div class="row">
     </div>
     <div class="row" id="flex">
-        <div class="col-md-3 d-none" id='close'>
-            <div class="card card-outline-info">
-                <div class="card-header bg-primary">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <h4 class="text-light">Advanced Search</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <a class="fs-5 text-light" onclick="(function(){$('#close').addClass('d-none');$('#card').removeClass('col-md-9')})();return false;">x</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-block">
-                    <div class="m-2">
-                        <form method="get" action="{{url('/admin/teacher/search')}}">
-                        @csrf
-                            <div class="form-group">
-                                <label>Gender</label>
-                                <div class="radio-list">
-                                    <label>
-                                        <input type="radio" name="gender" value="male">
-                                        Male
-                                    </label>
-                                </div>
-                                <div class=" radio-list">
-                                    <label>
-                                        <input type="radio" name="gender" value="fmale">
-                                        Female
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group m-b-0">
-                                <div class="col-md-12">
-                                    <button type="submit" id="btn_search" class="btn btn-info ">Advanced Search</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="" id="card">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div id="datatable2_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
-                                    <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" id="search" aria-controls="datatable-buttons" type="button">
-                                        <span>Advanced Search</span>
-                                    </button>
-                                    <a href="{{url('admin/teacher/create')}}" class="btn btn-secondary buttons-copy buttons-html5">add teacher</a>
+                                    <a href="{{url('admin/employee/create')}}" class="btn btn-secondary buttons-copy buttons-html5">add employee</a>
                                 </div>
                                 <div class="col-sm-12">
-                                    <table id="datatable-buttons" class="table table-striped table-bordered w-100 dataTable no-footer" role="grid" aria-describedby="datatable-buttons_info">
+                                    <table id="datatable2" class="table dataTable no-footer" role="grid" aria-describedby="datatable2_info">
                                         <thead>
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 5%;">ID</th>
@@ -113,41 +68,30 @@ HomePage
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($teachers as $key => $teacher)
-                                            <tr class="{{ $key%2==0 ? 'odd' : 'even'  }}" id="t_{{$teacher->id}}">
-                                                <td class="sorting_1">{{$teacher->id}}</td>
+                                            @foreach($allEmployee as $key => $employee)
+                                            <tr class="{{ $key%2==0 ? 'odd' : 'even'  }}" id="t_{{$employee->id}}">
+                                                <td class="sorting_1">{{$employee->id}}</td>
                                                 <td>
-                                                    <a onclick='profile("{{$teacher->fullName}}", "{{$teacher->photo}}", "{{$teacher->birthday}}","{{$teacher->role}}", "{{$teacher->username}}", "{{$teacher->email}}","{{$teacher->gender}}","{{$teacher->address}}", "{{$teacher->phoneNo}}","{{$teacher->mobileNo}}")' data-bs-toggle="modal" data-bs-target="#myModal">{{$teacher->fullName}}</a>
-                                                    @if($teacher->active)
-                                                    <i class="far fa-lightbulb text-success " id="a_{{$teacher->id}}"></i>
+                                                    <a onclick='profile("{{$employee->fullName}}", "{{$employee->photo}}", "{{$employee->birthday}}","{{$employee->role}}", "{{$employee->username}}", "{{$employee->email}}","{{$employee->gender}}","{{$employee->address}}", "{{$employee->phoneNo}}","{{$employee->mobileNo}}")' data-bs-toggle="modal" data-bs-target="#myModal">{{$employee->fullName}}</a>
+                                                    @if($employee->active)
+                                                    <i class="far fa-lightbulb text-success " id="a_{{$employee->id}}"></i>
                                                     @else
-                                                    <i class="far fa-lightbulb text-danger" id="a_{{$teacher->id}}"></i>
+                                                    <i class="far fa-lightbulb text-danger" id="a_{{$employee->id}}"></i>
                                                     @endif
                                                     <br>
-                                                    @if($teacher->isLeaderBoard != null)
-                                                    <span class="light">
-                                                        <br><i class="fa fa-trophy"></i>
-                                                        Leader Board
-                                                        <a class="light" href='{{url("admin/teacher/delete_leader")}}/{{$teacher->id}}'><i class="fas fa-trash"></i></a>
-                                                    </span>
-                                                    @endif
+                                                  
                                                 </td>
-                                                <td>{{$teacher->username}}</td>
-                                                <td>{{$teacher->email}}</td>
+                                                <td>{{$employee->username}}</td>
+                                                <td>{{$employee->email}}</td>
                                                 <td>
 
-                                                    <a class="btn btn-warning btn-rounded mx-1" onclick='goActive("{{$teacher->id}}")'>
+                                                    <a class="btn btn-warning btn-rounded mx-1" onclick='goActive("{{$employee->id}}")'>
                                                         <i class="far fa-lightbulb"></i>
                                                     </a>
-                                                    @if($teacher->isLeaderBoard == null)
-                                                    <a class="btn btn-success btn-rounded mx-1" onclick='passId("{{$teacher->id}}")' data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center">
-                                                        <i class="fa fa-trophy"></i>
-                                                    </a>
-                                                    @endif
-                                                    <a href='{{url("admin/teacher/edit")}}/{{$teacher->id}}' class="btn btn-info btn-rounded mx-1">
+                                                    <a href='{{url("admin/employee/edit")}}/{{$employee->id}}' class="btn btn-info btn-rounded mx-1">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-                                                    <a onclick='deleteTeacher("{{$teacher->id}}")' class="btn btn-danger btn-rounded mx-1">
+                                                    <a onclick='deleteemployee("{{$employee->id}}")' class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -234,9 +178,9 @@ HomePage
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{url('admin/teacher/leaderboard')}}">
+                <form method="POST" action="{{url('admin/employee/leaderboard')}}">
                     @csrf
-                    <input type="hidden" name="id" class="teacherId">
+                    <input type="hidden" name="id" class="employeeId">
                     <label class="form-label">Please enter leaderboard message</label>
                     <textarea class="form-control" id="field-7" name="massage" placeholder="Please enter leaderboard message" style="margin-top: 0px; margin-bottom: 0px; height: 137px;"></textarea>
                     <div class="modal-footer">
@@ -295,7 +239,8 @@ HomePage
     }
 
     function goActive(id) {
-        $.get("teacher/active/" + id, function(data, status) {
+        console.log(id)
+        $.get("employee/active/" + id, function(data, status) {
             if ($("#a_" + id).hasClass("text-success")) {
                 $("#a_" + id).removeClass('text-success')
                 $("#a_" + id).addClass('text-danger')
@@ -305,28 +250,13 @@ HomePage
             }
         })
     }
-
-
-
-    function goActive(id) {
-        $.get("teacher/active/" + id, function(data, status) {
-            if ($("#a_" + id).hasClass("text-success")) {
-                $("#a_" + id).removeClass('text-success')
-                $("#a_" + id).addClass('text-danger')
-            } else if ($("#a_" + id).hasClass("text-danger")) {
-                $("#a_" + id).removeClass('text-danger')
-                $("#a_" + id).addClass('text-success')
-            }
-        })
-    }
-
 
     function passId(id) {
-        $('.teacherId').val(id);
+        $('.employeeId').val(id);
     }
 
-    function deleteTeacher(id) {
-        $.get("teacher/delete/" + id, function(data, status) {
+    function deleteemployee(id) {
+        $.get("employee/delete/" + id, function(data, status) {
             console.log(data.msg);
             $("#t_" + id).addClass('d-none');
         })

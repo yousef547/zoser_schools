@@ -46,7 +46,7 @@ HomePage
             <div class="card-body" data-select2-id="7">
                 @include('admin.inc.massage')
 
-                <form method="post" action="{{url('/admin/teacher/store')}}" enctype="multipart/form-data">
+                <form method="post" action="{{url('/admin/employee/store')}}" enctype="multipart/form-data">
                     @csrf
                     <label class="form-label">Full Name *</label>
                     <div class="mb-3 row">
@@ -93,19 +93,6 @@ HomePage
                             <input class="form-control" type="text" name="address" id="subject2" placeholder="Address">
                         </div>
                     </div>
-                    <label class="form-label">Zoom Link</label>
-                    <div class="mb-3 row">
-                        <div class="col-sm-12">
-                            <input class="form-control" type="text" name="zoomLink" id="" placeholder="Zoom Link">
-                        </div>
-                    </div>
-
-                    <label class="form-label">Phone No</label>
-                    <div class="mb-3 row">
-                        <div class="col-sm-12">
-                            <input class="form-control" type="tel" name="phoneNo" id="" placeholder="Phone No">
-                        </div>
-                    </div>
 
                     <label class="form-label">Mobile No</label>
                     <div class="mb-3 row">
@@ -114,38 +101,19 @@ HomePage
                         </div>
                     </div>
 
-                    <label class="form-label">Biometric ID</label>
+                    <label class="col-sm-2 form-label">Permissions</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="number" name="biometric_id" id="subject2" placeholder="Phone No">
-                        </div>
-                    </div>
-
-                    <label class="col-sm-2 form-label">Transportation</label>
-                    <div class="mb-3 row">
-                        <div class="col-sm-12">
-                            <select class="form-select">
-                                <option>Not Select</option>
+                            <select name="Permissions" class="form-select">
+                                    <option></option>
+                            @foreach($roles as $role)
+                                     <option value='{{$role->id}}'>{{$role->role_title}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
 
-                    <label class="col-sm-2 form-label">Transport vehicles</label>
-                    <div class="mb-3 row">
-                        <div class="col-sm-12">
-                            <select class="form-select">
-                                <option>Not Select</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <label class="form-label">User Position
-                    </label>
-                    <div class="mb-3 row">
-                        <div class="col-sm-12">
-                            <input class="form-control" type="text" name="user_position" id="subject2" placeholder="Phone No">
-                        </div>
-                    </div>
 
                     <label class="col-sm-2 form-label">Departments</label>
                     <div class="mb-3 row">

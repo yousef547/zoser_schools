@@ -108,7 +108,6 @@ subjects
                             <label class="col-sm-2 form-label">Custom Select</label>
                             <div class="col-sm-12">
                                 <select class="form-select" name="teacher[]" id="teach" multiple="multiple">
-                                    <option value="444444">noooo</option>
                                     @foreach($teachers as $teacher)
                                     <option class="{{$teacher->id}} selected" value="{{$teacher->id}}">{{$teacher->username}}</option>
                                     @endforeach

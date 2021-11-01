@@ -195,9 +195,9 @@
                                                         <span>Employees</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/employees">Employees</a></li>
+                                                        <li><a href="{{url('admin/employee')}}">Employees</a></li>
                                                         <li><a href="{{url('admin/teacher')}}">Teachers</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/departments">Departments</a></li>
+                                                        <li><a href="{{url('admin/department')}}">Departments</a></li>
                                                         <li><a href="https://kharagny.com/zoser3/portal#/designations">Designations</a></li>
                                                     </ul>
                                                 </li>

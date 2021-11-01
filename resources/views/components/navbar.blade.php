@@ -254,7 +254,7 @@
                         <!-- User -->
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item waves-effect user-step" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src='{{asset("assets/images/$authUser->photo")}}' alt="Header Avatar">
+                                <img class="rounded-circle header-profile-user" src='{{asset("uploads/$authUser->photo")}}' alt="Header Avatar">
                                 <span class="d-none d-xl-inline-block ms-1">{{$authUser->username}}</span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
