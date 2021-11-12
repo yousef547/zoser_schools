@@ -79,6 +79,8 @@ subjects
                                     </table>
                                 </div>
                             </div>
+                            {{ $subjects->links('admin.inc.paginator') }}
+
                         </div>
                     </div>
                 </div>

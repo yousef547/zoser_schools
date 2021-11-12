@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class grade_level extends Model
+class class_schedule extends Model
 {
     use HasFactory;
     protected $guarded = ['id', 'created_at', 'updated_at'];

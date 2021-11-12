@@ -17,7 +17,7 @@ class employeeController extends Controller
 
     public function index()
     {
-        $data['allEmployee'] = User::where('role', '!=', 'student')->select('id', 'username', 'isLeaderBoard', 'birthday', 'role', 'gender', 'address', 'phoneNo', 'mobileNo', 'email', 'fullName', 'active', 'photo')->get();
+        $data['allEmployee'] = User::where('role', '!=', 'student')->select('id', 'username', 'isLeaderBoard', 'birthday', 'role', 'gender', 'address', 'phoneNo', 'mobileNo', 'email', 'fullName', 'active', 'photo')->paginate(10);
         // dd($allEmployee);
         return view('admin.employee.index')->with($data);
     }

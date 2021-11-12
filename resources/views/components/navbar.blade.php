@@ -255,13 +255,13 @@
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item waves-effect user-step" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded-circle header-profile-user" src='{{asset("uploads/$authUser->photo")}}' alt="Header Avatar">
-                                <span class="d-none d-xl-inline-block ms-1">{{$authUser->username}}</span>
+                                <span class="d-none d-xl-inline-block ms-1">{{$authUser->fullName}}</span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="dripicons-user d-inline-block text-muted me-2"></i>
-                                    Profile</a>
+                                <a class="dropdown-item" href="{{url('admin/settings')}}"><i class="dripicons-user d-inline-block text-muted me-2"></i>
+                                Account Settings</a>
                                 <a class="dropdown-item" href="#"><i class="dripicons-wallet d-inline-block text-muted me-2"></i> My
                                     Wallet</a>
                                 <a class="dropdown-item d-block" href="#"><i class="dripicons-gear d-inline-block text-muted me-2"></i> Settings</a>

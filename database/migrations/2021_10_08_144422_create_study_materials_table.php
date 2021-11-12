@@ -16,13 +16,13 @@ class CreateStudyMaterialsTable extends Migration
         Schema::create('study_materials', function (Blueprint $table) {
             $table->id();
             $table->foreignId('week_id')->constrained();
-            $table->mediumText('class_id');
-            $table->mediumText('sectionId');
-$table->integer('subject_id');
-$table->integer('teacher_id');
-$table->string('material_title',250);
-$table->mediumText('material_description');
-$table->string('material_file',250);
+            $table->foreignId('class_id')->constrained();
+            $table->foreignId('section_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('subject_id')->constrained();
+            $table->string('material_title', 250);
+            $table->mediumText('material_description');
+            $table->string('material_file', 250)->nullable();
 
             $table->timestamps();
         });

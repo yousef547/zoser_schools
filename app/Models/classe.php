@@ -18,4 +18,21 @@ class classe extends Model
     {
         return $this->hasMany(sections::class);
     }
+    // public function scopeActive($query)
+    // {
+    //     return $query->where('active', 1);
+    // }
+
+    public function weeks() {
+        return $this->belongsToMany(week::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
+    }
+    public function Nuser() {
+        return $this->belongsToMany(User::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
+    }
+    public function Nsections() {
+        return $this->belongsToMany(sections::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
+    }
+    public function Nsubjects() {
+        return $this->belongsToMany(subject::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
+    }
 }

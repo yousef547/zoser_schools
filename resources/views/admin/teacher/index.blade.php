@@ -158,6 +158,8 @@ HomePage
                                     </table>
                                 </div>
                             </div>
+                            {{ $teachers->links('admin.inc.paginator') }}
+
                         </div>
                     </div>
                 </div>

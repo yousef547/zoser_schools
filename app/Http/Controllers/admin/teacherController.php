@@ -18,7 +18,7 @@ class teacherController extends Controller
     use GeneralTrait;
     public function index(Request $request)
     {
-        $data['allTeachers'] = User::where('role', '=', 'teacher')->select('id', 'username', 'isLeaderBoard', 'birthday', 'role', 'gender', 'address', 'phoneNo', 'mobileNo', 'email', 'fullName', 'active', 'photo')->orderBy('username', 'desc')->get();
+        $data['allTeachers'] = User::where('role', '=', 'teacher')->select('id', 'username', 'isLeaderBoard', 'birthday', 'role', 'gender', 'address', 'phoneNo', 'mobileNo', 'email', 'fullName', 'active', 'photo')->orderBy('username', 'desc')->paginate(10);
         $request->session()->put('keyteacher', $data['allTeachers']);
         $data['teachers'] = $request->session()->get('keyteacher');
         return view('admin.teacher.index')->with($data);

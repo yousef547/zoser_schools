@@ -102,6 +102,8 @@ HomePage
                                     </table>
                                 </div>
                             </div>
+                            {{ $allEmployee->links('admin.inc.paginator') }}
+
                         </div>
                     </div>
                 </div>

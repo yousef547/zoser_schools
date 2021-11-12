@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class departmentController extends Controller
 {
     public function index(){
-        $data['departs'] = departments::all();
+        $data['departs'] = departments::paginate(5);
         // dd($data['depart']);
         return view('admin.department.index')->with($data);
     }

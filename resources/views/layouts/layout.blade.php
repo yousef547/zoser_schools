@@ -19,6 +19,8 @@
     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
     <!-- App Css-->
     <link href="{{asset('assets/css/app-dark.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/css/mystyle.css')}}"  rel="stylesheet" >
+
 
 
     
@@ -117,7 +119,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/class_schedulr')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Classes Schedule</span>
                                                     </a>
@@ -222,13 +224,13 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/Gradelevels')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Grade levels</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/materials')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Study Material</span>
                                                     </a>

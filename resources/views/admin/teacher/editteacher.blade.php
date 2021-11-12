@@ -173,10 +173,8 @@ HomePage
                     <div class="input-group mb-3">
                          <input type="file" class="form-control" name="img" id="inputGroupFile01">
                     
-                    <!-- <input type="file" name="img"> -->
                     </div>
                     <label class="col-md-3 my-2 control-label">Communication</label>
-                    <!-- <span>{{json_encode([0])}}</span> -->
                     <div class="col-md-9">
                         <div class="checkbox my-2">
                             <div class="form-check">

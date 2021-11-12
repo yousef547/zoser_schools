@@ -37,7 +37,7 @@ class studentController extends Controller
     }
 
     public function sections($id) {
-        $sections = sections::where('class_id','=', $id)->get();
+        $sections = sections::where('classe_id','=', $id)->get();
         if($sections->isEmpty()) {
             return response()->json([
                 'msg' => 'not found Id '
@@ -54,10 +54,10 @@ class studentController extends Controller
             } elseif($gender == "undefined" and $class > 0 && $section > 0){
                 $studentS = $student->where('section_id', $section);
             } elseif($gender == "undefined" and $class > 0 && $section == 0) {
-                $studentS = $student->where('class_id', $class);
+                $studentS = $student->where('classs_id', $class);
             }elseif($gender != "undefined" and $class > 0 && $section == 0) {
                 $studentC = $student->where('gender', $gender);
-                $studentS = $studentC->where('class_id', $class);
+                $studentS = $studentC->where('classs_id', $class);
             }elseif($gender != "undefined" and $class == 0 && $section == 0) {
                 $studentS = $student->where('gender', $gender);
             }else{

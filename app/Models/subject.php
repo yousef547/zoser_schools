@@ -16,4 +16,16 @@ class subject extends Model
             // ->withPivot('subjectTitle', 'passGrade', 'finalGrade','photo')
             // ->withTimestamps();
     }
+    public function weeks() {
+        return $this->belongsToMany(week::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
+    }
+    public function classs() {
+        return $this->belongsToMany(classe::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
+    }
+    public function sections() {
+        return $this->belongsToMany(sections::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
+    }
+    public function Nuser() {
+        return $this->belongsToMany(User::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
+    }
 }

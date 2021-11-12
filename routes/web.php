@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\admin\class_schedulrController;
 use App\Http\Controllers\admin\departmentController as AdminDepartmentController;
 use App\Http\Controllers\admin\employeeController;
+use App\Http\Controllers\admin\GradelevelsController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\OfficeController;
+use App\Http\Controllers\admin\settingsController;
 use App\Http\Controllers\admin\studentController;
 use App\Http\Controllers\admin\subjectController;
 use App\Http\Controllers\admin\teacherController as AdminTeacherController;
@@ -37,6 +40,24 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/',[HomeController::class,'index']);
     Route::get('/materials',[subjectController::class,'Materials']);
     Route::get('/materials/{id}',[subjectController::class,'getMaterials']);
+    Route::get('/materials/create/{subject}',[subjectController::class,'create']);
+    Route::get('/materials/create/getSection/{id}',[subjectController::class,'getSection']);
+    Route::post('/materials/store',[subjectController::class,'submit']);
+    Route::get('/materials/update/{id}',[subjectController::class,'update']);
+    Route::post('/materials/edit',[subjectController::class,'edit']);
+    Route::get('/materials/delete/{id}',[subjectController::class,'remove']);
+
+
+
+
+
+
+
+
+
+
+
+
     Route::get('/student',[studentController::class,'getStudent'])->name('admin.student');
     Route::get('/active_student/{id}',[studentController::class,'activation']);
     Route::get('/sections/{id}',[studentController::class,'sections']);
@@ -59,8 +80,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/teacher/delete/{id}',[AdminTeacherController::class,'delete']);
     Route::get('/teacher/search',[AdminTeacherController::class,'searchGender']);
     Route::get('/teacher/filters',[AdminTeacherController::class,'searchGender']);
-
-    
     Route::get('employee',[employeeController::class,'index']);
     Route::get('/employee/active/{id}',[employeeController::class,'editActive']);
     Route::get('/employee/create',[employeeController::class,'addEmployee']);    
@@ -71,23 +90,20 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/department/create',[AdminDepartmentController::class,'create']);    
     Route::post('department/store',[AdminDepartmentController::class,'store']);
     Route::post('department/update',[AdminDepartmentController::class,'update']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Route::get('class_schedulr',[class_schedulrController::class,'index']);
+    Route::get('class_schedulr/timetable/{id}',[class_schedulrController::class,'timetable']);
+    Route::post('class_schedulr/submit',[class_schedulrController::class,'submit']);
+    Route::post('class_schedulr/update',[class_schedulrController::class,'update']);
+    Route::get('class_schedulr/delete',[class_schedulrController::class,'remove']);
+    Route::get('settings',[settingsController::class,'index']);
+    Route::post('settings/profile',[settingsController::class,'editProfile']);
+    Route::post('settings/email',[settingsController::class,'editEmail']);
+    Route::post('settings/password',[settingsController::class,'editPassword']);
+    Route::get('Gradelevels',[GradelevelsController::class,'index']);
+    Route::post('Gradelevels/create',[GradelevelsController::class,'create']);
+    Route::post('Gradelevels/update',[GradelevelsController::class,'update']);
+    Route::get('Gradelevels/remove/{id}',[GradelevelsController::class,'remove']);
+    
 });
 Route::prefix('teacher')->middleware(['auth','isTeacher'])->group(function (){
     Route::get('/',[TeacherController::class,'index']);

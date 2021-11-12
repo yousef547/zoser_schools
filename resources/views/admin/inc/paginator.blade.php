@@ -1,7 +1,7 @@
 @if($paginator->hasPages())
 <div class="row" style="display: block;">
     <div class="col-sm-12 col-md-7">
-        <div class="dataTables_paginate paging_simple_numbers" id="datatable-buttons_paginate">
+        <div class="dataTables_paginate " id="datatable-buttons_paginate">
             <ul class="pagination">
                 @if ($paginator->onFirstPage())
                 <li class="paginate_button disabled page-item previous disabled" id="datatable-buttons_previous"><a href="#" aria-controls="datatable-buttons" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
