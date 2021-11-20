@@ -92,20 +92,6 @@ class class_schedulrController extends Controller
             "startTime" => "required|date_format:H:i",
             "endTime" => "required|date_format:H:i|after:startTime"
         ]);
-        // $start = new Carbon($request->startTime);
-        // $end = new Carbon($request->endTime);
-
-        // // $start = $carbons->format($request->startTime);
-        // // $end = $carbons->format($request->endTime);
-        // $newSchedule = [
-        //     "class_id" => $request->class_id,
-        //     "section_id" => $request->section_id,
-        //     "day_id" => $request->day_id,
-        //     "subject_id" => $request->subject_id,
-        //     "user_id" => $request->user_id,
-        //     "startTime" =>$start->format('h:i:s A'),
-        //     "endTime" => $end->format('h:i:s A')
-        // ];
         $subjectUpdate = class_schedule::find($request->idsubject);
         $subjectUpdate->update($schedule);
         $request->session()->flash('msg', 'Successed update class schedule');

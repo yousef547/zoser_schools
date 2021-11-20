@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\admin\attendanceController;
 use App\Http\Controllers\admin\class_schedulrController;
 use App\Http\Controllers\admin\departmentController as AdminDepartmentController;
 use App\Http\Controllers\admin\employeeController;
+use App\Http\Controllers\admin\eventController;
 use App\Http\Controllers\admin\GradelevelsController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\meetimgController;
 use App\Http\Controllers\admin\OfficeController;
 use App\Http\Controllers\admin\settingsController;
 use App\Http\Controllers\admin\studentController;
@@ -46,18 +49,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/materials/update/{id}',[subjectController::class,'update']);
     Route::post('/materials/edit',[subjectController::class,'edit']);
     Route::get('/materials/delete/{id}',[subjectController::class,'remove']);
-
-
-
-
-
-
-
-
-
-
-
-
     Route::get('/student',[studentController::class,'getStudent'])->name('admin.student');
     Route::get('/active_student/{id}',[studentController::class,'activation']);
     Route::get('/sections/{id}',[studentController::class,'sections']);
@@ -103,7 +94,37 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::post('Gradelevels/create',[GradelevelsController::class,'create']);
     Route::post('Gradelevels/update',[GradelevelsController::class,'update']);
     Route::get('Gradelevels/remove/{id}',[GradelevelsController::class,'remove']);
+    Route::get('event',[eventController::class,'index']);
+    Route::get('event/create',[eventController::class,'create']);
+    Route::post('event/submit',[eventController::class,'submit']);
+    Route::get('event/active/{id}',[eventController::class,'active']);
+    Route::get('event/edit/{id}',[eventController::class,'edit']);
+    Route::post('event/update',[eventController::class,'update']);
+    Route::get('event/remove/{id}',[eventController::class,'remove']);
+    Route::get('event/show/{id}',[eventController::class,'show']);
+    Route::get('meeting',[meetimgController::class,'index']);
+    Route::get('meeting/create',[meetimgController::class,'create']);
+    Route::get('meeting/filter',[meetimgController::class,'filter']);
+    Route::post('meeting/submit',[meetimgController::class,'submit']);
+    Route::get('meeting/sections/{id}',[meetimgController::class,'sections']);
+    Route::get('meeting/update/{id}',[meetimgController::class,'update']);
+    Route::post('meeting/edit',[meetimgController::class,'edit']);
+    Route::get('meeting/delete/{id}',[meetimgController::class,'delete']);
+    Route::get('attendance',[attendanceController::class,'index']);
+    Route::get('attendance/take_attendance',[attendanceController::class,'takeAttendance']);
+    Route::post('attendance/click',[attendanceController::class,'submit']);
+
+
+
     
+
+
+
+
+
+
+
+
 });
 Route::prefix('teacher')->middleware(['auth','isTeacher'])->group(function (){
     Route::get('/',[TeacherController::class,'index']);

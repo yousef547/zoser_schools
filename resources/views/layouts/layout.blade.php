@@ -89,7 +89,7 @@
 
                                                 <!-- Calender -->
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/meeting')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Online Meetings</span>
                                                     </a>
@@ -140,7 +140,7 @@
                                                     </a>
 
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/attendance">Take Attendance</a></li>
+                                                        <li><a href="{{url('admin/attendance')}}">Take Attendance</a></li>
                                                         <li><a href="https://kharagny.com/zoser3/portal#/attendance_report">Attendance Report</a></li>
                                                     </ul>
                                                 </li>

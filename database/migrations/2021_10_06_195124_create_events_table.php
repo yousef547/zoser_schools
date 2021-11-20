@@ -20,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->string('eventFor',10)->nullable();
             $table->string('enentPlace',255)->nullable();
             $table->text('eventImage');
-            $table->boolean('fe_active');
+            $table->boolean('active');
             $table->string('eventDate',255);
 
             $table->timestamps();
