@@ -155,18 +155,20 @@ HomePage
 <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
 <script src="{{asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
+
 
 
 <!-- Datatable init js -->
 <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
 
 <script>
-function btnAttendance(attendance){
-    console.log(attendance)
-    for(var i=0;i<$(attendance).length;i++) {
-        $(attendance)[i].checked = true
-    }
-}
+// function btnAttendance(attendance){
+//     console.log(attendance)
+//     for(var i=0;i<$(attendance).length;i++) {
+//         $(attendance)[i].checked = true
+//     }
+// }
 </script>
 
 @endsection

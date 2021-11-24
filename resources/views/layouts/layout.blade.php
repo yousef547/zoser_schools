@@ -95,7 +95,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/chat')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Messages</span>
                                                     </a>
@@ -152,7 +152,7 @@
                                                         <span>Staff Attendance</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/staffAttendance">Take Attendance</a></li>
+                                                        <li><a href="{{url('admin/attendance/staff')}}">Take Attendance</a></li>
                                                         <li><a href="https://kharagny.com/zoser3/portal#/staffAttendance_report">Attendance Report</a></li>
                                                     </ul>
                                                 </li>

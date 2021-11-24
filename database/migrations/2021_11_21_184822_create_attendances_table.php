@@ -17,8 +17,10 @@ class CreateAttendancesTable extends Migration
             $table->id();
             $table->foreignId('section_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->enum('status', ['present','absent','late','late_with_excuse','early_dismissal']);
-            $table->string('ayyNot',255)->nullable();
+            $table->enum('status', ['present', 'absent', 'late', 'late_with_excuse', 'early_dismissal']);
+            $table->string('in_time', 255)->nullable();
+            $table->string('out_time', 255)->nullable();
+            $table->string('attNot', 255)->nullable();
             $table->date('date');
             $table->timestamps();
         });

@@ -11,6 +11,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Http\Request;
 use App\Traits\GeneralTrait;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class meetimgController extends Controller
@@ -31,8 +32,9 @@ class meetimgController extends Controller
     }
     public function filter()
     {
+        // $notUser = Auth::user()->id;
         $users = QueryBuilder::for(User::class)
-            ->allowedFilters(['username'])->select('id', 'username', 'email')
+            ->allowedFilters(['username'])->select('id', 'username', 'email','photo')
             ->get();
         return $this->returnData("data", $users, 'return success');;
         // dd($users);
