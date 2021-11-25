@@ -27,7 +27,8 @@ HomePage
         padding: 0 109px;
         /* padding-bottom: -9px; */
         margin-bottom: 2px;
-        color: #80888f;
+        color: #000;
+        font-weight: 500;
     }
 
     .form-group {
@@ -59,14 +60,35 @@ HomePage
         padding: 10px;
         font-size: 16px;
         font-weight: 500;
+        border: 2px solid #333;
     }
 
-    .msg {
+    @media only screen and (max-width: 1250px) {
+        .img-q {
+            width: 14%;
+        }
+
+        .msg-q {
+            width: 86%;
+        }
+    }
+
+    /* .msg {
         background: rgb(68 162 210 / 50%);
     }
 
     .msg2 {
         background: rgb(148 238 196 / 50%)
+    } */
+
+    .load {
+        width: 61%;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        background: rgb(0 0 0 / 70%);
+        text-align: center;
+        padding-top: 10px
     }
 </style>
 @endsection
@@ -90,27 +112,16 @@ HomePage
                             <div class="slimScrollDiv" id="scrolling" style=" height: 500px;">
                                 <div class="col-12 pe-4" id="mssg">
                                     @foreach($messages as $message)
-                                    @if(Auth::user()->id == $message->from_user)
                                     <div class="row my-3">
                                         <p class=" name">{{$message->useFrom}}</p>
-                                        <div class="col-1">
+                                        <div class="col-md-1 img-q rounded-circle position-relative">
                                             <img class="rounded-circle header-profile-mag" src="{{asset('uploads/')}}/{{$message->photoFrom}}" alt="Header Avatar">
                                         </div>
-                                        <div class="col-11 msg">
+                                        <div class="col-md-11 msg-q msg">
                                             <p>{{$message->messageText}}</p>
                                         </div>
                                     </div>
-                                    @else
-                                    <div class="row my-3">
-                                        <p class="text-end name">{{$message->useFrom}}</p>
-                                        <div class="col-11 msg2 text-end">
-                                            <p>{{$message->messageText}}</p>
-                                        </div>
-                                        <div class="col-1">
-                                            <img class="rounded-circle header-profile-mag" src="{{asset('uploads/')}}/{{$message->photoFrom}}" alt="Header Avatar">
-                                        </div>
-                                    </div>
-                                    @endif
+
                                     @endforeach
 
 
@@ -166,6 +177,13 @@ HomePage
 
 <!-- Datatable init js -->
 <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
+<script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
+<script src="{{asset('assets/js/app.js')}}"></script>
+
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+    // Enable pusher logging - don't include this in production
+</script>
 
 <script>
     var idUse = <?php
@@ -179,41 +197,46 @@ HomePage
     msgName = "<?php echo (Auth::user()->username); ?>"
 
     var scroll = document.getElementById('scrolling');
+    var userFrom;
 
     function scrollFunction() {
         scroll.scrollTo(0, scroll.scrollHeight);
     }
     scrollFunction()
 
+    // var newMsg = ``;
+
+
+    function setMsg() {
+        // console.log('gklg25563');
+        var msg = $('#massage').val();
+        newMsg = `<div class="row my-3 " id="loading">
+                                        <p class=" name">${msgName}</p>
+                                        <div class="col-1 img-q position-relative">
+                                            <img class="rounded-circle header-profile-mag" src="{{asset('uploads')}}/${msgImg}" alt="Header Avatar">
+                                            <div class="load rounded-circle"><i class="fas fa-spinner fa-3x text-white  fa-spin"></i></div>
+
+                                        </div>
+                                        <div class="col-11 msg-q msg">
+                                            <p>${msg}</p>
+                                        </div>
+                                    </div>`
+        $('#mssg').append(newMsg);
+        scroll.scrollTo(0, scroll.scrollHeight);
+    }
+
 
     function sendMessage() {
+        setMsg();
         var msg = $('#massage').val(),
             idUser = $('#id_user').val(),
             idChat = $('#id_chat').val();
-        // msg.value = '';
-        console.log(idUser);
-        var send = {
-            'id_from': idUse,
-            'id_chat': idChat,
-            'msg': msg,
-            'id_to': idUser
-        }
-        // console.log(send);
-        $.post("/api/chat/setmessage", send, function(data, status) {
-            console.log(data);
-            var newMsg = ` <div class="row my-3">
-                                        <p class=" name">${msgName}</p>
-                                        <div class="col-1">
-                                            <img class="rounded-circle header-profile-mag" src="{{asset('uploads')}}/${msgImg}" alt="Header Avatar">
-                                        </div>
-                                        <div class="col-11 msg">
-                                            <p>${data.messageText}</p>
-                                        </div>
-                                    </div>`
-            $('#mssg').append(newMsg);
+        $.get("/admin/chat/setmessage/" + idChat + "/" + idUser + "/" + msg, function(data, status) {
+            userFrom = data.from_user;
             scroll.scrollTo(0, scroll.scrollHeight);
         });
         $('#massage').val('');
+
         // api/chat/setmessage
     }
 
@@ -223,6 +246,37 @@ HomePage
             event.preventDefault();
             sendMessage();
         }
+    });
+    var data = 'yousef';
+
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('4b16bed38af9ff14e57e', {
+        cluster: 'eu',
+        encrypted: true
+    });
+
+    var channel = pusher.subscribe('not-msg');
+    channel.bind('massage', function(data) {
+        var masg = data.massage;
+        var newMsg;
+        console.log(data); //
+
+        newMsg = `<div class="row my-3">
+                                        <p class=" name">${masg.name_from}</p>
+                                        <div class="col-1 img-q">
+                                            <img class="rounded-circle header-profile-mag" src="{{asset('uploads')}}/${masg.img_from}" alt="Header Avatar">
+                                        </div>
+                                        <div class="col-11 msg-q msg">
+                                            <p>${masg.messageText}</p>
+                                        </div>
+                                    </div>`
+
+
+        $('#mssg').append(newMsg);
+        $('#mssg #loading').addClass("d-none");
+        scroll.scrollTo(0, scroll.scrollHeight);
+        // console.log(masg.messageText)
     });
 </script>
 

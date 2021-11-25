@@ -120,6 +120,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('chat/create', [chatController::class, 'create']);
     Route::post('chat/submit', [chatController::class, 'submit']);
     Route::get('chat/message/{id}/{id_to}', [chatController::class, 'message']);
+    Route::get('/chat/setmessage/{idChat}/{idTo}/{msg}', [chatController::class, 'setNew']);
+
 });
 
 

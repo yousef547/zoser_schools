@@ -121,12 +121,10 @@ HomePage
             </div>
             <div class="modal-body">
                 <div class="row ">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <input type="text" class="form-control" id="searchLink" placeholder=" / username /" onkeyup="myfilters(this.value)">
                     </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-danger btn-flat  w-100">Search</button>
-                    </div>
+                    
                 </div>
                 <div class="row ">
                     <div class="col-md-12" style="padding-top:10px;">
