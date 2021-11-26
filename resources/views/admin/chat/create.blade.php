@@ -36,7 +36,6 @@ HomePage
         font-size: 20px !important;
         font-weight: 600 !important;
     }
-
     .message-user {
         border: 1px solid #999999;
         display: inline-block;
@@ -124,7 +123,6 @@ HomePage
                     <div class="col-md-12">
                         <input type="text" class="form-control" id="searchLink" placeholder=" / username /" onkeyup="myfilters(this.value)">
                     </div>
-                    
                 </div>
                 <div class="row ">
                     <div class="col-md-12" style="padding-top:10px;">

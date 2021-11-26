@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\GradelevelsController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\meetimgController;
 use App\Http\Controllers\admin\OfficeController;
+use App\Http\Controllers\admin\parentController;
 use App\Http\Controllers\admin\settingsController;
 use App\Http\Controllers\admin\studentController;
 use App\Http\Controllers\admin\subjectController;
@@ -51,6 +52,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/materials/delete/{id}', [subjectController::class, 'remove']);
     Route::get('/student', [studentController::class, 'getStudent'])->name('admin.student');
     Route::get('/active_student/{id}', [studentController::class, 'activation']);
+    Route::get('/student/create', [studentController::class, 'create']);
+    Route::post('/student/submit', [studentController::class, 'submit']);
+    Route::get('/student/filter', [studentController::class, 'filter']);
+
+
+
+
     Route::get('/sections/{id}', [studentController::class, 'sections']);
     Route::get('/apiStudent/{gender}/{class}/{section}', [studentController::class, 'studentApi']);
     Route::get('/edit_active/{id}', [studentController::class, 'editActive']);
@@ -121,6 +129,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::post('chat/submit', [chatController::class, 'submit']);
     Route::get('chat/message/{id}/{id_to}', [chatController::class, 'message']);
     Route::get('/chat/setmessage/{idChat}/{idTo}/{msg}', [chatController::class, 'setNew']);
+    Route::get('/parent', [parentController::class, 'index']);
+    Route::get('/parent/create', [parentController::class, 'create']);
+
+    Route::POST('/parent/submit', [parentController::class, 'submit']);
+
+
+
 
 });
 

@@ -36,7 +36,6 @@ HomePage
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        {{$title}}
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">

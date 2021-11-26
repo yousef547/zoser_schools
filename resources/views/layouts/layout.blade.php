@@ -213,13 +213,13 @@
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         <li><a href="{{url('admin/student')}}">Students</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/students/admission">Students Admission</a></li>
+                                                        <li><a href="{{url('admin/student/create')}}">Students Admission</a></li>
                                                         <li><a href="https://kharagny.com/zoser3/portal#/student/categories">Student Categories</a></li>
                                                     </ul>
 
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/parent')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Parents</span>
                                                     </a>
