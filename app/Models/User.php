@@ -78,4 +78,20 @@ class User extends Authenticatable
         return $this->belongsToMany(study_material::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
     }
 
+    public function medical($name)
+    {
+        // $lang = $lang ?? App::getLocale();
+        return json_decode($this->medical)->$name;
+    }
+    public function father($name)
+    {
+        // $lang = $lang ?? App::getLocale();
+        return json_decode($this->father_info)->$name;
+    }
+    public function mother($name)
+    {
+        // $lang = $lang ?? App::getLocale();
+        return json_decode($this->mother_info)->$name;
+    }
+
 }

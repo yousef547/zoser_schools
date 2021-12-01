@@ -18,6 +18,14 @@ class classe extends Model
     {
         return $this->hasMany(sections::class);
     }
+    public function allTeacher()
+    {
+        $teacher="";
+        for($i=0;$i<count(json_decode($this->classTeacher));$i++) {
+            $teacher .= User::find(json_decode($this->classTeacher)[$i])->username . "\n";
+        }
+        return $teacher;
+    }
     // public function scopeActive($query)
     // {
     //     return $query->where('active', 1);

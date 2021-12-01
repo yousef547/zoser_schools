@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\admin\assignmentController;
 use App\Http\Controllers\admin\attendanceController;
 use App\Http\Controllers\admin\chatController;
 use App\Http\Controllers\admin\class_schedulrController;
+use App\Http\Controllers\admin\classes_sectionsController;
 use App\Http\Controllers\admin\departmentController as AdminDepartmentController;
 use App\Http\Controllers\admin\employeeController;
 use App\Http\Controllers\admin\eventController;
@@ -18,6 +20,8 @@ use App\Http\Controllers\admin\teacherController as AdminTeacherController;
 use App\Http\Controllers\departmentController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\teacher\TeacherController;
+use App\Models\assignment;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,13 +38,13 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+// ['middleware' => ['isAdmin']],
 Route::get('/', [LoginController::class, 'index']);
 Route::get('/resetpassword', [LoginController::class, 'resetPassword']);
 Route::get('/terms', [LoginController::class, 'terms']);
 Route::get('/visitors', [OfficeController::class, 'Visitors']);
 Route::get('/phone_calls', [OfficeController::class, 'Phone']);
-Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
+Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/materials', [subjectController::class, 'Materials']);
     Route::get('/materials/{id}', [subjectController::class, 'getMaterials']);
@@ -55,10 +59,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/student/create', [studentController::class, 'create']);
     Route::post('/student/submit', [studentController::class, 'submit']);
     Route::get('/student/filter', [studentController::class, 'filter']);
-
-
-
-
+    Route::get('/student/edit/{id}', [studentController::class, 'edit']);
+    Route::post('/student/update/{id}', [studentController::class, 'update']);
+    Route::get('/student/delete/{id}', [studentController::class, 'delete']);
+    Route::get('/student/attendace/{id}', [studentController::class, 'attendace']);
     Route::get('/sections/{id}', [studentController::class, 'sections']);
     Route::get('/apiStudent/{gender}/{class}/{section}', [studentController::class, 'studentApi']);
     Route::get('/edit_active/{id}', [studentController::class, 'editActive']);
@@ -124,6 +128,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('attendance/staff', [attendanceController::class, 'staffIndex']);
     Route::get('attendance/take_staff', [attendanceController::class, 'takeStaff']);
     Route::post('attendance/staff_submit', [attendanceController::class, 'staffSubmit']);
+    Route::get('attendance/report', [attendanceController::class, 'report']);
+    Route::post('attendance/report_details', [attendanceController::class, 'details']);
     Route::get('chat', [chatController::class, 'index']);
     Route::get('chat/create', [chatController::class, 'create']);
     Route::post('chat/submit', [chatController::class, 'submit']);
@@ -131,8 +137,16 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/chat/setmessage/{idChat}/{idTo}/{msg}', [chatController::class, 'setNew']);
     Route::get('/parent', [parentController::class, 'index']);
     Route::get('/parent/create', [parentController::class, 'create']);
-
     Route::POST('/parent/submit', [parentController::class, 'submit']);
+    Route::get('assignments',[assignmentController::class,'index']);
+    Route::get('assignments/create',[assignmentController::class,'create']);
+    Route::post('assignments/submit',[assignmentController::class,'submit']);
+    Route::get('assignments/edit/{id}',[assignmentController::class,'edit']);
+    Route::post('assignments/update/{id}',[assignmentController::class,'update']);
+    Route::get('assignments/delete/{id}',[assignmentController::class,'delete']);
+    Route::get('classes',[classes_sectionsController::class,'classes']);
+
+
 
 
 

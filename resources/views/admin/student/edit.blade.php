@@ -60,13 +60,13 @@ HomePage
                 <div class="card-body">
                     <h5 class="">Modals Examples</h5>
                     <div>
-                        <form method="POST" action="{{url('admin/student/submit')}}" enctype="multipart/form-data">
+                        <form method="POST" action='{{url("admin/student/update/$student->id")}}' enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Full Name</label>
                                     <div class="">
-                                        <input class="form-control" type="text" value="" name="full_name" placeholder="full Name">
+                                        <input class="form-control" type="text" value="{{$student->fullName}}" name="full_name" placeholder="full Name">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
@@ -75,13 +75,13 @@ HomePage
                                         <div class="col-sm-4 control-label mt-2">
                                             <div class="radio-list me-5" style="display: inline-block;">
                                                 <label>
-                                                    <input type="radio" name="gender" value="male" checked="checked">
+                                                    <input type="radio" name="gender" value="male" {{$student->gender == 'male' ? "checked" : "" }}>
                                                     Male
                                                 </label>
                                             </div>
                                             <div class="radio-list" style="display: inline-block;">
                                                 <label>
-                                                    <input type="radio" name="gender" value="fmale">
+                                                    <input type="radio" name="gender" value="fmale" {{$student->gender == 'fmale' ? "checked" : "" }}>
                                                     Female
                                                 </label>
                                             </div>
@@ -91,61 +91,62 @@ HomePage
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Email</label>
                                     <div class="">
-                                        <input class="form-control" type="email" value="" name="email" placeholder="Email">
+                                        <input class="form-control" type="email" value="{{$student->email}}" name="email" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Birth Day</label>
                                     <div class="">
-                                        <input class="form-control" type="date" name="birth_bay" id="example-date-input">
+                                        <input class="form-control" type="date" value="{{$student->birthday}}" name="birth_bay" id="example-date-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Address</label>
                                     <div class="">
-                                        <input class="form-control" type="text" value="" name="Address" placeholder="Address">
+                                        <input class="form-control" type="text" value="{{$student->address}}" name="Address" placeholder="Address">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Phone No</label>
                                     <div class="">
-                                        <input class="form-control" type="tel" name="Phone_No" id="example-date-input">
+                                        <input class="form-control" type="tel" value="{{$student->phoneNo}}" name="Phone_No" id="example-date-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Address</label>
+                                    <label for="example-email-input1" class="form-label pt-0">Mobile No</label>
                                     <div class="">
-                                        <input class="form-control" type="tel" id="telephone" value="" name="mobile_no" placeholder="Address">
+                                        <input class="form-control" type="tel" value="{{$student->mobileNo}}" id="telephone" value="" name="mobile_no" placeholder="Address">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Religion</label>
 
                                     <div class="">
-                                        <input class="form-control" type="text" value="" name="religion" placeholder="Address">
+                                        <input class="form-control" type="text" value="{{$student->religion}}" name="religion" placeholder="Address">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">User Name</label>
 
                                     <div class="">
-                                        <input class="form-control" type="text" value="" name="user_name" placeholder="User Name">
+                                        <input class="form-control" type="text" value="{{$student->username}}" name="user_name" placeholder="User Name">
                                     </div>
-                                </div>
-                                <div class="mb-3 col-md-6">
+                                </div><hr/>
+                                <!-- <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Password </label>
 
                                     <div class="">
                                         <input class="form-control" type="Password" value="" name="Password" placeholder="Password">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Class </label>
                                     <div class="">
                                         <select class="form-select" name="class" id="class">
                                             <option>select</option>
                                             @foreach($classes as $classe)
-                                            <option value="{{$classe->id}}">{{$classe->className}}</option>
+
+                                            <option {{$student->class_id  == $classe->id ? "selected" : "" }} value="{{$classe->id}}">{{$classe->className}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -155,7 +156,9 @@ HomePage
                                     <div class="">
                                         <select class="form-select" name="section" id="getSection">
                                             <option>select</option>
-
+                                            @foreach($sections as $section)
+                                            <option {{$student->section_id  == $section->id ? "selected" : "" }} value="{{$section->id}}">{{$section->sectionName}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -168,19 +171,19 @@ HomePage
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Biometric ID </label>
                                     <div class="">
-                                        <input class="form-control" type="number" value="" name="biometric_id" placeholder="Biometric ID">
+                                        <input class="form-control" type="number" value="{{$student->biometric_id}}" name="biometric_id" placeholder="Biometric ID">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Admission Number</label>
                                     <div class="">
-                                        <input class="form-control" type="number" value="" name="Admission_Number" placeholder="Admission Number">
+                                        <input class="form-control" type="number" value="{{$student->admission_number}}" name="Admission_Number" placeholder="Admission Number">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="example-email-input1" class="form-label pt-0">Admission Date</label>
                                     <div class="">
-                                        <input class="form-control" type="date" name="Admission_Date" id="example-date-input">
+                                        <input class="form-control" value="{{$student->admission_date}}" type="date" name="Admission_Date" id="example-date-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -188,19 +191,19 @@ HomePage
                                     <div class="row">
                                         <div class="checkbox my-2 col-4">
                                             <div class="form-check">
-                                                <input type="checkbox" name="communication[]" value="Mail" checked class="form-check-input" id="customCheck02" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" name="communication[]" value="Mail" {{str_contains($student->comVia, 'Mail') ? "checked" : "" }}  class="form-check-input" id="customCheck02" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="form-check-label" for="customCheck02">Mail</label>
                                             </div>
                                         </div>
                                         <div class="checkbox my-2 col-4">
                                             <div class="form-check">
-                                                <input type="checkbox" name="communication[]" value="SMS" class="form-check-input" id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" name="communication[]" value="SMS" {{str_contains($student->comVia, 'SMS') ? "checked" : "" }} class="form-check-input" id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="form-check-label" for="customCheck3">SMS</label>
                                             </div>
                                         </div>
                                         <div class="checkbox my-2 col-4">
                                             <div class="form-check">
-                                                <input type="checkbox" name="communication[]" value="phone" class="form-check-input" id="customCheck5" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" name="communication[]" {{str_contains($student->comVia, 'phone') ? "checked" : "" }} value="phone" class="form-check-input" id="customCheck5" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="form-check-label" for="customCheckDisabled">Phone</label>
 
                                             </div>
@@ -214,7 +217,7 @@ HomePage
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Insurance Policy </label>
                                             <div class="">
-                                                <input type="text" name="medical[Policy]" class="form-control " placeholder="Insurance Policy">
+                                                <input type="text" name="medical[Policy]" value="{{$student->medical('Policy')}}" class="form-control " placeholder="Insurance Policy">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
@@ -222,40 +225,36 @@ HomePage
                                             <div class="">
                                                 <select class="form-control" name="medical[blood]">
                                                     <option value="">select</option>
-                                                    <option value="O+">O+</option>
-                                                    <option value="A+">A+</option>
-                                                    <option value="B+">B+</option>
-                                                    <option value="AB+">AB+</option>
-                                                    <option value="O-">O-</option>
-                                                    <option value="A-">A-</option>
-                                                    <option value="B-">B-</option>
-                                                    <option value="AB-">AB-</option>
+                                                    @foreach($bloods as $blood)
+                                                    <option {{$student->medical('blood')  == $blood ? "selected" : "" }}  value="{{$blood}}">{{$blood}}</option>
+                                                    @endforeach
+                                                    
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Weight </label>
                                             <div class="">
-                                                <input type="text" name="medical[Weight]" class="form-control " placeholder="Weight">
+                                                <input type="text" name="medical[Weight]" class="form-control " value="{{$student->medical('Weight')}}" placeholder="Weight">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Height </label>
                                             <div class="">
-                                                <input type="text" name="medical[Height]" class="form-control " placeholder="Height">
+                                                <input type="text" name="medical[Height]" class="form-control"  value="{{$student->medical('Height')}}" placeholder="Height">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Disability Type </label>
                                             <div class="">
-                                                <input type="text" name="medical[Disability]" class="form-control " placeholder="Disability Type">
+                                                <input type="text" name="medical[Disability]" class="form-control " value="{{$student->medical('Disability')}}"  placeholder="Disability Type">
                                             </div>
                                         </div>
 
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Contact Information </label>
                                             <div class="">
-                                                <input type="text" name="medical[Contact]" class="form-control " placeholder="Contact Information">
+                                                <input type="text" name="medical[Contact]" class="form-control" value="{{$student->medical('Contact')}}"  placeholder="Contact Information">
                                             </div>
                                         </div>
                                     </div>
@@ -267,51 +266,51 @@ HomePage
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Father Name </label>
                                             <div class="">
-                                                <input type="text" name="father[Name]" class="form-control " placeholder="Father Name">
+                                                <input type="text" name="father[Name]" class="form-control" value="{{$student->father('Name')}}" placeholder="Father Name">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Mother Name </label>
                                             <div class="">
-                                                <input type="text" name="mother[Name]" class="form-control " placeholder="Mother Name">
+                                                <input type="text" name="mother[Name]" class="form-control " value="{{$student->mother('Name')}}" placeholder="Mother Name">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Father Mobile </label>
                                             <div class="">
-                                                <input type="text" name="father[mobile]" class="form-control " placeholder="Father Mobile">
+                                                <input type="text" name="father[mobile]" class="form-control " value="{{$student->father('mobile')}}" placeholder="Father Mobile">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Mother Mobile </label>
                                             <div class="">
-                                                <input type="text" name="mother[mobile]" class="form-control " placeholder="Mother Mobile">
+                                                <input type="text" name="mother[mobile]" class="form-control " value="{{$student->mother('mobile')}}" placeholder="Mother Mobile">
                                             </div>
                                         </div>
 
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Father Job </label>
                                             <div class="">
-                                                <input type="text" name="father[Job]" class="form-control " placeholder="Father Job">
+                                                <input type="text" name="father[Job]" class="form-control " value="{{$student->father('Job')}}" placeholder="Father Job">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Mother Job </label>
                                             <div class="">
-                                                <input type="text" name="mother[Job]" class="form-control " placeholder="Mother Job">
+                                                <input type="text" name="mother[Job]" class="form-control " value="{{$student->mother('Job')}}" placeholder="Mother Job">
                                             </div>
                                         </div>
 
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Father Notes </label>
                                             <div class="">
-                                                <input type="text" name="father[notes]" class="form-control " placeholder="Father Notes">
+                                                <input type="text" name="father[notes]" class="form-control " value="{{$student->father('notes')}}" placeholder="Father Notes">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label pt-0">Mother Notes </label>
                                             <div class="">
-                                                <input type="text" name="mother[notes]" class="form-control " placeholder="Mother Notes">
+                                                <input type="text" name="mother[notes]" class="form-control " value="{{$student->mother('notes')}}" placeholder="Mother Notes">
                                             </div>
                                         </div>
                                     </div>
@@ -319,10 +318,10 @@ HomePage
                                 <div class="mb-3 col-md-3">
                                     <label for="example-password-input1" class="form-label">Meeting Host </label>
                                     <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center">search users</button>
-                                    <div id="hostUser" class="d-none">
-                                        <p class="name_host" id="n_host"></p>
-                                        <input type="text" class="form-control mt-2" name="user_host" hidden>
-                                        <input type="number" class="form-control mt-2" name="id_parent" hidden>
+                                    <div id="hostUser" class="">
+                                        <p class="name_host" id="n_host">{{$parent->username}}</p>
+                                        <input type="text" class="form-control mt-2" value="{{$parent->username}}" name="user_host" hidden>
+                                        <input type="number" class="form-control mt-2" value="{{$parent->id}}" name="id_parent" hidden>
                                     </div>
                                 </div>
 
@@ -442,7 +441,7 @@ HomePage
     }
 
     function myfilters(text) {
-        $.get("filter?filter[email]=" + text, function(data, status) {
+        $.get("/admin/student/filter?filter[email]=" + text, function(data, status) {
             var allUser = ``;
             var users = data.data;
             for (var i = 0; i < users.length; i++) {

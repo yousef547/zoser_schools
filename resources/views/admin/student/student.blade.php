@@ -149,6 +149,14 @@ HomePage
                                                     <i class="far fa-lightbulb text-danger"></i>
                                                     @endif
 
+                                                    @if($student->isLeaderBoard != null)
+                                                    <span class="light">
+                                                        <br><i class="fa fa-trophy"></i>
+                                                        Leader Board
+                                                        <a class="light" href='{{url("admin/teacher/delete_leader")}}/{{$student->id}}'><i class="fas fa-trash"></i></a>
+                                                    </span>
+                                                    @endif
+
                                                 </td>
                                                 <td class="centers">{{$student->username}}</td>
                                                 <td class="centers">{{$student->email}}</td>
@@ -160,13 +168,13 @@ HomePage
                                                     <div class="btn-group-vertical">
                                                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Operations <i class="mdi mdi-chevron-down ms-1"></i></button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#"><i class="fa fa-eye"></i>Attendance</a>
+                                                            <a class="dropdown-item" href='{{url("admin/student/attendace/$student->id")}}'><i class="fa fa-eye"></i>Attendance</a>
                                                             <a class="dropdown-item" href="#"><i class="fa fa-table"></i> Marksheet</a>
-                                                            <a class="dropdown-item" href="#"><i class="fa fa-trophy"></i> Leader Board</a>
+                                                            <a class="dropdown-item" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center" onclick='passId("{{$student->id}}")'><i class="fa fa-trophy"></i> Leader Board</a>
                                                             <a class="dropdown-item" href="#"><i class="fa fa-stethoscope"></i> Medical History</a>
                                                             <a class="dropdown-item" href='{{url("admin/active_student/$student->id")}}'><i class="far fa-lightbulb"></i> Toggle Account Status</a>
-                                                            <a class="dropdown-item" href="#"><i class="fas fa-pencil-alt"></i> Edit</a>
-                                                            <a class="dropdown-item" href="#"><i class="fa fa-trash-o"></i> Remove</a>
+                                                            <a class="dropdown-item" href='{{url("admin/student/edit/$student->id")}}'><i class="fas fa-pencil-alt"></i> Edit</a>
+                                                            <a class="dropdown-item" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center2" onclick='setName("{{$student->fullName}}","{{$student->id}}")'><i class="fa fa-trash-o"></i> Remove</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -262,6 +270,52 @@ HomePage
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade bs-example-modal-center show" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title align-self-center" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{url('admin/teacher/leaderboard')}}">
+                    @csrf
+                    <input type="hidden" value="55" name="id" class="teacherId">
+                    <label class="form-label">Please enter leaderboard message</label>
+                    <textarea class="form-control" id="field-7" name="massage" placeholder="Please enter leaderboard message" style="margin-top: 0px; margin-bottom: 0px; height: 137px;"></textarea>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Send message</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div id="myModal" class="modal bs-example-modal-center2" tabindex="-1" aria-labelledby="myModalLabel" style="display: none; padding-left: 0px;" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title align-self-center" id="myModalLabel">
+                    Modal Heading</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Do you sure to remove student  <span id="nameStudent"></span></h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                <a id="delete" class="btn btn-primary waves-effect waves-light">
+                    remove</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @section('script')
 <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
 
@@ -313,6 +367,16 @@ HomePage
         $('.address').text(address);
         $('.birthday').text(birthday);
     });
+
+    function setName(nemeStudent,id) {
+        console.log(nemeStudent)
+        $("#delete").attr("href", "{{url('admin/student/delete/')}}/"+id)
+        $('#nameStudent').text(nemeStudent)
+    }
+    function passId(id) {
+        console.log(id);
+        $('.teacherId').val(id);
+    }
 
     $('#search').click(function() {
         $('#flex').toggleClass('flexs');
@@ -445,6 +509,7 @@ HomePage
         $('.address').text(address);
         $('.birthday').text(birthday);
     }
+
     function activeEdit(id, icon_id) {
         console.log(id)
         console.log('#' + icon_id)
@@ -453,8 +518,8 @@ HomePage
             if ($("#" + icon_id).hasClass("text-success")) {
                 $("#" + icon_id).removeClass('text-success')
                 $("#" + icon_id).addClass('text-danger')
-            
-            } else if($("#" + icon_id).hasClass("text-danger")) {
+
+            } else if ($("#" + icon_id).hasClass("text-danger")) {
                 $("#" + icon_id).removeClass('text-danger')
                 $("#" + icon_id).addClass('text-success')
             }

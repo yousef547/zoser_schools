@@ -142,7 +142,7 @@
 
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         <li><a href="{{url('admin/attendance')}}">Take Attendance</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/attendance_report">Attendance Report</a></li>
+                                                        <li><a href="{{url('admin/attendance/report')}}">Attendance Report</a></li>
                                                     </ul>
                                                 </li>
 
@@ -243,7 +243,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/assignments')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Assignments</span>
                                                     </a>
@@ -278,7 +278,7 @@
                                                         <span>Classes</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/classes">Classes</a></li>
+                                                        <li><a href="{{url('admin/classes')}}">Classes</a></li>
                                                         <li><a href="https://kharagny.com/zoser3/portal#/sections">sections</a></li>
                                                     </ul>
                                                 </li>
