@@ -20,16 +20,23 @@ class classe extends Model
     }
     public function allTeacher()
     {
-        $teacher="";
+        $teacher=[];
         for($i=0;$i<count(json_decode($this->classTeacher));$i++) {
-            $teacher .= User::find(json_decode($this->classTeacher)[$i])->username . "\n";
+            array_push($teacher, User::find(json_decode($this->classTeacher)[$i])->username ) ;
+            
         }
         return $teacher;
     }
-    // public function scopeActive($query)
-    // {
-    //     return $query->where('active', 1);
-    // }
+    public function allSubject()
+    {
+        $Subject=[];
+        for($i=0;$i<count(json_decode($this->classSubject));$i++) {
+            array_push($Subject, subject::find(json_decode($this->classSubject)[$i])->subjectTitle) ;
+            
+        }
+        return $Subject;
+    }
+   
 
     public function weeks() {
         return $this->belongsToMany(week::class)->withPivot('material_file','material_description','material_title')->withTimestamps();

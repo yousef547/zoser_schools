@@ -45,20 +45,20 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Classes</h4>
+                <h4 class="mb-0 font-size-18">Section</h4>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">List classes</h5>
+                    <h5 class="card-title">List Section</h5>
                     <div class="table-responsive">
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
 
                                 <div class="col-sm-12 col-md-12">
                                     <div id="datatable_filter" class="dataTables_filter">
-                                        <a href="{{url('admin/classes/create')}}" class="btn btn-primary w-lg mb-2">Add Class</a>
+                                        <a href="{{url('admin/sections/insert')}}" class="btn btn-primary w-lg mb-2">Add Section</a>
                                     </div>
                                 </div>
                             </div>
@@ -67,33 +67,29 @@ HomePage
                                     <table id="datatable" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 15%;">Class name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 25%;">Class teacher</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%;">Associated subjects </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20%;"> Class dormitory </th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 20%;">section name</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 20%;">section name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 15%;"> class </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 25%;">section teacher</th>
                                                 <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width:20%;">Operations</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($classes as $classe)
+                                            @foreach($sections as $section)
                                             <tr class="odd">
-                                                <td class="sorting_1">{{$classe->className}}</td>
+                                                <td class="sorting_1">{{$section->sectionName}}</td>
+                                                <td class="sorting_1">{{$section->sectionTitle}}</td>
+                                                <td class="sorting_1">{{$section->className}}</td>
                                                 <td>
-                                                    @foreach($classe->allTeacher() as $item)
+                                                    @foreach($section->allTeacher() as $item)
                                                     {{$item}} <br>
                                                     @endforeach
                                                 </td>
                                                 <td>
-                                                    @foreach($classe->allSubject() as $item)
-                                                    {{$item}} <br>
-                                                    @endforeach
-                                                </td>
-                                                <td></td>
-                                                <td>
-                                                    <a href='{{url("admin/classes/edit/$classe->id")}}' class="btn btn-info btn-rounded mx-1">
+                                                    <a href='{{url("admin/classes/edit/$section->id")}}' class="btn btn-info btn-rounded mx-1">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-                                                    <a href='{{url("admin/classes/delete/$classe->id")}}' class="btn btn-danger btn-rounded mx-1">
+                                                    <a href='{{url("admin/classes/delete/$section->id")}}' class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -104,7 +100,7 @@ HomePage
                                     </table>
                                 </div>
                             </div>
-                            {{ $classes->links('admin.inc.paginator') }}
+                            {{ $sections->links('admin.inc.paginator') }}
 
                         </div>
                     </div>

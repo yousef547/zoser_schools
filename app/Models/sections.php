@@ -20,6 +20,15 @@ class sections extends Model
         return $this->belongsTo(classe::class);
     }
 
+    public function allTeacher()
+    {
+        $teacher=[];
+        for($i=0;$i<count(json_decode($this->sectionTeacher));$i++) {
+            array_push($teacher, User::find(json_decode($this->sectionTeacher)[$i])->username ) ;
+            
+        }
+        return $teacher;
+    }
     
     public function weeks() {
         return $this->belongsToMany(week::class)->withPivot('material_file','material_description','material_title')->withTimestamps();

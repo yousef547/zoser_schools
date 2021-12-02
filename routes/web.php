@@ -145,6 +145,20 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('assignments/update/{id}',[assignmentController::class,'update']);
     Route::get('assignments/delete/{id}',[assignmentController::class,'delete']);
     Route::get('classes',[classes_sectionsController::class,'classes']);
+    Route::get('classes/create',[classes_sectionsController::class,'create']);
+    Route::POST('classes/submit',[classes_sectionsController::class,'submit']);
+    Route::get('classes/edit/{id}',[classes_sectionsController::class,'edit']);
+    Route::post('classes/update/{id}',[classes_sectionsController::class,'update']);
+    Route::get('classes/delete/{id}',[classes_sectionsController::class,'delete']);
+    Route::get('sections',[classes_sectionsController::class,'section']);
+    Route::get('sections/insert',[classes_sectionsController::class,'insert']);
+
+
+
+
+
+
+
 
 
 

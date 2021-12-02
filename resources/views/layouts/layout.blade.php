@@ -279,7 +279,7 @@
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         <li><a href="{{url('admin/classes')}}">Classes</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/sections">sections</a></li>
+                                                        <li><a href="{{url('admin/sections')}}">sections</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
