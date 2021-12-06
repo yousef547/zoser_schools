@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\employeeController;
 use App\Http\Controllers\admin\eventController;
 use App\Http\Controllers\admin\GradelevelsController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\mediaAlbomController;
 use App\Http\Controllers\admin\meetimgController;
 use App\Http\Controllers\admin\OfficeController;
 use App\Http\Controllers\admin\parentController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\admin\settingsController;
 use App\Http\Controllers\admin\studentController;
 use App\Http\Controllers\admin\subjectController;
 use App\Http\Controllers\admin\teacherController as AdminTeacherController;
+use App\Http\Controllers\admin\vacationController;
 use App\Http\Controllers\departmentController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\teacher\TeacherController;
@@ -150,10 +152,28 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('classes/edit/{id}',[classes_sectionsController::class,'edit']);
     Route::post('classes/update/{id}',[classes_sectionsController::class,'update']);
     Route::get('classes/delete/{id}',[classes_sectionsController::class,'delete']);
-    Route::get('sections',[classes_sectionsController::class,'section']);
-    Route::get('sections/insert',[classes_sectionsController::class,'insert']);
-
-
+    Route::get('section',[classes_sectionsController::class,'section']);
+    Route::get('section/insert',[classes_sectionsController::class,'insert']);
+    Route::post('section/submitSection',[classes_sectionsController::class,'submitSection']);
+    Route::get('section/edit/{id}',[classes_sectionsController::class,'editSection']);
+    Route::post('section/editSection/{id}',[classes_sectionsController::class,'edit_section']);
+    Route::get('section/deleteSection/{id}',[classes_sectionsController::class,'deleteSection']);
+    Route::get('vacation/request',[vacationController::class,'request']);
+    Route::post('vacation/submit',[vacationController::class,'submit']);
+    Route::get('vacation/approve',[vacationController::class,'approve']);
+    Route::get('vacation/approve_vacation/{id}/{aprove}',[vacationController::class,'approveVacation']);
+    Route::get('vacation/my_vacations',[vacationController::class,'myVacations']);
+    Route::get('media',[mediaAlbomController::class,'index']);
+    Route::get('media/upload',[mediaAlbomController::class,'upload']);
+    Route::post('media/submit_upload',[mediaAlbomController::class,'submitUpload']);
+    Route::get('media/show/{id}',[mediaAlbomController::class,'show']);
+    Route::get('media/edit/{id}',[mediaAlbomController::class,'edit']);
+    Route::post('media/submit_edit/{id}',[mediaAlbomController::class,'updata']);
+    Route::get('media/delete/{id}',[mediaAlbomController::class,'delete']);
+    Route::get('item/create',[mediaAlbomController::class,'create']);
+    Route::post('item/submit_item',[mediaAlbomController::class,'submitItem']);
+    Route::get('item/show/{id}',[mediaAlbomController::class,'showItem']);
+    Route::get('item/edit/{id}',[mediaAlbomController::class,'editItem']);
 
 
 

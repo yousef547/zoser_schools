@@ -25,7 +25,7 @@ class classes_sectionsController extends Controller
         $newClass = $request->validate([
             "className" => "required|string|max:50",
             "classTeacher" => "required|array|exists:users,id",
-            "classSubjects" => "required|array|exists:classes,id",
+            "classSubjects" => "required|array|exists:subjects,id",
         ]);
         // dd($request->all());
         classe::create([
@@ -51,7 +51,7 @@ class classes_sectionsController extends Controller
         $newClass = $request->validate([
             "className" => "required|string|max:50",
             "classTeacher" => "required|array|exists:users,id",
-            "classSubjects" => "required|array|exists:classes,id",
+            "classSubjects" => "required|array|exists:subjects,id",
         ]);
         $classe = classe::find($id);
         if ($classe == null) {
@@ -88,7 +88,79 @@ class classes_sectionsController extends Controller
         $data['sections'] = sections::where('sectionName','!=','not')
         ->join('classes','sections.classe_id','classes.id')->select('sections.*','classes.className')
         ->paginate(5);
+        // dd($data['sections']);
         return view('admin.classes&sections.sections')->with($data);
     }
 
+    public function insert(){
+        $data['classes'] = classe::where('className','!=','not')->get();
+        $data['teachers'] = User::where('role','=','Teacher')->get();
+        // dd($data['teachers']);
+        return view('admin.classes&sections.insert')->with($data);
+    }
+
+    public function submitSection(Request $request){
+        $newClass = $request->validate([
+            "sectionName" => "required|string|max:50",
+            "sectionTitle" => "required|string|max:50",
+            "classes" => "required|exists:classes,id",
+            "sectionTeacher" => "required|array|exists:users,id",
+        ]);
+        // dd($newClass);
+        sections::create([
+            "sectionName" => $request->sectionName,
+            "sectionTeacher" => json_encode( $request->sectionTeacher),
+            "sectionTitle" => $request->sectionTitle,
+            "classe_id" => (int)$request->classes,
+
+        ]);
+        $request->session()->flash('msg', 'Successed create sections');
+        return redirect('admin/section');
+    }
+    public function editSection($id,Request $request){
+        $data['classes'] = classe::where('className','!=','not')->get();
+        $data['teachers'] = User::where('role','=','Teacher')->get();
+        $data['section'] = sections::find($id);
+        if ($data['section'] == null) {
+            $request->session()->flash('error', 'Error ID Not Found');
+            return back();
+        }
+        return view("admin.classes&sections.editSection")->with($data);
+    }
+    public function edit_section($id,Request $request) {
+        $newClass = $request->validate([
+            "sectionName" => "required|string|max:50",
+            "sectionTitle" => "required|string|max:50",
+            "classes" => "required|exists:classes,id",
+            "sectionTeacher" => "required|array|exists:users,id",
+        ]);
+        $section = sections::find($id);
+        if ($section == null) {
+            $request->session()->flash('error', 'Error ID Not Found');
+            return back();
+        }
+        $section->update([
+                "sectionName" => $request->sectionName,
+                "sectionTeacher" => json_encode( $request->sectionTeacher),
+                "sectionTitle" => $request->sectionTitle,
+                "classe_id" => (int)$request->classes,
+        ]);
+        $request->session()->flash('msg', 'Successed create sections');
+        return back();
+    }
+    public function deleteSection($id,Request $request){
+        $section = sections::find($id);
+        if ($section == null) {
+            $request->session()->flash('error', 'Error ID Not Found');
+            return back();
+        }
+        if(count(User::where('section_id',$id)->get()) == 0 ) {
+            
+            $section->delete();
+            $request->session()->flash('msg', 'Successed delete section');
+            return back();
+        }
+        $request->session()->flash('error', 'you can\'t delete ');
+        return back();
+    }
 }

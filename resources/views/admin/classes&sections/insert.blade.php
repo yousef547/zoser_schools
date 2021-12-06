@@ -54,26 +54,26 @@ HomePage
                     <h5 class="card-title">List Section</h5>
                     <div class="table-responsive">
 
-                        <form method="POST" action="{{url('admin/classes/submit')}}">
+                        <form method="POST" action="{{url('admin/section/submitSection')}}">
                             @csrf
                             <label class="col-sm-2 text-right control-label col-form-label ng-binding">Section name * </label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="className" placeholder="Class name">
+                                    <input type="text" class="form-control" name="sectionName" placeholder="Class name">
                                 </div>
                             </div>
                             <label class="col-sm-2 text-right control-label col-form-label ng-binding">Section Title * </label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="className" placeholder="Class name">
+                                    <input type="text" class="form-control" name="sectionTitle" placeholder="Section Title ">
                                 </div>
                             </div>
                             <label class="col-sm-2 text-right control-label col-form-label">Class *</label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
-                                    <select class="form-control" name="classTeacher[]" multiple="">
+                                    <select class="form-control" name="classes" >
                                         @foreach($classes as $classe)
-                                        <option value="{{$classe->id}}">{{$classe->classBame}}</option>
+                                        <option value="{{$classe->id}}">{{$classe->className}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -81,7 +81,7 @@ HomePage
                             <label class="col-sm-2 text-right control-label col-form-label">Section teacher *</label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
-                                    <select class="form-control" name="classTeacher[]" multiple="">
+                                    <select class="form-control" name="sectionTeacher[]" multiple="">
                                         @foreach($teachers as $teacher)
                                         <option value="{{$teacher->id}}">{{$teacher->username}}</option>
                                         @endforeach

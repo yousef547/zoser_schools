@@ -58,7 +58,7 @@ HomePage
 
                                 <div class="col-sm-12 col-md-12">
                                     <div id="datatable_filter" class="dataTables_filter">
-                                        <a href="{{url('admin/sections/insert')}}" class="btn btn-primary w-lg mb-2">Add Section</a>
+                                        <a href="{{url('admin/section/insert')}}" class="btn btn-primary w-lg mb-2">Add Section</a>
                                     </div>
                                 </div>
                             </div>
@@ -86,10 +86,10 @@ HomePage
                                                     @endforeach
                                                 </td>
                                                 <td>
-                                                    <a href='{{url("admin/classes/edit/$section->id")}}' class="btn btn-info btn-rounded mx-1">
+                                                    <a href='{{url("admin/section/edit/$section->id")}}' class="btn btn-info btn-rounded mx-1">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-                                                    <a href='{{url("admin/classes/delete/$section->id")}}' class="btn btn-danger btn-rounded mx-1">
+                                                    <a href='{{url("admin/section/deleteSection/$section->id")}}' class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>

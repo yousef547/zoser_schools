@@ -165,9 +165,9 @@
                                                         <span>Vacation</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/vacation">Request vacation</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/vacation/approve">Approve vacation</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/vacation/mine">My vacations</a></li>
+                                                        <li><a href="{{url('admin/vacation/request')}}">Request vacation</a></li>
+                                                        <li><a href="{{url('admin/vacation/approve')}}">Approve vacation</a></li>
+                                                        <li><a href="{{url('admin/vacation/my_vacations')}}">My vacations</a></li>
                                                     </ul>
                                                 </li>
 
@@ -186,7 +186,7 @@
 
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/media')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Media Center</span>
                                                     </a>
@@ -279,7 +279,7 @@
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         <li><a href="{{url('admin/classes')}}">Classes</a></li>
-                                                        <li><a href="{{url('admin/sections')}}">sections</a></li>
+                                                        <li><a href="{{url('admin/section')}}">sections</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
