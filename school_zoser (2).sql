@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2021 at 06:47 PM
+-- Generation Time: Dec 25, 2021 at 12:17 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -38,6 +38,33 @@ CREATE TABLE `academic_years` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `assignments`
+--
+
+CREATE TABLE `assignments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `classId` bigint(20) UNSIGNED NOT NULL,
+  `sectionid` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subjectId` bigint(20) UNSIGNED NOT NULL,
+  `techerId` bigint(20) UNSIGNED DEFAULT NULL,
+  `AssignTitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `AssignDescription` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `AssignFile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `AssignDeadLine` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `assignments`
+--
+
+INSERT INTO `assignments` (`id`, `classId`, `sectionid`, `subjectId`, `techerId`, `AssignTitle`, `AssignDescription`, `AssignFile`, `AssignDeadLine`, `created_at`, `updated_at`) VALUES
+(1, 2, '[\"7\",\"9\"]', 1, NULL, 'Rerum ipsam enim qua', 'Porro voluptate nisi', NULL, '2000-02-12', '2021-11-30 17:49:37', '2021-11-30 17:49:37');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `attendances`
 --
 
@@ -49,7 +76,7 @@ CREATE TABLE `attendances` (
   `in_time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `out_time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `attNot` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date` date NOT NULL,
+  `date` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -59,179 +86,12 @@ CREATE TABLE `attendances` (
 --
 
 INSERT INTO `attendances` (`id`, `section_id`, `user_id`, `status`, `in_time`, `out_time`, `attNot`, `date`, `created_at`, `updated_at`) VALUES
-(1, 29, 34, 'absent', NULL, NULL, 'aaaaaa', '2021-11-24', '2021-11-21 16:52:45', '2021-11-21 16:52:45'),
-(2, 29, 35, 'present', NULL, NULL, NULL, '2021-11-24', '2021-11-21 16:52:45', '2021-11-21 16:52:45'),
-(3, 29, 34, 'absent', NULL, NULL, 'aaaaaa', '2021-11-24', '2021-11-21 16:53:56', '2021-11-21 16:53:56'),
-(4, 29, 35, 'present', NULL, NULL, NULL, '2021-11-24', '2021-11-21 16:53:56', '2021-11-21 16:53:56'),
-(5, 29, 36, 'absent', NULL, NULL, 'hhttrf', '2021-11-24', '2021-11-21 16:53:56', '2021-11-21 16:53:56'),
-(6, 66, 2, 'absent', NULL, NULL, 'Et quia fugit provi', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(7, 66, 3, 'late', '14:44', NULL, 'Quod sunt sequi quo', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(8, 66, 197, 'late', '16:18', NULL, 'Quasi sunt laborum', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(9, 66, 198, 'late', '15:36', NULL, 'Perspiciatis est et', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(10, 66, 201, 'late', '21:59', NULL, 'Voluptatem distinct', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(11, 66, 202, 'absent', NULL, NULL, 'Et sunt maxime odio', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(12, 66, 203, 'late_with_excuse', '05:13', NULL, 'Sint aliquip quis i', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(13, 66, 204, 'absent', NULL, NULL, 'Mollitia consectetur', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(14, 66, 205, 'absent', NULL, NULL, 'Mollit numquam facil', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(15, 66, 206, 'late_with_excuse', '17:12', NULL, 'Laboriosam unde in', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(16, 66, 207, 'present', '06:34', NULL, 'Soluta sint veniam', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(17, 66, 208, 'absent', NULL, NULL, 'Culpa cupidatat rer', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(18, 66, 209, 'absent', NULL, NULL, 'Et officia culpa pe', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(19, 66, 220, 'absent', NULL, NULL, 'Ipsa voluptatem Il', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(20, 66, 221, 'late_with_excuse', '02:36', NULL, 'Itaque cumque culpa', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(21, 66, 222, 'present', '14:19', NULL, 'Et elit do molestia', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(22, 66, 223, 'present', '01:29', NULL, 'Est inventore adipis', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(23, 66, 224, 'absent', NULL, NULL, 'Esse Nam quos iure a', '2021-11-27', '2021-11-21 20:15:26', '2021-11-21 20:15:26'),
-(24, 66, 2, 'present', '19:47', NULL, 'Hic enim quos volupt', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(25, 66, 3, 'late_with_excuse', '06:11', NULL, 'Eius non vel sunt si', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(26, 66, 197, 'late', '14:43', NULL, 'Voluptatibus exercit', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(27, 66, 198, 'present', '15:49', NULL, 'Nihil tempora mollit', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(28, 66, 201, 'present', '05:42', NULL, 'Id vitae est aut vol', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(29, 66, 202, 'absent', NULL, NULL, 'Modi ut nisi necessi', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(30, 66, 203, 'late_with_excuse', '19:08', NULL, 'Qui modi beatae volu', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(31, 66, 204, 'absent', NULL, NULL, 'Harum aut quis minus', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(32, 66, 205, 'present', '11:10', NULL, 'Rerum autem corporis', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(33, 66, 206, 'present', '01:42', NULL, 'Non molestiae nulla', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(34, 66, 207, 'present', '23:16', NULL, 'In eum consectetur', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(35, 66, 208, 'late_with_excuse', '11:21', NULL, 'Voluptatibus officii', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(36, 66, 209, 'absent', NULL, NULL, 'Aut fugiat sunt faci', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(37, 66, 220, 'late', '07:03', NULL, 'Error cumque ipsa s', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(38, 66, 221, 'absent', NULL, NULL, 'Accusantium autem au', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(39, 66, 222, 'present', '16:21', NULL, 'Adipisci porro enim', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(40, 66, 223, 'absent', NULL, NULL, 'Repellendus Tempor', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(41, 66, 224, 'absent', '19:03', NULL, 'Aut a do magni ratio', '2021-11-19', '2021-11-21 20:17:58', '2021-11-21 20:17:58'),
-(42, 66, 2, 'present', '10:36', NULL, 'Et doloremque molest', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(43, 66, 3, 'late', '22:42', NULL, 'Ut deleniti adipisci', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(44, 66, 197, 'present', '07:02', NULL, 'Natus doloremque nec', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(45, 66, 198, 'late', '01:54', NULL, 'Molestiae cum volupt', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(46, 66, 201, 'present', '15:15', NULL, 'Dolore tempore nequ', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(47, 66, 202, 'present', '03:18', NULL, 'Obcaecati et exercit', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(48, 66, 203, 'present', '08:45', NULL, 'Sint et irure exerci', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(49, 66, 204, 'absent', NULL, NULL, 'Enim ut maxime alias', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(50, 66, 205, 'absent', NULL, NULL, 'Fugiat laudantium', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(51, 66, 206, 'late', '13:51', NULL, 'Voluptatem quia adi', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(52, 66, 207, 'late', '13:45', NULL, 'Non soluta itaque ex', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(53, 66, 208, 'late_with_excuse', '21:35', NULL, 'Pariatur Reiciendis', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(54, 66, 209, 'late', '07:13', NULL, 'Unde quidem deserunt', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(55, 66, 220, 'late_with_excuse', '15:02', NULL, 'Dolor et iste harum', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(56, 66, 221, 'late_with_excuse', '01:06', NULL, 'Voluptatem Qui nihi', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(57, 66, 222, 'late', '09:19', NULL, 'Eu illo a quisquam o', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(58, 66, 223, 'absent', NULL, NULL, 'Vero blanditiis in e', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(59, 66, 224, 'absent', '20:06', NULL, 'Eos non dolor dolor', '2021-11-19', '2021-11-21 20:19:05', '2021-11-21 20:19:05'),
-(60, 66, 2, 'late_with_excuse', '21:15', NULL, 'Consequat Laboriosa', '2021-11-18', '2021-11-21 20:21:28', '2021-11-21 20:21:28'),
-(61, 66, 3, 'present', '09:24', NULL, 'Cupidatat doloremque', '2021-11-18', '2021-11-21 20:21:28', '2021-11-21 20:21:28'),
-(62, 66, 197, 'absent', NULL, NULL, 'Doloremque facilis s', '2021-11-18', '2021-11-21 20:21:28', '2021-11-21 20:21:28'),
-(63, 66, 198, 'present', '05:15', NULL, 'Commodo id delectus', '2021-11-18', '2021-11-21 20:21:28', '2021-11-21 20:21:28'),
-(64, 66, 201, 'late_with_excuse', '21:29', NULL, 'Nihil non Nam mollit', '2021-11-18', '2021-11-21 20:21:28', '2021-11-21 20:21:28'),
-(65, 66, 202, 'absent', NULL, NULL, 'Velit consequatur n', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(66, 66, 203, 'late_with_excuse', '09:15', NULL, 'Doloremque ut ullam', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(67, 66, 204, 'absent', NULL, NULL, 'Laborum excepturi ev', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(68, 66, 205, 'late', '12:54', NULL, 'Nemo est consequunt', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(69, 66, 206, 'absent', NULL, NULL, 'Voluptate sint aliq', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(70, 66, 207, 'late', '04:46', NULL, 'Est et consequatur', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(71, 66, 208, 'late_with_excuse', '06:09', NULL, 'Ipsa ut sit mollit', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(72, 66, 209, 'late_with_excuse', '11:44', NULL, 'Minim maiores consec', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(73, 66, 220, 'late_with_excuse', '10:59', NULL, 'Tempor aliquam molli', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(74, 66, 221, 'late', '15:23', NULL, 'Lorem animi est qui', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(75, 66, 222, 'present', '05:40', NULL, 'Recusandae Ea rem b', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(76, 66, 223, 'late_with_excuse', '23:12', NULL, 'Enim ullam molestiae', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(77, 66, 224, 'absent', '02:23', NULL, 'Dolore qui sed porro', '2021-11-18', '2021-11-21 20:21:29', '2021-11-21 20:21:29'),
-(78, 66, 2, 'absent', NULL, NULL, 'Tempor ullamco susci', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(79, 66, 3, 'absent', NULL, NULL, 'Rerum dolore possimu', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(80, 66, 197, 'absent', NULL, NULL, 'Pariatur Esse enim', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(81, 66, 198, 'absent', NULL, NULL, 'Dolore suscipit veri', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(82, 66, 201, 'absent', NULL, NULL, 'Architecto sint volu', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(83, 66, 202, 'absent', NULL, NULL, 'Labore accusantium e', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(84, 66, 203, 'absent', NULL, NULL, 'Deserunt anim exerci', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(85, 66, 204, 'absent', NULL, NULL, 'Nisi quia id qui adi', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(86, 66, 205, 'absent', NULL, NULL, 'Perferendis est vero', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(87, 66, 206, 'absent', NULL, NULL, 'Rem reiciendis velit', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(88, 66, 207, 'absent', NULL, NULL, 'Repudiandae illum p', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(89, 66, 208, 'absent', NULL, NULL, 'Quia qui et perspici', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(90, 66, 209, 'absent', NULL, NULL, 'Vel anim repellendus', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(91, 66, 220, 'absent', NULL, NULL, 'Aliqua Fugiat aliqu', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(92, 66, 221, 'absent', NULL, NULL, 'Eum cumque et sunt q', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(93, 66, 222, 'absent', NULL, NULL, 'Dolorem officia enim', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(94, 66, 223, 'absent', NULL, NULL, 'Veniam placeat rep', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(95, 66, 224, 'absent', '07:15', NULL, 'Eligendi necessitati', '2021-11-20', '2021-11-21 20:23:00', '2021-11-21 20:23:00'),
-(96, 66, 2, 'absent', NULL, NULL, 'Ut modi ea impedit', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(97, 66, 3, 'absent', NULL, NULL, 'Nam qui quod sint co', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(98, 66, 197, 'late_with_excuse', '02:55', NULL, 'Numquam nobis consec', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(99, 66, 198, 'late', '21:52', NULL, 'A eaque et et consec', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(100, 66, 201, 'present', '07:15', NULL, 'Assumenda rerum ut n', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(101, 66, 202, 'late', '17:57', NULL, 'Qui error Nam beatae', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(102, 66, 203, 'late', '19:10', NULL, 'Et ad id sint culpa', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(103, 66, 204, 'late_with_excuse', '17:35', NULL, 'Similique blanditiis', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(104, 66, 205, 'absent', NULL, NULL, 'Nisi animi ea ea vo', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(105, 66, 206, 'absent', NULL, NULL, 'Aspernatur aut omnis', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(106, 66, 207, 'late', '18:48', NULL, 'Consequatur non magn', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(107, 66, 208, 'late', '10:20', NULL, 'Accusantium eum inci', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(108, 66, 209, 'late_with_excuse', '00:34', NULL, 'Est placeat tempora', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(109, 66, 220, 'late_with_excuse', '19:11', NULL, 'Et eveniet officiis', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(110, 66, 221, 'late_with_excuse', '22:55', NULL, 'Repudiandae optio e', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(111, 66, 222, 'late_with_excuse', '20:16', NULL, 'Modi excepteur hic a', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(112, 66, 223, 'present', '03:29', NULL, 'Qui fugiat dolor sun', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(113, 66, 224, 'absent', NULL, NULL, 'Quibusdam voluptas q', '2021-11-13', '2021-11-21 20:24:40', '2021-11-21 20:24:40'),
-(114, 66, 2, 'absent', NULL, NULL, 'Atque in et aut in p', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(115, 66, 3, 'absent', NULL, NULL, 'Dolores natus aute d', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(116, 66, 197, 'absent', NULL, NULL, 'Quia est placeat i', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(117, 66, 198, 'absent', NULL, NULL, 'Rerum alias voluptat', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(118, 66, 201, 'absent', NULL, NULL, 'Aute minima molestia', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(119, 66, 202, 'absent', NULL, NULL, 'Odio eos culpa non', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(120, 66, 203, 'absent', NULL, NULL, 'Maxime autem perspic', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(121, 66, 204, 'absent', NULL, NULL, 'Quia aspernatur veri', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(122, 66, 205, 'absent', NULL, NULL, 'Tenetur eum ea corpo', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(123, 66, 206, 'absent', NULL, NULL, 'Pariatur Dolor dolo', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(124, 66, 207, 'absent', NULL, NULL, 'Pariatur Velit vero', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(125, 66, 208, 'absent', NULL, NULL, 'Necessitatibus quia', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(126, 66, 209, 'absent', NULL, NULL, 'Aspernatur reprehend', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(127, 66, 220, 'absent', NULL, NULL, 'Nam quas ut sed temp', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(128, 66, 221, 'absent', NULL, NULL, 'Exercitationem moles', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(129, 66, 222, 'absent', NULL, NULL, 'In ullamco aliquid q', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(130, 66, 223, 'absent', NULL, NULL, 'Maxime voluptas aut', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(131, 66, 224, 'absent', NULL, NULL, 'Mollitia id non ex m', '2021-11-26', '2021-11-21 20:37:15', '2021-11-21 20:37:15'),
-(132, 66, 2, 'leave', '06:45', NULL, 'Numquam commodi eius', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(133, 66, 3, 'leave', '23:22', NULL, 'Quas exercitation au', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(134, 66, 197, 'leave', '04:57', NULL, 'Sit omnis laboris n', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(135, 66, 198, 'leave', '00:29', NULL, 'Deserunt error susci', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(136, 66, 201, 'leave', '16:11', NULL, 'Dolore non itaque mo', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(137, 66, 202, 'leave', '09:13', NULL, 'Id consequatur labo', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(138, 66, 203, 'leave', '08:43', NULL, 'Minima deserunt beat', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(139, 66, 204, 'leave', '00:29', NULL, 'Sed voluptatum nostr', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(140, 66, 205, 'leave', '23:38', NULL, 'Sit aut in eos qui', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(141, 66, 206, 'leave', '04:04', NULL, 'Dolorem necessitatib', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(142, 66, 207, 'leave', '05:21', NULL, 'Expedita et quae qui', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(143, 66, 208, 'leave', '05:50', NULL, 'Non nostrum enim odi', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(144, 66, 209, 'leave', '22:14', NULL, 'Omnis dolores numqua', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(145, 66, 220, 'leave', '03:42', NULL, 'Pariatur Aliquam co', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(146, 66, 221, 'leave', '18:36', NULL, 'Et minus velit unde', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(147, 66, 222, 'leave', '01:22', NULL, 'Reprehenderit repre', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(148, 66, 223, 'leave', '13:06', NULL, 'Consequatur nulla no', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(149, 66, 224, 'leave', '02:07', NULL, 'Enim temporibus simi', '2021-11-20', '2021-11-21 20:58:11', '2021-11-21 20:58:11'),
-(150, 66, 2, 'leave', NULL, '23:01', 'Tempora Nam aut dolo', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(151, 66, 3, 'leave', NULL, '23:01', 'Rerum asperiores vol', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(152, 66, 197, 'leave', NULL, '23:01', 'Cum exercitation lab', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(153, 66, 198, 'leave', NULL, '23:01', 'Suscipit vitae qui r', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(154, 66, 201, 'leave', NULL, '23:01', 'Sed qui fugiat et a', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(155, 66, 202, 'leave', NULL, '23:01', 'Qui voluptates beata', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(156, 66, 203, 'leave', NULL, '23:01', 'Omnis ut libero anim', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(157, 66, 204, 'leave', NULL, '23:01', 'Rerum impedit tempo', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(158, 66, 205, 'leave', NULL, '23:01', 'A harum quia quia im', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(159, 66, 206, 'leave', NULL, '23:01', 'Et dolorum totam id', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(160, 66, 207, 'leave', NULL, '23:01', 'Ab eu distinctio Il', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(161, 66, 208, 'leave', NULL, '23:01', 'Non tempore cupidat', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(162, 66, 209, 'leave', NULL, '23:01', 'Excepturi nulla eius', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(163, 66, 220, 'leave', NULL, '23:01', 'Pariatur Quod rerum', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(164, 66, 221, 'leave', NULL, '23:01', 'Veniam sit cupidat', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(165, 66, 222, 'leave', NULL, '23:01', 'Dicta iusto pariatur', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(166, 66, 223, 'leave', NULL, '23:01', 'Aliquam beatae molli', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(167, 66, 224, 'leave', NULL, '23:01', 'Quidem molestiae ame', '2021-11-13', '2021-11-21 21:01:37', '2021-11-21 21:01:37'),
-(168, 29, 34, 'early_dismissal', NULL, NULL, NULL, '2021-11-17', '2021-11-22 07:27:26', '2021-11-22 07:27:26'),
-(169, 29, 35, 'late', NULL, NULL, NULL, '2021-11-17', '2021-11-22 07:27:26', '2021-11-22 07:27:26'),
-(170, 29, 36, 'present', NULL, NULL, NULL, '2021-11-17', '2021-11-22 07:27:26', '2021-11-22 07:27:26'),
-(171, 29, 34, 'early_dismissal', NULL, NULL, NULL, '2021-11-16', '2021-11-25 19:44:55', '2021-11-25 19:44:55'),
-(172, 29, 35, 'late', NULL, NULL, NULL, '2021-11-16', '2021-11-25 19:44:55', '2021-11-25 19:44:55'),
-(173, 29, 36, 'early_dismissal', NULL, NULL, NULL, '2021-11-16', '2021-11-25 19:44:55', '2021-11-25 19:44:55');
+(213, 29, 34, 'absent', NULL, NULL, NULL, '1638230400', '2021-11-30 14:30:40', '2021-11-30 14:30:40'),
+(214, 29, 35, 'present', NULL, NULL, NULL, '1638230400', '2021-11-30 14:30:40', '2021-11-30 14:30:40'),
+(215, 29, 36, 'late_with_excuse', NULL, NULL, NULL, '1638230400', '2021-11-30 14:30:40', '2021-11-30 14:30:40'),
+(216, 29, 34, 'early_dismissal', NULL, NULL, NULL, '1637798400', '2021-11-30 14:31:55', '2021-11-30 14:31:55'),
+(217, 29, 35, 'late', NULL, NULL, NULL, '1637798400', '2021-11-30 14:31:55', '2021-11-30 14:31:55'),
+(218, 29, 36, 'present', NULL, NULL, NULL, '1637798400', '2021-11-30 14:31:55', '2021-11-30 14:31:55');
 
 -- --------------------------------------------------------
 
@@ -315,8 +175,10 @@ INSERT INTO `chats` (`id`, `chatid`, `from_user`, `to_user`, `messageText`, `cre
 CREATE TABLE `classes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `className` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `classAcademicYear` int(11) NOT NULL,
-  `dormitoryId` int(11) NOT NULL,
+  `classTeacher` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `classSubject` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `classAcademicYear` int(11) DEFAULT NULL,
+  `dormitoryId` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -325,22 +187,23 @@ CREATE TABLE `classes` (
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`id`, `className`, `classAcademicYear`, `dormitoryId`, `created_at`, `updated_at`) VALUES
-(1, 'KG1', 1, 0, NULL, NULL),
-(2, 'KG2', 1, 0, NULL, NULL),
-(3, 'Prim1', 1, 0, NULL, NULL),
-(4, 'Prim2', 1, 0, NULL, NULL),
-(5, 'Prim3', 1, 0, NULL, NULL),
-(6, 'Prim4', 1, 0, NULL, NULL),
-(7, 'Prim5', 1, 0, NULL, NULL),
-(8, 'Prim6', 1, 0, NULL, NULL),
-(9, 'Prep1', 1, 0, NULL, NULL),
-(10, 'Prep2', 1, 0, NULL, NULL),
-(11, 'Prep3', 1, 0, NULL, NULL),
-(12, 'Sec1', 1, 0, NULL, NULL),
-(13, 'Sec2', 1, 0, NULL, NULL),
-(14, 'Sec3', 1, 0, NULL, NULL),
-(15, 'not', 1, 0, NULL, NULL);
+INSERT INTO `classes` (`id`, `className`, `classTeacher`, `classSubject`, `classAcademicYear`, `dormitoryId`, `created_at`, `updated_at`) VALUES
+(1, 'KG1', '[\"204\",\"206\"]', '[\"1\",\"2\",\"3\",\"4\",\"5\"]', 1, 0, NULL, '2021-12-02 14:03:25'),
+(2, 'KG2', '[\"197\",\"198\",\"201\",\"202\"]', '[]', 1, 0, NULL, NULL),
+(3, 'Prim1', '[\"197\",\"198\",\"201\",\"202\"]', '[]', 1, 0, NULL, NULL),
+(4, 'Prim2', '[]', '[]', 1, 0, NULL, NULL),
+(5, 'Prim3', '[\"201\",\"207\",\"209\"]', '[\"1\",\"4\"]', 1, 0, NULL, '2021-12-02 14:03:41'),
+(6, 'Prim4', '[]', '[]', 1, 0, NULL, NULL),
+(7, 'Prim5', '[]', '[]', 1, 0, NULL, NULL),
+(8, 'Prim6', '[]', '[]', 1, 0, NULL, NULL),
+(9, 'Prep1', '[]', '[]', 1, 0, NULL, NULL),
+(10, 'Prep2', '[]', '[]', 1, 0, NULL, NULL),
+(11, 'Prep3', '[]', '[]', 1, 0, NULL, NULL),
+(12, 'Sec1', '[]', '[]', 1, 0, NULL, NULL),
+(13, 'Sec2', '[]', '[]', 1, 0, NULL, NULL),
+(14, 'Sec3', '[]', '[]', 1, 0, NULL, NULL),
+(15, 'not', NULL, '[]', 1, 0, NULL, NULL),
+(16, 'VO 1', '[\"197\",\"198\",\"201\"]', '[]', NULL, NULL, '2021-12-01 20:10:38', '2021-12-01 20:10:38');
 
 -- --------------------------------------------------------
 
@@ -924,6 +787,13 @@ CREATE TABLE `media_albums` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `media_albums`
+--
+
+INSERT INTO `media_albums` (`id`, `albumTitle`, `albumDescription`, `albumImage`, `albumParent`, `created_at`, `updated_at`) VALUES
+(2, 'ahmed', 'yasser', 'album/b2zKRBwfb4wWMqx9mHfyTQ1peGVcnXDiG1lAKN6k.jpg', 0, '2021-12-03 14:35:26', '2021-12-04 09:30:24');
+
 -- --------------------------------------------------------
 
 --
@@ -934,14 +804,24 @@ CREATE TABLE `media_items` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `albumId` int(11) NOT NULL DEFAULT 0,
   `mediaType` tinyint(1) NOT NULL,
-  `mediaURL` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mediaURL` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mediaURLThumb` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mediaTitle` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mediaDescription` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mediaDate` int(11) NOT NULL,
+  `mediaDate` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `media_items`
+--
+
+INSERT INTO `media_items` (`id`, `albumId`, `mediaType`, `mediaURL`, `mediaURLThumb`, `mediaTitle`, `mediaDescription`, `mediaDate`, `created_at`, `updated_at`) VALUES
+(1, 0, 2, NULL, 'https://www.youtube.com/embed/d6R1y2wVM8Y?controls=0', '18-Jan-1987', '25-Sep-1977', '2021-12-04 14:22:16', '2021-12-04 12:22:16', '2021-12-04 12:22:16'),
+(2, 0, 0, 'album/HJ9R9iwgKFei0umgIst8NchYhEATRSelMYxrIp55.jpg', NULL, 'new', 'yess', '2021-12-04 14:23:01', '2021-12-04 12:23:01', '2021-12-04 12:23:01'),
+(3, 0, 1, NULL, 'https://www.youtube.com/embed/d6R1y2wVM8Y?controls=0', 'webs', 'mohameds', '2021-12-04 14:25:04', '2021-12-04 12:25:04', '2021-12-04 12:25:04'),
+(4, 0, 1, NULL, 'https://www.youtube.com/watch?v=qJkKYS5azws&list=RDMM&index=10', 'video', 'new video', '2021-12-04 14:52:32', '2021-12-04 12:52:32', '2021-12-04 12:52:32');
 
 -- --------------------------------------------------------
 
@@ -974,7 +854,6 @@ CREATE TABLE `meetings` (
 
 INSERT INTO `meetings` (`id`, `conference_title`, `conference_desc`, `scheduled_date`, `scheduled_time_start_total`, `scheduled_time_end_total`, `conference_duration`, `created_by`, `user_host`, `conference_target_type`, `conference_target_details`, `meeting_id`, `meeting_metadata`, `conference_status`, `created_at`, `updated_at`) VALUES
 (9, 'programming', 'session  one programming', 1637410751, 1637410751, 1637410751, 90, 1, '{\"user\":\"sl3awy\",\"id\":\"41\"}', 'Teacher', '{\"class\":[],\"section\":[]}', NULL, NULL, 0, NULL, '2021-11-20 10:19:11'),
-(10, 'web dev', 'web dev  app', 1637971200, 1637543940, 1637543940, 60, 1, '{\"user\":\"sarah\",\"id\":\"4\"}', 'student', '{\"class\":[\"1\",\"6\",\"7\"],\"section\":[\"3\",\"45\",\"47\",\"48\"]}', NULL, NULL, 0, NULL, NULL),
 (11, 'programming', 'programming web', 1637971200, 1637597400, 1637597400, 90, 1, '{\"user\":\"YOUSEF\",\"id\":\"2\"}', 'student', '{\"class\":[\"2\",\"5\"],\"section\":[\"10\",\"12\",\"37\"]}', NULL, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -1141,7 +1020,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (80, '2021_11_20_180535_create_attendances_table', 4),
 (81, '2021_11_21_184822_create_attendances_table', 5),
 (82, '2021_11_22_174659_create_chats_table', 6),
-(83, '2021_11_23_204537_create_chats_table', 7);
+(83, '2021_11_23_204537_create_chats_table', 7),
+(84, '2021_11_10_121850_create_virtual_classes_table', 8);
 
 -- --------------------------------------------------------
 
@@ -1507,6 +1387,7 @@ INSERT INTO `roles` (`id`, `role_title`, `role_description`, `def_for`, `role_pe
 CREATE TABLE `sections` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sectionName` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sectionTeacher` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sectionTitle` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `classe_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1517,73 +1398,77 @@ CREATE TABLE `sections` (
 -- Dumping data for table `sections`
 --
 
-INSERT INTO `sections` (`id`, `sectionName`, `sectionTitle`, `classe_id`, `created_at`, `updated_at`) VALUES
-(1, 'KG1/1E', 'KG 1 Section 1', 1, NULL, NULL),
-(2, 'KG1/2E', 'KG 1 Section 2', 1, NULL, NULL),
-(3, 'KG1/3E', 'KG 1 Section 3', 1, NULL, NULL),
-(4, 'KG1/4E', 'KG 1 Section 4', 1, NULL, NULL),
-(5, 'KG1/5E', 'KG 1 Section 5', 1, NULL, NULL),
-(6, 'KG2/1E', 'KG 2 Section 1', 2, NULL, NULL),
-(7, 'KG2/2E', 'KG 2 Section 2', 2, NULL, NULL),
-(8, 'KG2/3E', 'KG 2 Section 3', 2, NULL, NULL),
-(9, 'KG2/4E', 'KG 2 Section 4', 2, NULL, NULL),
-(10, 'KG2/5E', 'KG 2 Section 5', 2, NULL, NULL),
-(11, 'KG2/6E', 'KG 2 Section 6', 2, NULL, NULL),
-(12, 'KG2/7E', 'KG 2 Section 7', 2, NULL, NULL),
-(13, 'Prep1/1E', 'Prep 1 Section 1', 9, NULL, NULL),
-(14, 'Prep1/2E', 'Prep 1 Section 2', 9, NULL, NULL),
-(15, 'Prep1/3E', 'Prep 1 Section 3', 9, NULL, NULL),
-(16, 'Prep1/4E', 'Prep 1 Section 4', 9, NULL, NULL),
-(17, 'Prep1/5E', 'Prep 1 Section 5', 9, NULL, NULL),
-(18, 'Prep2/1E', 'Prep 2 Section 1', 10, NULL, NULL),
-(19, 'Prep2/2E', 'Prep 2 Section 2', 10, NULL, NULL),
-(20, 'Prep2/3E', 'Prep 2 Section 3', 10, NULL, NULL),
-(21, 'Prep2/4E', 'Prep 2 Section 4', 10, NULL, NULL),
-(22, 'Prep2/5E', 'Prep 2 Section 5', 10, NULL, NULL),
-(23, 'Prep3/1E', 'Prep 3 Section 1', 11, NULL, NULL),
-(24, 'Prep3/2E', 'Prep 3 Section 2', 11, NULL, NULL),
-(25, 'Prep3/3E', 'Prep 3 Section 3', 11, NULL, NULL),
-(26, 'Prep3/4E', 'Prep 3 Section 4', 11, NULL, NULL),
-(27, 'Prim1/1E', 'Prim 1 Section 1', 3, NULL, NULL),
-(28, 'Prim1/2E', 'Prim 1 Section 2', 3, NULL, NULL),
-(29, 'Prim1/3E', 'Prim 1 Section 3', 3, NULL, NULL),
-(30, 'Prim1/4E', 'Prim 1 Section 4', 3, NULL, NULL),
-(31, 'Prim1/5E', 'Prim 1 Section 5', 3, NULL, NULL),
-(32, 'Prim2/1E', 'Prim 2 Section 1', 4, NULL, NULL),
-(33, 'Prim2/2E', 'Prim 2 Section 2', 4, NULL, NULL),
-(34, 'Prim2/3E', 'Prim 2 Section 3', 4, NULL, NULL),
-(35, 'Prim2/4E', 'Prim 2 Section 4', 4, NULL, NULL),
-(36, 'Prim2/5E', 'Prim 2 Section 5', 4, NULL, NULL),
-(37, 'Prim3/1E', 'Prim 3 Section 1', 5, NULL, NULL),
-(38, 'Prim3/2E', 'Prim 3 Section 2', 5, NULL, NULL),
-(39, 'Prim3/3E', 'Prim 3 Section 3', 5, NULL, NULL),
-(40, 'Prim3/4E', 'Prim 3 Section 4', 5, NULL, NULL),
-(41, 'Prim4/1E', 'Prim 4 Section 1', 6, NULL, NULL),
-(42, 'Prim4/2E', 'Prim 4 Section 2', 6, NULL, NULL),
-(43, 'Prim4/3E', 'Prim 4 Section 3', 6, NULL, NULL),
-(44, 'Prim4/4E', 'Prim 4 Section 4', 6, NULL, NULL),
-(45, 'Prim4/5E', 'Prim 4 Section 5', 6, NULL, NULL),
-(46, 'Prim4/6E', 'Prim 4 Section 6', 6, NULL, NULL),
-(47, 'Prim5/1E', 'Prim 5 Section 1', 7, NULL, NULL),
-(48, 'Prim5/2E', 'Prim 5 Section 2', 7, NULL, NULL),
-(49, 'Prim5/3E', 'Prim 5 Section 3', 7, NULL, NULL),
-(50, 'Prim5/4E', 'Prim 5 Section 4', 7, NULL, NULL),
-(51, 'Prim6/1E', 'Prim 6 Section 1', 8, NULL, NULL),
-(52, 'Prim6/2E', 'Prim 6 Section 2', 8, NULL, NULL),
-(53, 'Prim6/3E', 'Prim 6 Section 3', 8, NULL, NULL),
-(54, 'Prim6/4E', 'Prim 6 Section 4', 8, NULL, NULL),
-(55, 'Prim6/5E', 'Prim 6 Section 5', 8, NULL, NULL),
-(56, 'Prim6/6E', 'Prim 6 Section 6', 8, NULL, NULL),
-(57, 'Sec1/1E', 'Sec 1 Section 1', 12, NULL, NULL),
-(58, 'Sec1/2E', 'Sec 1 Section 2', 12, NULL, NULL),
-(59, 'Sec1/3E', 'Sec 1 Section 3', 12, NULL, NULL),
-(60, 'Sec1/4E', 'Sec 1 Section 4', 12, NULL, NULL),
-(61, 'Sec2/1E', 'Sec 2 Section 1', 13, NULL, NULL),
-(62, 'Sec2/2E', 'Sec 2 Section 2', 13, NULL, NULL),
-(63, 'Sec2/3E', 'Sec 2 Section 3', 13, NULL, NULL),
-(64, 'Sec3/1E', 'Sec 3 Section 1', 14, NULL, NULL),
-(65, 'Sec3/2E', 'Sec 3 Section 2', 14, NULL, NULL),
-(66, 'not', 'not', 15, NULL, NULL);
+INSERT INTO `sections` (`id`, `sectionName`, `sectionTeacher`, `sectionTitle`, `classe_id`, `created_at`, `updated_at`) VALUES
+(1, 'KG1/1E', '[\"201\",\"207\",\"209\"]', 'KG 1 Section 1', 1, NULL, NULL),
+(2, 'KG1/2E', '[\"201\",\"207\",\"209\"]', 'KG 1 Section 2', 1, NULL, NULL),
+(3, 'KG1/3E', '[\"201\",\"207\",\"209\"]', 'KG 1 Section 3', 1, NULL, NULL),
+(4, 'KG1/4E', '[\"201\",\"207\",\"209\"]', 'KG 1 Section 4', 1, NULL, NULL),
+(5, 'KG1/5E', '[\"201\",\"207\",\"209\"]', 'KG 1 Section 5', 1, NULL, NULL),
+(6, 'KG2/1E', '[\"201\",\"207\",\"209\"]', 'KG 2 Section 1', 2, NULL, NULL),
+(7, 'KG2/2E', '[\"201\",\"207\",\"209\"]', 'KG 2 Section 2', 2, NULL, NULL),
+(8, 'KG2/3E', '[\"201\",\"207\",\"209\"]', 'KG 2 Section 3', 2, NULL, NULL),
+(9, 'KG2/4E', '[\"201\",\"207\",\"209\"]', 'KG 2 Section 4', 2, NULL, NULL),
+(10, 'KG2/5E', '[\"201\",\"207\",\"209\"]', 'KG 2 Section 5', 2, NULL, NULL),
+(11, 'KG2/6E', '[\"201\",\"207\",\"209\"]', 'KG 2 Section 6', 2, NULL, NULL),
+(12, 'KG2/7E', '[\"201\",\"207\",\"209\"]', 'KG 2 Section 7', 2, NULL, NULL),
+(13, 'Prep1/1E', '[\"201\",\"207\",\"209\"]', 'Prep 1 Section 1', 9, NULL, NULL),
+(14, 'Prep1/2E', '[\"201\",\"207\",\"209\"]', 'Prep 1 Section 2', 9, NULL, NULL),
+(15, 'Prep1/3E', '[\"201\",\"207\",\"209\"]', 'Prep 1 Section 3', 9, NULL, NULL),
+(16, 'Prep1/4E', '[\"201\",\"207\",\"209\"]', 'Prep 1 Section 4', 9, NULL, NULL),
+(17, 'Prep1/5E', '[\"201\",\"207\",\"209\"]', 'Prep 1 Section 5', 9, NULL, NULL),
+(18, 'Prep2/1E', '[\"201\",\"207\",\"209\"]', 'Prep 2 Section 1', 10, NULL, NULL),
+(19, 'Prep2/2E', '[\"201\",\"207\",\"209\"]', 'Prep 2 Section 2', 10, NULL, NULL),
+(20, 'Prep2/3E', '[\"201\",\"207\",\"209\"]', 'Prep 2 Section 3', 10, NULL, NULL),
+(21, 'Prep2/4E', '[\"201\",\"207\",\"209\"]', 'Prep 2 Section 4', 10, NULL, NULL),
+(22, 'Prep2/5E', '[\"201\",\"207\",\"209\"]', 'Prep 2 Section 5', 10, NULL, NULL),
+(23, 'Prep3/1E', '[\"201\",\"207\",\"209\"]', 'Prep 3 Section 1', 11, NULL, NULL),
+(24, 'Prep3/2E', '[\"201\",\"207\",\"209\"]', 'Prep 3 Section 2', 11, NULL, NULL),
+(25, 'Prep3/3E', '[\"201\",\"207\",\"209\"]', 'Prep 3 Section 3', 11, NULL, NULL),
+(26, 'Prep3/4E', '[\"201\",\"207\",\"209\"]', 'Prep 3 Section 4', 11, NULL, NULL),
+(27, 'Prim1/1E', '[\"201\",\"207\",\"209\"]', 'Prim 1 Section 1', 3, NULL, NULL),
+(28, 'Prim1/2E', '[\"201\",\"207\",\"209\"]', 'Prim 1 Section 2', 3, NULL, NULL),
+(29, 'Prim1/3E', '[\"201\",\"207\",\"209\"]', 'Prim 1 Section 3', 3, NULL, NULL),
+(30, 'Prim1/4E', '[\"201\",\"207\",\"209\"]', 'Prim 1 Section 4', 3, NULL, NULL),
+(31, 'Prim1/5E', '[\"201\",\"207\",\"209\"]', 'Prim 1 Section 5', 3, NULL, NULL),
+(32, 'Prim2/1E', '[\"201\",\"207\",\"209\"]', 'Prim 2 Section 1', 4, NULL, NULL),
+(33, 'Prim2/2E', '[\"201\",\"207\",\"209\"]', 'Prim 2 Section 2', 4, NULL, NULL),
+(34, 'Prim2/3E', '[\"201\",\"207\",\"209\"]', 'Prim 2 Section 3', 4, NULL, NULL),
+(35, 'Prim2/4E', '[\"201\",\"207\",\"209\"]', 'Prim 2 Section 4', 4, NULL, NULL),
+(36, 'Prim2/5E', '[\"201\",\"207\",\"209\"]', 'Prim 2 Section 5', 4, NULL, NULL),
+(37, 'Prim3/1E', '[\"201\",\"207\",\"209\"]', 'Prim 3 Section 1', 5, NULL, NULL),
+(38, 'Prim3/2E', '[\"201\",\"207\",\"209\"]', 'Prim 3 Section 2', 5, NULL, NULL),
+(39, 'Prim3/3E', '[\"201\",\"207\",\"209\"]', 'Prim 3 Section 3', 5, NULL, NULL),
+(40, 'Prim3/4E', '[\"201\",\"207\",\"209\"]', 'Prim 3 Section 4', 5, NULL, NULL),
+(41, 'Prim4/1E', '[\"201\",\"207\",\"209\"]', 'Prim 4 Section 1', 6, NULL, NULL),
+(42, 'Prim4/2E', '[\"201\",\"207\",\"209\"]', 'Prim 4 Section 2', 6, NULL, NULL),
+(43, 'Prim4/3E', '[\"201\",\"207\",\"209\"]', 'Prim 4 Section 3', 6, NULL, NULL),
+(44, 'Prim4/4E', '[\"201\",\"207\",\"209\"]', 'Prim 4 Section 4', 6, NULL, NULL),
+(45, 'Prim4/5E', '[\"201\",\"207\",\"209\"]', 'Prim 4 Section 5', 6, NULL, NULL),
+(46, 'Prim4/6E', '[\"201\",\"207\",\"209\"]', 'Prim 4 Section 6', 6, NULL, NULL),
+(47, 'Prim5/1E', '[\"201\",\"207\",\"209\"]', 'Prim 5 Section 1', 7, NULL, NULL),
+(48, 'Prim5/2E', '[\"201\",\"207\",\"209\"]', 'Prim 5 Section 2', 7, NULL, NULL),
+(49, 'Prim5/3E', '[\"201\",\"207\",\"209\"]', 'Prim 5 Section 3', 7, NULL, NULL),
+(50, 'Prim5/4E', '[\"201\",\"207\",\"209\"]', 'Prim 5 Section 4', 7, NULL, NULL),
+(51, 'Prim6/1E', '[\"201\",\"207\",\"209\"]', 'Prim 6 Section 1', 8, NULL, NULL),
+(52, 'Prim6/2E', '[\"201\",\"207\",\"209\"]', 'Prim 6 Section 2', 8, NULL, NULL),
+(53, 'Prim6/3E', '[\"201\",\"207\",\"209\"]', 'Prim 6 Section 3', 8, NULL, NULL),
+(54, 'Prim6/4E', '[\"201\",\"207\",\"209\"]', 'Prim 6 Section 4', 8, NULL, NULL),
+(55, 'Prim6/5E', '[\"201\",\"207\",\"209\"]', 'Prim 6 Section 5', 8, NULL, NULL),
+(56, 'Prim6/6E', '[\"201\",\"207\",\"209\"]', 'Prim 6 Section 6', 8, NULL, NULL),
+(57, 'Sec1/1E', '[\"201\",\"207\",\"209\"]', 'Sec 1 Section 1', 12, NULL, NULL),
+(58, 'Sec1/2E', '[\"201\",\"207\",\"209\"]', 'Sec 1 Section 2', 12, NULL, NULL),
+(59, 'Sec1/3E', '[\"201\",\"207\",\"209\"]', 'Sec 1 Section 3', 12, NULL, NULL),
+(60, 'Sec1/4E', '[\"201\",\"207\",\"209\"]', 'Sec 1 Section 4', 12, NULL, NULL),
+(61, 'Sec2/1E', '[\"201\",\"207\",\"209\"]', 'Sec 2 Section 1', 13, NULL, NULL),
+(62, 'Sec2/2E', '[\"201\",\"207\",\"209\"]', 'Sec 2 Section 2', 13, NULL, NULL),
+(63, 'Sec2/3E', '[\"201\",\"207\",\"209\"]', 'Sec 2 Section 3', 13, NULL, NULL),
+(64, 'Sec3/1E', '[\"201\",\"207\",\"209\"]', 'Sec 3 Section 1', 14, NULL, NULL),
+(65, 'Sec3/2E', '[\"201\",\"207\",\"209\"]', 'Sec 3 Section 2', 14, NULL, NULL),
+(66, 'not', '[\"201\",\"207\",\"209\"]', 'not', 15, NULL, NULL),
+(68, 'section 55', '[\"208\",\"209\"]', 'section 65', 5, '2021-12-02 16:01:44', '2021-12-02 16:01:44'),
+(69, 'Prep1/3E', '[\"201\",\"207\",\"209\"]', 'Prep 1 Section 3', 9, '2021-12-03 09:42:29', '2021-12-03 09:42:29'),
+(70, 'KG1/1E', '[\"201\",\"207\",\"209\"]', 'KG 1 Section 1', 1, '2021-12-03 09:42:39', '2021-12-03 09:42:39'),
+(71, 'KG1/2E', '[\"201\",\"207\",\"209\"]', 'KG 1 Section 2', 1, '2021-12-03 09:43:08', '2021-12-03 09:43:08');
 
 -- --------------------------------------------------------
 
@@ -1706,7 +1591,8 @@ INSERT INTO `study_materials` (`id`, `week_id`, `class_id`, `section_id`, `user_
 (7, 16, 11, 26, 201, 16, 'Lesson four', 'egewewgtegegfgfgf', 'files/fLH2mp1cHNSN4KMxgfbvg8wKQRH1BapRKpBeOoOP.docx', '2021-11-10 21:19:59', '2021-11-10 21:19:59'),
 (8, 8, 7, 47, 3, 16, 'new materal', 'egewewgtegegfgfgf145236', NULL, '2021-11-11 13:40:26', '2021-11-11 13:40:26'),
 (9, 8, 7, 48, 3, 16, 'englsh', 'egewewgtegegfgfgf145236', NULL, '2021-11-11 13:40:26', '2021-11-11 19:57:52'),
-(13, 8, 5, 39, 3, 1, 'Lesson four', 'egewewgtegeg', 'files/4hHU4dWFWILXzVh5TkVySs0h6dnYPxQ93wBOZ2ai.docx', '2021-11-22 07:35:42', '2021-11-22 07:35:42');
+(14, 7, 4, 33, 220, 1, 'Ratione dolor qui fu', 'Ipsam deleniti place', NULL, '2021-11-30 18:11:47', '2021-11-30 18:11:47'),
+(15, 7, 4, 34, 220, 1, 'Ratione dolor qui fu', 'Ipsam deleniti place', NULL, '2021-11-30 18:11:47', '2021-11-30 18:11:47');
 
 -- --------------------------------------------------------
 
@@ -1744,7 +1630,7 @@ INSERT INTO `subjects` (`id`, `subjectTitle`, `passGrade`, `finalGrade`, `photo`
 (13, 'Physics', '50', '100', 'Subjects_Images/physics.png', NULL, NULL),
 (14, 'French', '50', '100', 'Subjects_Images/French.png', NULL, NULL),
 (15, 'German', '50', '100', 'Subjects_Images/German.png', NULL, NULL),
-(16, 'Computer', '50', '100', 'Subjects_Images/computer.png', NULL, '2021-10-29 13:34:28'),
+(16, 'Computer', '50', '100', 'Subjects_Images/computer.png', NULL, '2021-12-03 13:24:49'),
 (17, 'Montessori', '50', '100', 'Subjects_Images/montessori.png', NULL, NULL),
 (18, 'Art', '50', '100', 'Subjects_Images/art.png', NULL, '2021-11-02 11:47:43'),
 (19, 'Psychologist', '50', '100', 'Subjects_Images/psychologist.png', NULL, NULL),
@@ -1795,7 +1681,10 @@ INSERT INTO `teachers` (`id`, `user_id`, `subject_id`, `created_at`, `updated_at
 (171, 198, 18, NULL, NULL),
 (173, 207, 11, NULL, NULL),
 (174, 197, 2, NULL, NULL),
-(175, 201, 2, NULL, NULL);
+(175, 201, 2, NULL, NULL),
+(176, 198, 16, NULL, NULL),
+(177, 201, 16, NULL, NULL),
+(178, 202, 16, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1901,15 +1790,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `email_verified_at`, `fullName`, `role`, `role_id`, `class_id`, `section_id`, `active`, `department`, `designation`, `studentRollId`, `admission_number`, `admission_date`, `std_category`, `auth_session`, `birthday`, `gender`, `remember_token`, `address`, `phoneNo`, `mobileNo`, `studentAcademicYear`, `religion`, `parentProfession`, `parentOf`, `photo`, `isLeaderBoard`, `restoreUniqId`, `transport`, `transport_vehicle`, `hostel`, `medical`, `user_position`, `defLang`, `defTheme`, `salary_type`, `salary_base_id`, `comVia`, `father_info`, `mother_info`, `biometric_id`, `library_id`, `account_active`, `customPermissionsType`, `customPermissions`, `firebase_token`, `zoomLink`, `created_at`, `updated_at`) VALUES
-(2, 'YOUSEF', 'youaefmohamed2@gmail.com', '$2y$10$uV.piIl0sx7oPFCAeOL7Y.9SLVQscvnO4b/OWrWITbQVvFzHlFDAS', NULL, NULL, NULL, 'yousef', 'admin', 3, 15, 66, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '1999-08-30', NULL, 'V4eML9nkn1uqVXLsEuSQqBLJpWXSahtsoQWguwckZa7ScULvgVynwBlcEnIM', 'new giza', '01150705993', '01220001391', 2015, 'yesss', NULL, 3, 'teacher/HsEvQhdzb4jqisfuc7MHyFaqydlNoDlMyhrrlrq5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, '[\"SMS\",\"phone\"]', NULL, NULL, 14, NULL, 1, NULL, '', NULL, NULL, NULL, '2021-11-26 14:27:27'),
-(3, 'Khaled', 'khaledmoasasashreamed12@gmail.com', '$2y$10$E.WrxXZPFqb8sFO5yo1WmOE2mZNTuH20pGy6w7hKoJ1IGmC1KEXLi', NULL, NULL, NULL, 'khaled mohamed', 'parent', 4, 15, 66, 0, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2000-02-01', NULL, 'sGTkkSgfYXu1scQNmp8UjrldcFm1s9mHAB0i7gLLcba9to9KpYruk4WSH3Wj', 'cairoo', '01150705993', '01220001391', 2015, 'yesss', NULL, 3, 'teacher/4k0Wszx86xtKeqR7Uygai803cKf3JABcUxyPVivp.jpg', 'uuuuuuuu', NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, '[\"Mail\"]', NULL, NULL, 14, NULL, 1, NULL, '', NULL, 'https://www.youtube.com/watch?v=lmSBQGnXyzMff', NULL, '2021-11-25 19:45:23'),
-(4, 'sarah', 'sarahmasasasohamed@gmail.com', '$2y$10$E.WrxXZPFqb8sFO5yo1WmOE2mZNTuH20pGy6w7hKoJ1IGmC1KEXLi', NULL, NULL, NULL, 'sarah mohamed', 'student', 1, 14, 65, 0, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2021-10-12', 'fmale', NULL, 'giza', '01478526', '012555', 2015, 'yesss', NULL, 3, 'users/user-10.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, '2021-11-22 07:39:10'),
+(2, 'YOUSEF', 'youaefmohamed2@gmail.com', '$2y$10$w.IIwV0CM4jb195dPq4oBOw.Or6ud.VgFkID/vSdNXBdg/uuX.egm', NULL, NULL, NULL, 'yousef', 'admin', 3, 15, 66, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '1999-08-30', NULL, 'WTl8qSYIfHaYFu8YgpGSdy3JYEpUsGq7pauT1sIzfp1lFhzGU6blWxPb6BYI', 'new giza', '01150705993', '01220001391', 2015, 'yesss', NULL, 3, 'teacher/HsEvQhdzb4jqisfuc7MHyFaqydlNoDlMyhrrlrq5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, '[\"SMS\",\"phone\"]', NULL, NULL, 14, NULL, 1, NULL, '', NULL, NULL, NULL, '2021-11-26 14:27:27'),
+(3, 'Khaled', 'khaledmoasasashreamed12@gmail.com', '$2y$10$E.WrxXZPFqb8sFO5yo1WmOE2mZNTuH20pGy6w7hKoJ1IGmC1KEXLi', NULL, NULL, NULL, 'khaled mohamed', 'parent', 4, 15, 66, 0, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2000-02-01', NULL, 'gzhjWALpMtVeKlRC90XUejnCwRvrcnUX9ydKvmqXtgSVpwboUiLrqzMQmzkl', 'cairoo', '01150705993', '01220001391', 2015, 'yesss', NULL, 3, 'teacher/4k0Wszx86xtKeqR7Uygai803cKf3JABcUxyPVivp.jpg', 'uuuuuuuu', NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, '[\"Mail\"]', NULL, NULL, 14, NULL, 1, NULL, '', NULL, 'https://www.youtube.com/watch?v=lmSBQGnXyzMff', NULL, '2021-11-25 19:45:23'),
+(4, 'soso', 'sarahmasasasohamed@gmail.com', '$2y$10$E.WrxXZPFqb8sFO5yo1WmOE2mZNTuH20pGy6w7hKoJ1IGmC1KEXLi', NULL, NULL, NULL, 'sarah mohamed', 'student', 1, 14, 65, 1, 1, 1, NULL, '155', '2021-11-17', 1, NULL, '2021-10-12', 'fmale', NULL, 'giza egypts', '01150705993', '01150725994', 2015, 'yesss', NULL, 232, 'users/user-10.jpg', 'hello', NULL, 0, 0, 100, '{\"Policy\":\"Voluptatem in volup\",\"blood\":\"AB+\",\"Weight\":\"80\",\"Height\":\"175\",\"Disability\":\"Qui nulla nisi cum e\",\"Contact\":\"Sit omnis similique\"}', NULL, 0, NULL, NULL, 150, '[\"SMS\",\"phone\"]', '{\"Name\":\"Hamish Sheppard\",\"mobile\":\"Magni similique ea f\",\"Job\":\"Culpa voluptates est\",\"notes\":\"Laboris modi quia re\"}', '{\"Name\":\"Shelley Thornton\",\"mobile\":\"Aliquid unde dolor i\",\"Job\":\"Eos incidunt natus\",\"notes\":\"Labore dolorem exerc\"}', 14, NULL, 1, NULL, '', NULL, '', NULL, '2021-11-27 10:21:47'),
 (7, 'amr', 'amrmohamasasased@gmail.com', '1452365', NULL, NULL, NULL, 'amr mohamed', 'student', 1, 1, 1, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2011-10-13', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, '2021-10-18 07:16:52'),
 (8, 'amr', 'amrdmohamed@gmail.com', '1452365', NULL, NULL, NULL, 'عمر محمد', 'student', 1, 1, 1, 0, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2011-10-11', 'fmale', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, '2021-10-22 08:56:07'),
 (9, 'amr', 'amoshamed@gmail.com', '1452365', NULL, NULL, NULL, 'عمر حسين محمد', 'student', 1, 1, 3, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2011-10-13', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
 (10, 'amr', 'amdmohagmed@gmail.com', '1452365', NULL, NULL, NULL, 'عمر خالد محمد', 'student', 1, 1, 4, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2011-10-13', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
 (11, 'amr', 'amrdmohdamed@gmail.com', '1452365', NULL, NULL, NULL, 'عمر  يوسف محمد', 'student', 1, 1, 5, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2011-10-13', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
-(12, 'amr', 'amrdmofhamed@gmail.com', '1452365', NULL, NULL, NULL, 'طه محمد', 'student', 1, 2, 6, 0, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2001-10-13', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, '2021-10-19 16:28:16'),
 (13, 'amr', 'amrdmhamed@gmail.com', '1452365', NULL, NULL, NULL, 'زياد محمد', 'student', 1, 2, 7, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2001-10-13', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
 (14, 'amr', 'ahmedfathi@gmail.com', '1452365', NULL, NULL, NULL, 'عمر حسين محمد', 'student', 1, 2, 8, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2001-10-13', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
 (15, 'amr', 'ahmedfathd@gmail.com', '1452365', NULL, NULL, NULL, 'عمر خالد محمد', 'student', 1, 2, 9, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2001-10-13', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
@@ -1970,7 +1858,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `two_factor_secret`,
 (188, 'hosam', 'hosam156@gmail.com', '1452365', NULL, NULL, NULL, 'hosam', 'student', 1, 13, 63, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '0000-00-00', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
 (189, 'sl3awy', 'sl3asswy742@gmail.com', '1452365', NULL, NULL, NULL, 'sl3awy', 'student', 1, 14, 64, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '0000-00-00', 'fmale', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
 (190, 'som3aa', 'som3aaaa052@gmail.com', '1452365', NULL, NULL, NULL, 'som3aa', 'student', 1, 14, 65, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '0000-00-00', 'fmale', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
-(197, 'hahmed', 'hahmed741@gmail.com', '$2y$10$L.e2Ry/TuVpDSwXieXosYOpnS4RJSl7iMcj0X.sg8aWpxNXGCInOG', NULL, NULL, NULL, 'khaled mohamed', 'teacher', 5, 15, 66, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '0000-00-00', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'teacher/user-6.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
+(197, 'hahmed', 'hahmed741@gmail.com', '$2y$10$L.e2Ry/TuVpDSwXieXosYOpnS4RJSl7iMcj0X.sg8aWpxNXGCInOG', NULL, NULL, NULL, 'khaled mohamed', 'teacher', 5, 15, 66, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '0000-00-00', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'teacher/user-6.jpg', 'okk', NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, '2021-11-27 10:11:49'),
 (198, 'shossam', 'shossam9654@gmail.com', '1452365', NULL, NULL, NULL, 'hossam mohamed', 'teacher', 5, 15, 66, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '0000-00-00', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'teacher/user-3.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
 (201, 'dhossam', 'dhossam4102@gmail.com', '1452365', NULL, NULL, NULL, 'hossam mohamed', 'teacher', 5, 15, 66, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '0000-00-00', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'teacher/user-3.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
 (202, 'vghada', 'vghada96@gmail.com', '$2y$10$rwL3OqI1LoKvJCl7xDPXJeDc3Hco7IqGsq7ApUSt.zODZPnkrCHwq', NULL, NULL, NULL, 'ghada mohamed', 'teacher', 5, 15, 66, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '0000-00-00', 'male', 'RR1RpEvQURBZ9snxOyf3x9OJzrEiSy9DfyCoJSquUvlvu0NrZW0d9mxG4lus', NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'teacher/user-1.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, NULL),
@@ -2021,14 +1909,52 @@ CREATE TABLE `user_messages` (
 
 CREATE TABLE `vacations` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `userid` int(11) NOT NULL,
-  `vacDate` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userid` bigint(11) UNSIGNED NOT NULL,
+  `startVac` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `endVac` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `acYear` int(11) NOT NULL,
   `role` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `acceptedVacation` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `vacations`
+--
+
+INSERT INTO `vacations` (`id`, `userid`, `startVac`, `endVac`, `acYear`, `role`, `acceptedVacation`, `created_at`, `updated_at`) VALUES
+(5, 2, '1638316800', '1640908800', 1, 'admin', 0, '2021-12-03 12:08:50', '2021-12-03 12:52:29'),
+(6, 2, '1638316800', '1640908800', 1, 'admin', 1, '2021-12-03 12:09:37', '2021-12-03 12:52:32'),
+(7, 2, '1639526400', '1640390400', 1, 'admin', -1, '2021-12-03 12:10:17', '2021-12-03 12:49:02'),
+(8, 2, '1639008000', '1640131200', 1, 'admin', -1, '2021-12-03 12:13:23', '2021-12-03 12:43:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `virtual_classes`
+--
+
+CREATE TABLE `virtual_classes` (
+  `id` int(11) NOT NULL,
+  `classId` bigint(20) UNSIGNED NOT NULL,
+  `sectionId` bigint(20) UNSIGNED NOT NULL,
+  `subjectId` bigint(20) UNSIGNED NOT NULL,
+  `day_id` bigint(20) UNSIGNED NOT NULL,
+  `teacherId` bigint(20) UNSIGNED NOT NULL,
+  `zoomLinkId` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `startTime` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `endTime` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `virtual_classes`
+--
+
+INSERT INTO `virtual_classes` (`id`, `classId`, `sectionId`, `subjectId`, `day_id`, `teacherId`, `zoomLinkId`, `startTime`, `endTime`) VALUES
+(1, 11, 4, 1, 4, 171, 'tttttfdgdgfdsgfddfd', 'fgdfgdfgdfgfdsgdsfgdfgdfdg', 'gfdsgfdsgfsdg'),
+(0, 1, 1, 16, 7, 171, 'fkd;slk;slds', 'skdflsdjflksjglsfjlkgsf', 'cmkldscmdjslkvs'),
+(0, 1, 1, 16, 7, 171, 'fkd;slk;slds', 'skdflsdjflksjglsfjlkgsf', 'cmkldscmdjslkvs');
 
 -- --------------------------------------------------------
 
@@ -2135,6 +2061,14 @@ CREATE TABLE `wel_offices` (
 --
 ALTER TABLE `academic_years`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `classId` (`classId`),
+  ADD KEY `subjectId` (`subjectId`);
 
 --
 -- Indexes for table `attendances`
@@ -2596,8 +2530,7 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD KEY `users_role_id_foreign` (`role_id`),
   ADD KEY `users_class_id_foreign` (`class_id`),
-  ADD KEY `users_section_id_foreign` (`section_id`),
-  ADD KEY `parentOf` (`parentOf`);
+  ADD KEY `users_section_id_foreign` (`section_id`);
 
 --
 -- Indexes for table `user_messages`
@@ -2609,7 +2542,18 @@ ALTER TABLE `user_messages`
 -- Indexes for table `vacations`
 --
 ALTER TABLE `vacations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`);
+
+--
+-- Indexes for table `virtual_classes`
+--
+ALTER TABLE `virtual_classes`
+  ADD KEY `classId` (`classId`),
+  ADD KEY `day_id` (`day_id`),
+  ADD KEY `sectionId` (`sectionId`),
+  ADD KEY `subjectId` (`subjectId`),
+  ADD KEY `teacherId` (`teacherId`);
 
 --
 -- Indexes for table `visitors`
@@ -2640,10 +2584,16 @@ ALTER TABLE `academic_years`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `assignments`
+--
+ALTER TABLE `assignments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 
 --
 -- AUTO_INCREMENT for table `books`
@@ -2667,7 +2617,7 @@ ALTER TABLE `chats`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `class_schedules`
@@ -2847,13 +2797,13 @@ ALTER TABLE `mailsms_templates`
 -- AUTO_INCREMENT for table `media_albums`
 --
 ALTER TABLE `media_albums`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `media_items`
 --
 ALTER TABLE `media_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `meetings`
@@ -2883,7 +2833,7 @@ ALTER TABLE `mettings`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `mm_uploads`
@@ -2991,7 +2941,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -3033,7 +2983,7 @@ ALTER TABLE `student_docs`
 -- AUTO_INCREMENT for table `study_materials`
 --
 ALTER TABLE `study_materials`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -3051,7 +3001,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
 -- AUTO_INCREMENT for table `transportations`
@@ -3081,7 +3031,7 @@ ALTER TABLE `user_messages`
 -- AUTO_INCREMENT for table `vacations`
 --
 ALTER TABLE `vacations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `visitors`
@@ -3104,6 +3054,14 @@ ALTER TABLE `wel_offices`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD CONSTRAINT `assignments_ibfk_1` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`),
+  ADD CONSTRAINT `assignments_ibfk_2` FOREIGN KEY (`subjectId`) REFERENCES `subjects` (`id`),
+  ADD CONSTRAINT `assignments_ibfk_3` FOREIGN KEY (`techerId`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `attendances`
@@ -3160,6 +3118,22 @@ ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`parentOf`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
   ADD CONSTRAINT `users_section_id_foreign` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`);
+
+--
+-- Constraints for table `vacations`
+--
+ALTER TABLE `vacations`
+  ADD CONSTRAINT `vacations_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `virtual_classes`
+--
+ALTER TABLE `virtual_classes`
+  ADD CONSTRAINT `virtual_classes_ibfk_1` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`),
+  ADD CONSTRAINT `virtual_classes_ibfk_2` FOREIGN KEY (`day_id`) REFERENCES `days` (`id`),
+  ADD CONSTRAINT `virtual_classes_ibfk_3` FOREIGN KEY (`sectionId`) REFERENCES `sections` (`id`),
+  ADD CONSTRAINT `virtual_classes_ibfk_4` FOREIGN KEY (`subjectId`) REFERENCES `subjects` (`id`),
+  ADD CONSTRAINT `virtual_classes_ibfk_5` FOREIGN KEY (`teacherId`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
