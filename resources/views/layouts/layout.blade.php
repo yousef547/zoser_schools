@@ -114,9 +114,9 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/record')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Calendar</span>
+                                                        <span>record</span>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -126,7 +126,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{url('admin/virtual_Class')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Virtual Classes Schedule</span>
                                                     </a>

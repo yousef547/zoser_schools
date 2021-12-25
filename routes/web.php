@@ -14,11 +14,13 @@ use App\Http\Controllers\admin\mediaAlbomController;
 use App\Http\Controllers\admin\meetimgController;
 use App\Http\Controllers\admin\OfficeController;
 use App\Http\Controllers\admin\parentController;
+use App\Http\Controllers\admin\recordController;
 use App\Http\Controllers\admin\settingsController;
 use App\Http\Controllers\admin\studentController;
 use App\Http\Controllers\admin\subjectController;
 use App\Http\Controllers\admin\teacherController as AdminTeacherController;
 use App\Http\Controllers\admin\vacationController;
+use App\Http\Controllers\admin\virtualClassController;
 use App\Http\Controllers\departmentController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\teacher\TeacherController;
@@ -174,6 +176,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('item/submit_item',[mediaAlbomController::class,'submitItem']);
     Route::get('item/show/{id}',[mediaAlbomController::class,'showItem']);
     Route::get('item/edit/{id}',[mediaAlbomController::class,'editItem']);
+    Route::get('virtual_Class',[virtualClassController::class,'index']);
+    Route::get('virtual_Class/timetable/{id}', [virtualClassController::class, 'timetable']);
+
+
+
+    Route::get('record', [recordController::class, 'index']);
+    Route::get('record/send', [recordController::class, 'send']);
+
+
+
+
+    
 
 
 

@@ -1,0 +1,2 @@
+add model diccount , migrate ,discountController
+edit sidbar
