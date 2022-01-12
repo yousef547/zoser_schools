@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2021 at 12:17 PM
+-- Generation Time: Jan 12, 2022 at 04:28 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -390,6 +390,40 @@ INSERT INTO `events` (`id`, `eventTitle`, `eventDescription`, `eventFor`, `enent
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `exams`
+--
+
+CREATE TABLE `exams` (
+  `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `level_id` bigint(20) UNSIGNED NOT NULL,
+  `degree` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `updated_at` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `exams`
+--
+
+INSERT INTO `exams` (`id`, `user_id`, `level_id`, `degree`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, '60', '2022-01-12', '2022-01-12'),
+(2, 2, 2, '100', '2022-01-12', '2022-01-12'),
+(3, 2, 3, '1', '2022-01-12', '2022-01-12'),
+(4, 2, 4, NULL, '2022-01-12', '2022-01-12'),
+(5, 2, 5, NULL, '2022-01-12', '2022-01-12'),
+(6, 2, 6, NULL, '2022-01-12', '2022-01-12'),
+(7, 2, 7, NULL, '2022-01-12', '2022-01-12'),
+(8, 2, 8, NULL, '2022-01-12', '2022-01-12'),
+(9, 2, 9, NULL, '2022-01-12', '2022-01-12'),
+(10, 2, 10, NULL, '2022-01-12', '2022-01-12'),
+(11, 2, 11, NULL, '2022-01-12', '2022-01-12'),
+(12, 2, 12, NULL, '2022-01-12', '2022-01-12'),
+(13, 2, 13, NULL, '2022-01-12', '2022-01-12');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `expenses`
 --
 
@@ -717,6 +751,40 @@ CREATE TABLE `languages` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `levels`
+--
+
+CREATE TABLE `levels` (
+  `id` bigint(20) NOT NULL,
+  `level` int(11) NOT NULL,
+  `lavel_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `updated_at` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `levels`
+--
+
+INSERT INTO `levels` (`id`, `level`, `lavel_name`, `desc`, `created_at`, `updated_at`) VALUES
+(1, 0, 'placement_test', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(2, 1, 'level one', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(3, 2, 'level two', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(4, 3, 'level three', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(5, 4, 'level four', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(6, 5, 'level five', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(7, 6, 'level six', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(8, 7, 'level seven', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(9, 8, 'level eight', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(10, 9, 'level nine', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(11, 10, 'level ten', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(12, 11, 'level eleven', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10'),
+(13, 12, 'level twelve', 'Some quick example text to build on the card title and make up the bulk of the card\'s content.', '2022-01-10', '2022-01-10');
 
 -- --------------------------------------------------------
 
@@ -1346,6 +1414,77 @@ CREATE TABLE `postals` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `questions`
+--
+
+CREATE TABLE `questions` (
+  `id` bigint(20) NOT NULL,
+  `type` enum('choices','record','true_fase','video','reading') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `choices` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `record` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `true_fase` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reading` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rigth_ans` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ans_1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ans_2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ans_3` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `level` bigint(20) NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `updated_at` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`id`, `type`, `choices`, `record`, `true_fase`, `video`, `reading`, `rigth_ans`, `ans_1`, `ans_2`, `ans_3`, `level`, `created_at`, `updated_at`) VALUES
+(25, 'choices', 'Est deserunt sunt se', NULL, NULL, NULL, NULL, 'Repudiandae sunt ei()', 'Dolor unde quia enim', 'Expedita fuga Fuga', 'Minim deserunt lorem', 1, '2022-01-12', '2022-01-12'),
+(26, 'choices', 'Magnam aliquip labor', NULL, NULL, NULL, NULL, 'Adipisicing vitae cu()', 'Voluptas excepteur v', 'Officiis quos qui is', 'Facere illo et offic', 1, '2022-01-12', '2022-01-12'),
+(27, 'record', NULL, 'record/vKfYTkdCdUBYKQ5iY4FG4oBfZektqWybJkMzpvlY.mp3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2022-01-12', '2022-01-12'),
+(28, 'true_fase', NULL, NULL, 'Cum consequatur comm', NULL, NULL, 'wrong', NULL, NULL, NULL, 1, '2022-01-12', '2022-01-12'),
+(29, 'true_fase', NULL, NULL, 'Est esse assumenda', NULL, NULL, 'right', NULL, NULL, NULL, 1, '2022-01-12', '2022-01-12'),
+(30, 'video', NULL, NULL, NULL, 'video/gQgfGWu80lW6teGmh9LmqEzM57PolJ3oFTnH0RMh.mp4', NULL, NULL, NULL, NULL, NULL, 1, '2022-01-12', '2022-01-12'),
+(31, 'reading', NULL, NULL, NULL, NULL, 'Aut asperiores et ma Aut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et maAut asperiores et ma', NULL, NULL, NULL, NULL, 1, '2022-01-12', '2022-01-12'),
+(32, 'record', NULL, 'record/v6u53a2qtjlUdHmpOaGeaqtdgHwjNslfsC5m0BYM.mp3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2022-01-12', '2022-01-12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions_infos`
+--
+
+CREATE TABLE `questions_infos` (
+  `id` bigint(20) NOT NULL,
+  `question` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rigth_ans` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ans_1` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ans_2` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ans_3` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question_id` bigint(20) NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `updated_at` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `questions_infos`
+--
+
+INSERT INTO `questions_infos` (`id`, `question`, `rigth_ans`, `ans_1`, `ans_2`, `ans_3`, `question_id`, `created_at`, `updated_at`) VALUES
+(1, 'Nisi itaque voluptas', 'At harum aspernatur ()', 'Non consectetur ut e', 'Et eum quo suscipit', 'Rerum dolor sed poss', 27, '2022-01-12', '2022-01-12'),
+(2, 'Velit deleniti illo', 'Est non molestias ei()', 'Labore veniam irure', 'Possimus dolorem qu', 'Ipsa minim sunt sed', 27, '2022-01-12', '2022-01-12'),
+(3, 'Non tempore quam es', 'Do voluptate sint au()', 'Nam quam quibusdam v', 'Quia qui dolor minim', 'Libero harum molesti', 30, '2022-01-12', '2022-01-12'),
+(4, 'Non sint dolor in re', 'Placeat harum delen()', 'Corrupti deserunt n', 'Aliquid fugiat aliqu', 'Sunt minima consecte', 30, '2022-01-12', '2022-01-12'),
+(5, 'Dolore voluptas nihi', 'Optio eu rerum plac()', 'Ipsum voluptatem O', 'Dolor ratione offici', 'Unde quo ex est elit', 31, '2022-01-12', '2022-01-12'),
+(6, 'Eum officiis amet e', 'Illo dolorum non ea ()', 'Ut modi in doloribus', 'Qui quidem aut conse', 'Aliquip doloribus ip', 31, '2022-01-12', '2022-01-12'),
+(7, 'Numquam cumque eum a', 'Totam esse non neque()', 'Neque id dolor ut i', 'Dolorem cillum elit', 'Et minus deserunt qu', 32, '2022-01-12', '2022-01-12'),
+(8, 'Maiores commodo mole', 'Tempore fugiat quo()', 'Enim in eos debitis', 'Illo eum ex laboris', 'Id qui sed amet rer', 32, '2022-01-12', '2022-01-12'),
+(9, 'Ut cillum id accusan', 'Placeat vitae aliqu()', 'Aut enim sit aut mol', 'Ullamco magna exerci', 'Incidunt dolore do', 32, '2022-01-12', '2022-01-12'),
+(10, 'Fugiat reiciendis p', 'Autem quis aute qui ()', 'Dolor provident eaq', 'Quia esse necessita', 'Sunt aliquam sit pl', 32, '2022-01-12', '2022-01-12');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `roles`
 --
 
@@ -1790,8 +1929,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `email_verified_at`, `fullName`, `role`, `role_id`, `class_id`, `section_id`, `active`, `department`, `designation`, `studentRollId`, `admission_number`, `admission_date`, `std_category`, `auth_session`, `birthday`, `gender`, `remember_token`, `address`, `phoneNo`, `mobileNo`, `studentAcademicYear`, `religion`, `parentProfession`, `parentOf`, `photo`, `isLeaderBoard`, `restoreUniqId`, `transport`, `transport_vehicle`, `hostel`, `medical`, `user_position`, `defLang`, `defTheme`, `salary_type`, `salary_base_id`, `comVia`, `father_info`, `mother_info`, `biometric_id`, `library_id`, `account_active`, `customPermissionsType`, `customPermissions`, `firebase_token`, `zoomLink`, `created_at`, `updated_at`) VALUES
-(2, 'YOUSEF', 'youaefmohamed2@gmail.com', '$2y$10$w.IIwV0CM4jb195dPq4oBOw.Or6ud.VgFkID/vSdNXBdg/uuX.egm', NULL, NULL, NULL, 'yousef', 'admin', 3, 15, 66, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '1999-08-30', NULL, 'WTl8qSYIfHaYFu8YgpGSdy3JYEpUsGq7pauT1sIzfp1lFhzGU6blWxPb6BYI', 'new giza', '01150705993', '01220001391', 2015, 'yesss', NULL, 3, 'teacher/HsEvQhdzb4jqisfuc7MHyFaqydlNoDlMyhrrlrq5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, '[\"SMS\",\"phone\"]', NULL, NULL, 14, NULL, 1, NULL, '', NULL, NULL, NULL, '2021-11-26 14:27:27'),
-(3, 'Khaled', 'khaledmoasasashreamed12@gmail.com', '$2y$10$E.WrxXZPFqb8sFO5yo1WmOE2mZNTuH20pGy6w7hKoJ1IGmC1KEXLi', NULL, NULL, NULL, 'khaled mohamed', 'parent', 4, 15, 66, 0, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2000-02-01', NULL, 'gzhjWALpMtVeKlRC90XUejnCwRvrcnUX9ydKvmqXtgSVpwboUiLrqzMQmzkl', 'cairoo', '01150705993', '01220001391', 2015, 'yesss', NULL, 3, 'teacher/4k0Wszx86xtKeqR7Uygai803cKf3JABcUxyPVivp.jpg', 'uuuuuuuu', NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, '[\"Mail\"]', NULL, NULL, 14, NULL, 1, NULL, '', NULL, 'https://www.youtube.com/watch?v=lmSBQGnXyzMff', NULL, '2021-11-25 19:45:23'),
+(2, 'YOUSEF', 'youaefmohamed2@gmail.com', '$2y$10$R.Ri2x4t4.0rXNCfdYjRQuR.oFy1.3DeqhNSRg7H5hRVfHVRO4tdu', NULL, NULL, NULL, 'yousef', 'admin', 3, 15, 66, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '1999-08-30', NULL, 'WTl8qSYIfHaYFu8YgpGSdy3JYEpUsGq7pauT1sIzfp1lFhzGU6blWxPb6BYI', 'new giza', '01150705993', '01220001391', 2015, 'yesss', NULL, 3, 'teacher/HsEvQhdzb4jqisfuc7MHyFaqydlNoDlMyhrrlrq5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, '[\"SMS\",\"phone\"]', NULL, NULL, 14, NULL, 1, NULL, '', NULL, NULL, NULL, '2021-11-26 14:27:27'),
+(3, 'Khaled', 'khaledmoasasashreamed12@gmail.com', '$2y$10$vfr5mK077ov9XXU3B7yMv.cT/acC6i0wR.J.vaMIi.1bhKBIlutD.', NULL, NULL, NULL, 'khaled mohamed', 'parent', 4, 15, 66, 0, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2000-02-01', NULL, 'JNaRtaSJFt8eR3CcmsFQPiu2y2UL9uUAK1Gwq82H498THMgT6PZXcoj4YCYI', 'cairoo', '01150705993', '01220001391', 2015, 'yesss', NULL, 3, 'teacher/4k0Wszx86xtKeqR7Uygai803cKf3JABcUxyPVivp.jpg', 'uuuuuuuu', NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, '[\"Mail\"]', NULL, NULL, 14, NULL, 1, NULL, '', NULL, 'https://www.youtube.com/watch?v=lmSBQGnXyzMff', NULL, '2021-11-25 19:45:23'),
 (4, 'soso', 'sarahmasasasohamed@gmail.com', '$2y$10$E.WrxXZPFqb8sFO5yo1WmOE2mZNTuH20pGy6w7hKoJ1IGmC1KEXLi', NULL, NULL, NULL, 'sarah mohamed', 'student', 1, 14, 65, 1, 1, 1, NULL, '155', '2021-11-17', 1, NULL, '2021-10-12', 'fmale', NULL, 'giza egypts', '01150705993', '01150725994', 2015, 'yesss', NULL, 232, 'users/user-10.jpg', 'hello', NULL, 0, 0, 100, '{\"Policy\":\"Voluptatem in volup\",\"blood\":\"AB+\",\"Weight\":\"80\",\"Height\":\"175\",\"Disability\":\"Qui nulla nisi cum e\",\"Contact\":\"Sit omnis similique\"}', NULL, 0, NULL, NULL, 150, '[\"SMS\",\"phone\"]', '{\"Name\":\"Hamish Sheppard\",\"mobile\":\"Magni similique ea f\",\"Job\":\"Culpa voluptates est\",\"notes\":\"Laboris modi quia re\"}', '{\"Name\":\"Shelley Thornton\",\"mobile\":\"Aliquid unde dolor i\",\"Job\":\"Eos incidunt natus\",\"notes\":\"Labore dolorem exerc\"}', 14, NULL, 1, NULL, '', NULL, '', NULL, '2021-11-27 10:21:47'),
 (7, 'amr', 'amrmohamasasased@gmail.com', '1452365', NULL, NULL, NULL, 'amr mohamed', 'student', 1, 1, 1, 1, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2011-10-13', 'male', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, '2021-10-18 07:16:52'),
 (8, 'amr', 'amrdmohamed@gmail.com', '1452365', NULL, NULL, NULL, 'عمر محمد', 'student', 1, 1, 1, 0, 1, 1, NULL, NULL, '0000-00-00', 1, NULL, '2011-10-11', 'fmale', NULL, NULL, NULL, NULL, 2015, 'yesss', NULL, 3, 'users/user-5.jpg', NULL, NULL, 0, 0, 100, NULL, NULL, 0, NULL, NULL, 150, 'yessss', NULL, NULL, 14, NULL, 1, NULL, '', NULL, '', NULL, '2021-10-22 08:56:07'),
@@ -2158,6 +2297,14 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `exams`
+--
+ALTER TABLE `exams`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `level_id` (`level_id`);
+
+--
 -- Indexes for table `expenses`
 --
 ALTER TABLE `expenses`
@@ -2265,6 +2412,13 @@ ALTER TABLE `items_stocks`
 --
 ALTER TABLE `languages`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `levels`
+--
+ALTER TABLE `levels`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `library_issues`
@@ -2429,6 +2583,20 @@ ALTER TABLE `polls`
 --
 ALTER TABLE `postals`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `level` (`level`);
+
+--
+-- Indexes for table `questions_infos`
+--
+ALTER TABLE `questions_infos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `question_id` (`question_id`);
 
 --
 -- Indexes for table `roles`
@@ -2668,6 +2836,12 @@ ALTER TABLE `events`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `exams`
+--
+ALTER TABLE `exams`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
@@ -2774,6 +2948,12 @@ ALTER TABLE `items_stocks`
 --
 ALTER TABLE `languages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `levels`
+--
+ALTER TABLE `levels`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `library_issues`
@@ -2932,6 +3112,18 @@ ALTER TABLE `postals`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `questions_infos`
+--
+ALTER TABLE `questions_infos`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -3086,6 +3278,24 @@ ALTER TABLE `class_schedules`
   ADD CONSTRAINT `class_schedules_section_id_foreign` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
   ADD CONSTRAINT `class_schedules_subject_id_foreign` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`),
   ADD CONSTRAINT `class_schedules_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `exams`
+--
+ALTER TABLE `exams`
+  ADD CONSTRAINT `exams_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `questions`
+--
+ALTER TABLE `questions`
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`level`) REFERENCES `levels` (`id`);
+
+--
+-- Constraints for table `questions_infos`
+--
+ALTER TABLE `questions_infos`
+  ADD CONSTRAINT `questions_infos_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`);
 
 --
 -- Constraints for table `sections`

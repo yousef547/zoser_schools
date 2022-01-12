@@ -17,7 +17,30 @@ class levelController extends Controller
     {
         $getLevel = levels::get();
         $inExam = exam::where("user_id", Auth::user()->id)->get();
-        if(count($inExam) == 0){
+        if (count($inExam) != count($getLevel)) {
+            for ($i = 0; $i < count($getLevel); $i++) {
+                if ($getLevel[$i]->lavel_name == "placement_test") {
+                    $degree = 1;
+                } else {
+                    $degree = null;
+                }
+                if (count($inExam) == 0) {
+                    $arr = exam::create([
+                        "user_id" => Auth::user()->id,
+                        "level_id" => $getLevel[$i]->id,
+                        "degree" => $degree
+                    ]);
+                } elseif (!isset($inExam[$i])) {
+                    $arr = exam::create([
+                        "user_id" => Auth::user()->id,
+                        "level_id" => $getLevel[$i]->id,
+                        "degree" => null
+                    ]);
+                }
+            }
+        }
+        $nextExam = exam::where("user_id", Auth::user()->id)->get();
+        if(count($nextExam) == 0){
             $levels = levels::get();
         } else {
             $levels = levels::join("exams","exams.level_id","levels.id")
@@ -26,28 +49,6 @@ class levelController extends Controller
             ->get();
         }
         // dd($levels);
-        if (count($inExam) != count($levels)) {
-            for ($i = 0; $i < count($levels); $i++) {
-                if ($levels[$i]->lavel_name == "placement_test") {
-                    $degree = 1;
-                } else {
-                    $degree = null;
-                }
-                if (count($inExam) == 0) {
-                    $arr = exam::create([
-                        "user_id" => Auth::user()->id,
-                        "level_id" => $levels[$i]->id,
-                        "degree" => $degree
-                    ]);
-                } elseif (!isset($inExam[$i])) {
-                    $arr = exam::create([
-                        "user_id" => Auth::user()->id,
-                        "level_id" => $levels[$i]->id,
-                        "degree" => null
-                    ]);
-                }
-            }
-        }
         // dd($getLevel);
         return view("admin.exam.index", compact('getLevel','inExam','levels'));
     }

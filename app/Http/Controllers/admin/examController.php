@@ -46,7 +46,7 @@ class examController extends Controller
 
     }
     public function view($id) {
-        $questions = ModelsQuestion::get();
+        $questions = ModelsQuestion::where("level",$id)->get();
         // dd($questions);
         return view("admin.levels.view",compact("questions"));
     }
