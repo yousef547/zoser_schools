@@ -88,11 +88,27 @@
                                                     </ul>
                                                 </li>
 
-                                                <!-- Calender -->
+                                                <!-- Calender "  -->
                                                 <li>
                                                     <a href="{{url('admin/meeting')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Online Meetings</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-email-variant"></i>
+                                                        <span>levels</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="{{route('level')}}">show</a></li>
+                                                        <li><a href="{{route('questions')}}">questions</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('exam')}}" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>exam</span>
                                                     </a>
                                                 </li>
                                                 <li>

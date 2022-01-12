@@ -28,7 +28,7 @@ HomePage
                            <div class="col-md-3 my-3">
                                <a href='{{url("admin/materials/$material->id")}}'>
                                    <div class="card">
-                                       <img src='{{asset("assets/images/$material->photo")}}' class="card-img-top" alt="">
+                                       <img src='{{asset("/images/$material->photo")}}' class="card-img-top" alt="">
                                        <div class="card-body">
                                             <h2 class="text-center ng-binding">{{$material->subjectTitle}}</h2> 
                                         </div>

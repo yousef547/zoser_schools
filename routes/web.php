@@ -8,12 +8,15 @@ use App\Http\Controllers\admin\classes_sectionsController;
 use App\Http\Controllers\admin\departmentController as AdminDepartmentController;
 use App\Http\Controllers\admin\employeeController;
 use App\Http\Controllers\admin\eventController;
+use App\Http\Controllers\admin\examController;
 use App\Http\Controllers\admin\GradelevelsController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\levelController;
 use App\Http\Controllers\admin\mediaAlbomController;
 use App\Http\Controllers\admin\meetimgController;
 use App\Http\Controllers\admin\OfficeController;
 use App\Http\Controllers\admin\parentController;
+use App\Http\Controllers\admin\questionsController;
 use App\Http\Controllers\admin\recordController;
 use App\Http\Controllers\admin\settingsController;
 use App\Http\Controllers\admin\studentController;
@@ -178,6 +181,35 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('item/edit/{id}',[mediaAlbomController::class,'editItem']);
     Route::get('virtual_Class',[virtualClassController::class,'index']);
     Route::get('virtual_Class/timetable/{id}', [virtualClassController::class, 'timetable']);
+    Route::get('/level', [examController::class, 'index'])->name("level");
+    Route::get('/level/create', [examController::class, 'create'])->name("level.create");
+    Route::post('/level/submit', [examController::class, 'submit'])->name("level.submit");
+    Route::get('/level/edit/{id}', [examController::class, 'edit'])->name("level.edit");
+    Route::post('/level/update/{id}', [examController::class, 'update'])->name("level.update");
+    Route::get('/level/view/{id}', [examController::class, 'view'])->name("level.view");
+
+
+    Route::get('/questions', [questionsController::class, 'index'])->name("questions");
+    Route::get('/questions/create', [questionsController::class, 'create'])->name("questions.create");
+    Route::post('/questions/choices', [questionsController::class, 'choices'])->name("questions.choices");
+    Route::post('/questions/correction', [questionsController::class, 'correction'])->name("questions.correction");
+    Route::post('/questions/recording', [questionsController::class, 'recording'])->name("questions.recording");
+    Route::post('/questions/vedio', [questionsController::class, 'vedio'])->name("questions.vedio");
+    Route::post('/questions/reading', [questionsController::class, 'reading'])->name("questions.reading");
+
+    Route::get('/exam', [levelController::class, 'index'])->name("exam");
+    Route::get('/exam/show/{id}', [levelController::class, 'show'])->name("exam.show");
+    Route::post('/exam/submit/{id}', [levelController::class, 'submit'])->name("exam.submit");
+
+
+
+
+
+
+
+
+
+
 
 
 
