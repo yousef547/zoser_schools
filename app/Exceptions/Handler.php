@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Client\Request;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -32,10 +34,12 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
+   
     public function register()
     {
         $this->reportable(function (Throwable $e) {
             //
         });
     }
+
 }

@@ -1,4 +1,4 @@
-<div class="navbar-header">
+<div class="navbar-header" style="background: #1c2134;">
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
@@ -16,7 +16,7 @@
                                     <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="17">
+                                    <img src="{{asset('assets/images/logo-light.png')}}" alt="" style="width: 60%;height:70px" height="17">
                                 </span>
                             </a>
                         </div>

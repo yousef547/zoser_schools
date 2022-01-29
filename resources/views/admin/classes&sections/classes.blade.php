@@ -58,7 +58,9 @@ HomePage
 
                                 <div class="col-sm-12 col-md-12">
                                     <div id="datatable_filter" class="dataTables_filter">
+                                        @can("classes_addClass")
                                         <a href="{{url('admin/classes/create')}}" class="btn btn-primary w-lg mb-2">Add Class</a>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>
@@ -90,12 +92,17 @@ HomePage
                                                 </td>
                                                 <td></td>
                                                 <td>
+                                                    @can("classes_editClass")
+
                                                     <a href='{{url("admin/classes/edit/$classe->id")}}' class="btn btn-info btn-rounded mx-1">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
+                                                    @endcan
+                                                    @can("classes_delClass")
                                                     <a href='{{url("admin/classes/delete/$classe->id")}}' class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                             @endforeach

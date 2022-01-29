@@ -61,7 +61,27 @@ class User extends Authenticatable
             // ->withPivot('subjectTitle', 'passGrade', 'finalGrade','photo')
             // ->withTimestamps();
     }
-
+    public function hasAbility($permissions)
+    {
+        $role = $this->role;
+        if(!$role) {
+            return false;
+        }
+        $roles = role::where('role_title',$role)->first();
+        // dd(permissions);
+        foreach($roles->permissions as $permission)
+        {
+            if(is_array($permissions) && in_array($permission , $permissions))
+            {
+                return true;
+            }
+            else if(is_string($permissions) && strcmp($permissions , $permission) == 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public function weeks() {
         return $this->belongsToMany(week::class)->withPivot('material_file','material_description','material_title')->withTimestamps();
     }

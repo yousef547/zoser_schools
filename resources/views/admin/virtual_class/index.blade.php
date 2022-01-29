@@ -34,13 +34,13 @@ HomePage
 
     .fonts {
         font-size: 20px !important;
-    font-weight: 600  !important;
+        font-weight: 600 !important;
     }
 </style>
 @endsection
 @section('content')
 <div class="container-fluid">
-@include('admin.inc.massage')
+    @include('admin.inc.massage')
 
     <div class="row">
         <div class="col-md-12">
@@ -51,11 +51,11 @@ HomePage
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
 
-                           
+
                                 @foreach($sect as $key => $section)
                                 <div class="col-sm-12">
                                     <h4 class="ng-binding">{{$section->className}}</h4>
-                                    
+
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
@@ -65,23 +65,25 @@ HomePage
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($section->sections as $onee)
+                                            @foreach($section->sections as $onee)
                                             <tr>
                                                 <td>{{$onee->sectionName}} </td>
                                                 <td>{{$onee->sectionTitle}}
                                                 </td>
                                                 <td>
-                                                 <a href='{{url("admin/virtual_Class/timetable")}}/{{$onee->id}}' class="btn btn-info btn-rounded"><i class="fa fa-fw fa-th-list"></i></a>
+                                                    @can("classSch_addSch")
+                                                    <a href='{{url("admin/virtual_Class/timetable")}}/{{$onee->id}}' class="btn btn-info btn-rounded"><i class="fa fa-fw fa-th-list"></i></a>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
 
                                     </table>
-                                   
+
                                 </div>
                                 @endforeach
-                              </div>
+                            </div>
 
                         </div>
                     </div>

@@ -105,10 +105,7 @@ HomePage
                                                                             <button id="btnGroupDrop1" type="button" class="bg-transparent border-0" data-bs-toggle="dropdown" aria-expanded="false">
                                                                                 <i class="fas fa-ellipsis-v fa-2 text-white"></i>
                                                                             </button>
-                                                                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                                <li><a class="dropdown-item" data-bs-toggle="modal" onclick='getSchedule("{{$section->classe->id}}","{{$section->id}}","{{$day->id}}","{{$schedule->subjectTitle}}","{{$schedule->user_id}}","{{$schedule->startTime}}","{{$schedule->endTime}}","{{$schedule->id}}")' data-bs-target="#exampleModal">Edit</a></li>
-                                                                                <li><a class="dropdown-item" data-bs-toggle="modal" onclick='removeClass("{{$schedule->subjectTitle}}","{{$schedule->id}}")' data-bs-target="#exampleModalRemove">Remove</a></li>
-                                                                            </ul>
+                                                                          
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -208,7 +205,7 @@ HomePage
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit"  class="btn btn-primary">Remove</button>
+                    <button type="submit" class="btn btn-primary">Remove</button>
                 </div>
             </form>
         </div>
@@ -316,8 +313,8 @@ HomePage
         $('#classe').val(classId);
         $('#section').val(sectionId);
         $('#dayId').val(dayId);
-        $('#start').val(startTime.slice(0,5));
-        $('#end').val(endTime.slice(0,5));
+        $('#start').val(startTime.slice(0, 5));
+        $('#end').val(endTime.slice(0, 5));
         // console.log(endTime)
         var newsub = document.querySelectorAll(".sub");
         var newtech = document.querySelectorAll(".teachers");

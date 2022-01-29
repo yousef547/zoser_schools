@@ -17,10 +17,10 @@ class adminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::User()->role == 'admin') {
+        if (Auth::check() && Auth::User()->role == 'student') {
             return $next($request);
         }
-        return back();
+        return back()->with('msg', 'not admin');
 
     }
 }

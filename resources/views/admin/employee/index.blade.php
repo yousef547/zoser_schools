@@ -53,7 +53,9 @@ HomePage
                         <div id="datatable2_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
+                                    @can("employees_addEmployee")
                                     <a href="{{url('admin/employee/create')}}" class="btn btn-secondary buttons-copy buttons-html5">add employee</a>
+                                    @endcan
                                 </div>
                                 <div class="col-sm-12">
                                     <table id="datatable2" class="table dataTable no-footer" role="grid" aria-describedby="datatable2_info">
@@ -78,21 +80,25 @@ HomePage
                                                     <i class="far fa-lightbulb text-danger" id="a_{{$employee->id}}"></i>
                                                     @endif
                                                     <br>
-                                                  
+
                                                 </td>
                                                 <td>{{$employee->username}}</td>
                                                 <td>{{$employee->email}}</td>
                                                 <td>
-
+                                                    @can("employees_editEmployee")
                                                     <a class="btn btn-warning btn-rounded mx-1" onclick='goActive("{{$employee->id}}")'>
                                                         <i class="far fa-lightbulb"></i>
                                                     </a>
                                                     <a href='{{url("admin/employee/edit")}}/{{$employee->id}}' class="btn btn-info btn-rounded mx-1">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
+                                                    @endcan
+                                                    @can("employees_delEmployee")
+
                                                     <a onclick='deleteemployee("{{$employee->id}}")' class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                             @endforeach

@@ -58,7 +58,9 @@ HomePage
 
                                 <div class="col-sm-12 col-md-12">
                                     <div id="datatable_filter" class="dataTables_filter">
+                                        @can("sections_addSection")
                                         <a href="{{url('admin/section/insert')}}" class="btn btn-primary w-lg mb-2">Add Section</a>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>
@@ -86,12 +88,18 @@ HomePage
                                                     @endforeach
                                                 </td>
                                                 <td>
+                                                    @can("sections_addSection")
+
                                                     <a href='{{url("admin/section/edit/$section->id")}}' class="btn btn-info btn-rounded mx-1">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
+                                                    @endcan
+                                                    @can("sections_delSection")
+
                                                     <a href='{{url("admin/section/deleteSection/$section->id")}}' class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                             @endforeach

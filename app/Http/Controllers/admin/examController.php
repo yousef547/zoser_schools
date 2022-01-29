@@ -11,6 +11,8 @@ use Symfony\Component\Console\Question\Question;
 class examController extends Controller
 {
     public function index(){
+  
+    // dd($roles_perms);
         $levels = levels::paginate(10);
         return view("admin.levels.index",compact("levels"));
     }

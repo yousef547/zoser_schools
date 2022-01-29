@@ -41,7 +41,7 @@ subjects
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a href="{{url('admin/addsubject')}}" class="btn btn-primary">add sbject</a>
+                                @can('Subjects_addSubject') <a href="{{url('admin/subjects/addsubject')}}" class="btn btn-primary">add sbject</a>@endcan
                                 </div>
                             </div>
                             <div class="row">
@@ -69,7 +69,7 @@ subjects
                                                 <td>{{$subject->passGrade}} / {{$subject->finalGrade}}</td>
                                                 <td>
                                                     <!-- <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-lg">Large modal</button> -->
-                                                    <a class="btn btn-skype btn-rounded ms-1" onclick='addTeacher("{{$subject->subjectTitle}}","{{$subject->id}}","{{$subject->passGrade}} "," {{$subject->finalGrade}}")' data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-lg"><i class="fas fa-pencil-alt"></i></a>
+                                                    @can('Subjects_editSubject') <a class="btn btn-skype btn-rounded ms-1" onclick='addTeacher("{{$subject->subjectTitle}}","{{$subject->id}}","{{$subject->passGrade}} "," {{$subject->finalGrade}}")' data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-lg"><i class="fas fa-pencil-alt"></i></a>@endcan
 
                                                 </td>
 

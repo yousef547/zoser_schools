@@ -58,7 +58,9 @@ HomePage
 
                                 <div class="col-sm-12 col-md-12">
                                     <div id="datatable_filter" class="dataTables_filter">
+                                        @can("Assignments_AddAssignments")
                                         <a href="{{url('admin/assignments/create')}}" class="btn btn-primary w-lg mb-2">Add Assignment</a>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>
@@ -83,12 +85,22 @@ HomePage
                                                 <td>{{$assignment->AssignDeadLine}}</td>
                                                 <td class="">
                                                     @if($assignment->AssignFile != null)
+                                                    @can("Assignments_Download")
                                                     <a href='{{asset("uploads/$assignment->AssignFile")}}' class="btn btn-warning btn-rounded " download><i class="fas fa-cloud-download-alt"></i></a>
+                                                    @endcan
                                                     @endif
+                                                    @can("Assignments_viewAnswers")
                                                     <a class="btn btn-success btn-rounded mx-1"><i class="fa fa-check"></i></a>
+                                                    @endcan
+                                                    @can("Assignments_applyAssAnswer")
                                                     <a class="btn btn-info btn-rounded mx-1"><i class="fa fa-upload"></i></a>
+                                                    @endcan
+                                                    @can("Assignments_editAssignment")
                                                     <a href='{{url("admin/assignments/edit/$assignment->id")}}' class="btn btn-secondary btn-rounded mx-1"><i class="fas fa-pencil-alt"></i></a>
+                                                    @endcan
+                                                    @can("Assignments_delAssignment")
                                                     <a href='{{url("admin/assignments/delete/$assignment->id")}}' class="btn btn-danger btn-rounded "><i class="fas fa-trash"></i></a>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                             @endforeach

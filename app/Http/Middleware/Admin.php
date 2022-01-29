@@ -18,11 +18,9 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         // $roleName = Auth::user()->role_id;
-        $roleName = false;
-        if ($roleName) {
+        if (Auth::User()->role == 'student' && Auth::check()) {
             return $next($request);
-        } else {
-            return redirect(url('/'));
         }
+        return back()->with('msg', 'Successed Update meeting');
     }
 }

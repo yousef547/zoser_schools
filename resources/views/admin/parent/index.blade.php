@@ -56,7 +56,9 @@ HomePage
                             <div id="datatable2_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 mb-3">
+                                        @can("parents_AddParent")
                                         <a href="{{url('admin/parent/create')}}" class="btn btn-secondary buttons-copy buttons-html5">add employee</a>
+                                        @endcan
                                     </div>
                                     <div class="col-sm-12">
                                         <table id="datatable2" class="table dataTable no-footer" role="grid" aria-describedby="datatable2_info">
@@ -84,16 +86,21 @@ HomePage
                                                     <td>{{$parent->username}}</td>
                                                     <td>{{$parent->email}}</td>
                                                     <td>
-
+                                                        @can('parents_Approve')
                                                         <a class="btn btn-warning btn-rounded mx-1" onclick='goActive("{{$parent->id}}")'>
                                                             <i class="far fa-lightbulb"></i>
                                                         </a>
-                                                        <a href='{{url("admin/employee/edit")}}/{{$parent->id}}' class="btn btn-info btn-rounded mx-1">
+                                                        @endcan
+                                                        @can('parents_editParent')
+                                                        <a href='' class="btn btn-info btn-rounded mx-1">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
+                                                        @endcan
+                                                        @can("parents_delParent")
                                                         <a onclick='deleteemployee("{{$parent->id}}")' class="btn btn-danger btn-rounded mx-1">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
+                                                        @endcan
                                                     </td>
                                                 </tr>
                                                 @endforeach

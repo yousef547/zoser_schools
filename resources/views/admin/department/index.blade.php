@@ -36,7 +36,6 @@ HomePage
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        {{$title}}
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
@@ -54,7 +53,9 @@ HomePage
                         <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
+                                    @can("depart_add_depart")
                                     <a href="{{url('admin/department/create')}}" class="btn btn-secondary buttons-copy buttons-html5">add Department</a>
+                                    @endcan
                                 </div>
                                 <div class="col-sm-12">
                                     <table id="datatable" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
@@ -71,9 +72,12 @@ HomePage
                                                 <td>{{$depart->depart_title}}</td>
                                                 <td>{{$depart->depart_desc}}</td>
                                                 <td>
+                                                    @can("depart_edit_depart")
                                                     <a onclick='saveDepartment("{{$depart->id}}","{{$depart->depart_title}}","{{$depart->depart_desc}}")' class="btn btn-info btn-rounded mx-1" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-lg">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
+                                                    @endcan
+
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -101,7 +105,7 @@ HomePage
             </div>
             <div class="modal-body">
                 <form method="POST" action="{{url('admin/department/update')}}">
-                @csrf
+                    @csrf
                     <input type="hidden" name="id" id="id">
                     <label class="form-label">Department Title *</label>
                     <div class="mb-3 row">

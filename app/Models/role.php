@@ -15,4 +15,10 @@ class role extends Model
     {
         return $this->hasMany(User::class);
     }
+   
+    
+    public function getPermissionsAttribute($permissions)
+    {
+        return json_decode($permissions , true);
+    }
 }

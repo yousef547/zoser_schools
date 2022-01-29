@@ -41,7 +41,7 @@ subjects
                                         <ul class="nav nav-tabs">
                                             <li class="nav-link active" data_questions="choices">choices
                                             </li>
-                                            <li class="nav-link" data_questions="record">record
+                                            <li class="nav-link" data_questions="record">audio
                                             </li>
                                             <li class="nav-link" data_questions="true_fase">right or wrong
                                             </li>

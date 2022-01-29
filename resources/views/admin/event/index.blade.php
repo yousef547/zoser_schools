@@ -41,8 +41,9 @@ subjects
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
+                                    @can("events_addEvent")
                                     <a class="btn btn-primary" href="{{url('admin/event/create')}}">add event</a>
-
+                                    @endcan
                                 </div>
                             </div>
                             <div class="row">
@@ -78,13 +79,19 @@ subjects
                                                 <td>{{$event->eventFor}}</td>
                                                 <td>{{$event->eventDate}}</td>
                                                 <td>
-                                                    <a href="{{url('admin/event/active/')}}/{{$event->id}}" class="btn btn-warning btn-rounded mx-1" >
+                                                    @can("events_View")
+                                                    <a href="{{url('admin/event/active/')}}/{{$event->id}}" class="btn btn-warning btn-rounded mx-1">
                                                         <i class="far fa-lightbulb"></i>
                                                     </a>
+                                                    @endcan
+                                                    @can("events_editEvent")
                                                     <a class="btn btn-skype btn-rounded ms-1" href="{{url('admin/event/edit/')}}/{{$event->id}}"><i class="fas fa-pencil-alt"></i></a>
+                                                    @endcan
+                                                    @can("events_delEvent")
                                                     <a href="{{url('admin/event/remove/')}}/{{$event->id}}" class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                             @endforeach

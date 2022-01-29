@@ -41,8 +41,9 @@ subjects
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
+                                    @can("gradeLevels_addLevel")
                                     <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalform">add Grade levels</a>
-
+                                    @endcan
                                 </div>
                             </div>
                             <div class="row">
@@ -67,10 +68,15 @@ subjects
                                                 <td>{{$level->gradeFrom}} -> {{$level->gradeTo}} </td>
                                                 <td>
                                                     <!-- <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-lg">Large modal</button> -->
+                                                    @can("gradeLevels_editGrade")
+
                                                     <a class="btn btn-skype btn-rounded ms-1" onclick='setLavel("{{$level->gradeName}}","{{$level->gradeDescription}}","{{$level->gradePoints}}","{{$level->gradeTo}}","{{$level->gradeFrom}}","{{$level->id}}")' data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-lg"><i class="fas fa-pencil-alt"></i></a>
+                                                    @endcan
+                                                    @can("gradeLevels_delGradeLevel")
                                                     <a href="{{url('admin/Gradelevels/remove')}}/{{$level->id}}" class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
+                                                    @endcan
                                                 </td>
 
                                             </tr>

@@ -160,7 +160,7 @@ class subjectController extends Controller
         return back();
         // dd($request->all());
     }
-    public function getSubject()
+    public function index()
     {
         $data['teachers'] = User::where('role', '=', 'teacher')->select('id', 'username')->get();
 

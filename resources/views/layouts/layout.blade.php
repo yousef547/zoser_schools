@@ -20,11 +20,11 @@
     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
     <!-- App Css-->
     <link href="{{asset('assets/css/app-dark.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
-    <link href="{{asset('assets/css/mystyle.css')}}"  rel="stylesheet" >
+    <link href="{{asset('assets/css/mystyle.css')}}" rel="stylesheet">
 
 
 
-    
+
     @yield('styles')
 
 </head>
@@ -38,7 +38,7 @@
 
 
             <header id="page-topbar">
-                <x-navbar></x-navbar>       
+                <x-navbar></x-navbar>
             </header>
 
             <!-- ========== Left Sidebar Start ========== -->
@@ -89,14 +89,16 @@
                                                 </li>
 
                                                 <!-- Calender "  -->
+                                                @can("Meetings_list")
                                                 <li>
                                                     <a href="{{url('admin/meeting')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Online Meetings</span>
                                                     </a>
                                                 </li>
+                                                @endcan
                                                 <li>
-                                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-email-variant"></i>
                                                         <span>levels</span>
                                                     </a>
@@ -135,12 +137,14 @@
                                                         <span>record</span>
                                                     </a>
                                                 </li>
+                                                @can("classSch_list")
                                                 <li>
                                                     <a href="{{url('admin/class_schedulr')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Classes Schedule</span>
                                                     </a>
                                                 </li>
+                                                @endcan
                                                 <li>
                                                     <a href="{{url('admin/virtual_Class')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
@@ -150,6 +154,7 @@
                                                 <!-- <li class="menu-title">Components</li> -->
 
                                                 <!-- UI Elements -->
+                                                @can("Attendance_showAttendance")
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-briefcase-check"></i>
@@ -157,36 +162,55 @@
                                                     </a>
 
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        @can("Attendance_takeAttendance")
+
                                                         <li><a href="{{url('admin/attendance')}}">Take Attendance</a></li>
+                                                        @endcan
+                                                        @can("Attendance_attReport")
+
                                                         <li><a href="{{url('admin/attendance/report')}}">Attendance Report</a></li>
+                                                        @endcan
                                                     </ul>
                                                 </li>
-
+                                                @endcan
                                                 <!-- Advanced UI -->
+                                                @can("staffAttendance_showAttendance")
+
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-buffer"></i>
                                                         <span>Staff Attendance</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        @can("staffAttendance_takeAttendance")
                                                         <li><a href="{{url('admin/attendance/staff')}}">Take Attendance</a></li>
+                                                        @endcan
+                                                        @can("staffAttendance_attReport")
                                                         <li><a href="https://kharagny.com/zoser3/portal#/staffAttendance_report">Attendance Report</a></li>
+                                                        @endcan
                                                     </ul>
                                                 </li>
-
+                                                @endcan
                                                 <!-- Forms -->
+                                                @can("Vacation_showVacation")
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-clipboard-outline"></i>
                                                         <span>Vacation</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        @can("Vacation_reqVacation")
                                                         <li><a href="{{url('admin/vacation/request')}}">Request vacation</a></li>
+                                                        @endcan
+                                                        @can("Vacation_appVacation")
                                                         <li><a href="{{url('admin/vacation/approve')}}">Approve vacation</a></li>
+                                                        @endcan
+                                                        @can("Vacation_myVacation")
                                                         <li><a href="{{url('admin/vacation/my_vacations')}}">My vacations</a></li>
+                                                        @endcan
                                                     </ul>
                                                 </li>
-
+                                                @endcan
                                                 <!-- Charts -->
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -214,9 +238,13 @@
                                                         <span>Employees</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        @can("employees_list")
                                                         <li><a href="{{url('admin/employee')}}">Employees</a></li>
+                                                        @endcan
                                                         <li><a href="{{url('admin/teacher')}}">Teachers</a></li>
+                                                        @can("depart_list")
                                                         <li><a href="{{url('admin/department')}}">Departments</a></li>
+                                                        @endcan
                                                         <li><a href="https://kharagny.com/zoser3/portal#/designations">Designations</a></li>
                                                     </ul>
                                                 </li>
@@ -240,12 +268,14 @@
                                                         <span>Parents</span>
                                                     </a>
                                                 </li>
+                                                @can("gradeLevels_list")
                                                 <li>
                                                     <a href="{{url('admin/Gradelevels')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Grade levels</span>
                                                     </a>
                                                 </li>
+                                                @endcan
                                                 <li>
                                                     <a href="{{url('admin/materials')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
@@ -258,12 +288,14 @@
                                                         <span>Homework</span>
                                                     </a>
                                                 </li>
+                                                @can("Assignments_list")
                                                 <li>
                                                     <a href="{{url('admin/assignments')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Assignments</span>
                                                     </a>
                                                 </li>
+                                                @endcan
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
@@ -282,28 +314,36 @@
                                                         <span>News Board</span>
                                                     </a>
                                                 </li>
+                                                @can("events_list")
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{route('event')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Events</span>
                                                     </a>
                                                 </li>
+                                                @endcan
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-album"></i>
                                                         <span>Classes</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        @can("classes_list")
                                                         <li><a href="{{url('admin/classes')}}">Classes</a></li>
+                                                        @endcan
+                                                        @can("sections_list")
                                                         <li><a href="{{url('admin/section')}}">sections</a></li>
+                                                        @endcan
                                                     </ul>
                                                 </li>
+                                                @can('Subjects_list')
                                                 <li>
                                                     <a href="{{url('admin/subjects')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>Subjects</span>
                                                     </a>
                                                 </li>
+                                                @endcan
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
@@ -335,7 +375,7 @@
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-album"></i>
-                                                        <span>Classes</span>
+                                                        <span>Administrative tasks</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         <li><a href="https://kharagny.com/zoser3/portal#/academicYear">Academic Years</a></li>
@@ -346,9 +386,11 @@
                                                         <li><a href="https://kharagny.com/zoser3/portal#/settings">General Settings</a></li>
                                                         <li><a href="https://kharagny.com/zoser3/portal#/languages">Languages</a></li>
                                                         <li><a href="https://kharagny.com/zoser3/portal#/admins">Administrators</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/roles">Permission Roles</a></li>
+                                                        @can('academicyears_addAcademicyear')
+                                                        <li><a href="{{route('role')}}">Permission Roles</a></li>
+                                                        @endcan
                                                         <li><a href="https://kharagny.com/zoser3/portal#/terms">School Terms</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/dbexports">DB Export</a></li>
+                                                        <li><a href="{{route('database')}}">DB Export</a></li>
                                                     </ul>
 
                                                 </li>
@@ -504,7 +546,7 @@
             $('#logout-link').click(function(e) {
                 e.preventDefault();
                 $('#logout-form').submit();
-                console.log('yyyyyy')
+                // console.log('yyyyyy')
             });
         </script>
 

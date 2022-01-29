@@ -41,8 +41,9 @@ subjects
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
+                                    @can("Meetings_addMeeting")
                                     <a class="btn btn-primary" href="{{url('admin/meeting/create')}}">Create Meeting</a>
-
+                                    @endcan
                                 </div>
                             </div>
                             <div class="row">
@@ -72,10 +73,15 @@ subjects
                                                 </td>
                                                 <td>{{$meeting->user_host('user')}} </td>
                                                 <td>
+                                                    @can("Meetings_editMeeting")
                                                     <a class="btn btn-skype btn-rounded ms-1" href='{{url("admin/meeting/update/$meeting->id")}}'><i class="fas fa-pencil-alt"></i></a>
+                                                    @endcan
+                                                    @can("Meetings_delMeet")
+
                                                     <a href='{{url("admin/meeting/delete/$meeting->id")}}' class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                             @endforeach
