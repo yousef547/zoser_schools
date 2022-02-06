@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Storage;
 class recordController extends Controller
 {
     use GeneralTrait;
+    // public function __construct(Request $request)
+    // {
+    //     dd($request->session()->get("lang"));
 
+    // }
     public function index() {
         return view("admin.record.index");
     }

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-subjects
+Questions
 @endsection
 @section('styles')
 <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css">
@@ -11,9 +11,14 @@ subjects
 
 <!-- Responsive datatable examples -->
 <link href="{{asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('assets/css/intlTelInput.min.css')}}" rel="stylesheet" type="text/css" />
 <style>
     .dataTables_length {
         display: none;
+    }
+
+    .badge {
+        right: -10px !important;
     }
 
     /* RemixDesign | woaichidapi@163.com | Redesigned by JimmyCheung */
@@ -258,300 +263,159 @@ subjects
         display: none;
     } */
 </style>
+
+
 @endsection
 @section('content')
-<div class="container-fluid">
-    @include('admin.inc.massage')
 
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">questions</h4>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-
-                            <form action='{{route("exam.submit",$level_id)}}' method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        @php $counter = 0 @endphp
-                                        @foreach($questions as $key=>$question)
-                                        @if($question->type == "choices")
-                                        <div class="row">
-                                            @php
-                                            $var1 = $question->random()
-                                            @endphp
-                                            <h3> <span class="badge bg-secondary">Choose the right</span></h3>
-                                            <div class="col-md-2 mt-2">
-                                                <button type="button" class="btn btn-primary position-relative">
-                                                    Questions
-                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                        {{$key + 1}}
-                                                        <span class="visually-hidden">unread messages</span>
-                                                    </span>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-12 mt-2">
-                                                <div class="alert bg-primary" role="alert">
-                                                    {{$question->choices}}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info " role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var1[0]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var1[0]}}">
-                                                        <label class="form-check-label" for="{{$var1[0]}}">{{$var1[0]}}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info" role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var1[1]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var1[1]}}">
-                                                        <label class="form-check-label" for="{{$var1[1]}}">{{$var1[1]}}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info" role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var1[2]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var1[2]}}">
-                                                        <label class="form-check-label" for="{{$var1[2]}}">{{$var1[2]}}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info" role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var1[3]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var1[3]}}">
-                                                        <label class="form-check-label" for="{{$var1[3]}}">{{$var1[3]}}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        @php $counter++ @endphp
-                                        @elseif($question->type == "true_fase")
-                                        <h3> <span class="badge bg-secondary">right and wrong </span></h3>
-                                        <div class="row">
-                                            <div class="col-md-2 mt-2">
-                                                <button type="button" class="btn btn-primary position-relative">
-                                                    Questions
-                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                        {{$key + 1}}
-                                                        <span class="visually-hidden">unread messages</span>
-                                                    </span>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-12 mt-2">
-                                                <div class="alert bg-primary" role="alert">
-                                                    {{$question->true_fase}}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info " role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" name="answer[{{$counter}}]" class="form-check-input" value="right">
-                                                        <label class="form-check-label" for="">right</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info " role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" name="answer[{{$counter}}]" class="form-check-input" value="wrong">
-                                                        <label class="form-check-label">wrong</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        @php $counter++ @endphp
-                                        @elseif($question->type == "record")
+<section class="content">
 
 
-                                        <h3> <span class="badge bg-secondary">Listen to the record and solve</span></h3>
-                                        <div class="col-md-2 mt-2">
-                                            <button type="button" class="btn btn-primary position-relative">
-                                                Questions
-                                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                    {{$key + 1}}
-                                                    <span class="visually-hidden">unread messages</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div id="wrapper">
-                                                <audio preload="auto" controls>
-                                                    <source src='{{asset("uploads/$question->record")}}'>
-                                                </audio>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-10 row m-auto">
-                                            @foreach($question->info as $key=>$answer)
-                                            @php
-                                            $var2 = $answer->random();
-                                            @endphp
-                                            <div class="col-md-2 mt-2">
-                                                <button type="button" class="btn btn-primary position-relative">
-                                                    Questions
-                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                        {{$key + 1}}
-                                                        <span class="visually-hidden">unread messages</span>
-                                                    </span>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-12 mt-2">
-                                                <div class="alert bg-primary" role="alert">
-                                                    {{$answer->question}}
+    <div class="container-fluid">
+        @include('admin.inc.massage')
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                                <form action='{{route("exam.submit",[$level_id,$test])}}' method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            @php $counter = 0 @endphp
+                                            @foreach($questions as $key=>$question)
+                                            @if($question->type == "choices")
+                                            <div class="row">
+                                                @php
+                                                $var1 = $question->random()
+                                                @endphp
+                                                <div class="col-md-12">
+                                                    <h3> <span class="badge bg-secondary">{{$newLang->Choose_right}}</span></h3>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info " role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var2[0]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var2[0]}}">
-                                                        <label class="form-check-label" for="{{$var2[0]}}">{{$var2[0]}}</label>
+                                                <div class="col-md-12 mt-2">
+                                                    <button type="button" class="btn btn-primary position-relative">
+                                                        {{$newLang->Question}}
+                                                        <span class="position-absolute top-0 start-100 translate-middle badge px-2 bg-danger">
+                                                            {{$key + 1}}
+
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-12 mt-2">
+                                                    <div class="alert bg-primary" role="alert">
+                                                        {{$question->choices}}
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info" role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var2[1]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var2[1]}}">
-                                                        <label class="form-check-label" for="{{$var2[1]}}">{{$var2[1]}}</label>
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info " role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="{{$var1[0]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var1[0]}}">
+                                                            <label class="form-check-label" for="{{$var1[0]}}">{{$var1[0]}}</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info" role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var2[2]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var2[2]}}">
-                                                        <label class="form-check-label" for="{{$var2[2]}}">{{$var2[2]}}</label>
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info" role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="{{$var1[1]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var1[1]}}">
+                                                            <label class="form-check-label" for="{{$var1[1]}}">{{$var1[1]}}</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info" role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var2[3]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var2[3]}}">
-                                                        <label class="form-check-label" for="{{$var2[3]}}">{{$var2[3]}}</label>
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info" role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="{{$var1[2]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var1[2]}}">
+                                                            <label class="form-check-label" for="{{$var1[2]}}">{{$var1[2]}}</label>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info" role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="{{$var1[3]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var1[3]}}">
+                                                            <label class="form-check-label" for="{{$var1[3]}}">{{$var1[3]}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                            @php $counter++ @endphp
+                                            @elseif($question->type == "true_fase")
+                                            <h3> <span class="badge bg-secondary">{{$newLang->rightWrong}} </span></h3>
+                                            <div class="row">
+                                                <div class="col-md-2 mt-2">
+                                                    <button type="button" class="btn btn-primary position-relative">
+                                                        {{$newLang->Question}}
+                                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                            {{$key + 1}}
+
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-12 mt-2">
+                                                    <div class="alert bg-primary" role="alert">
+                                                        {{$question->true_fase}}
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info " role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="right_{{$counter}}" name="answer[{{$counter}}]" class="form-check-input" value="right">
+                                                            <label class="form-check-label" for="right_{{$counter}}">{{$newLang->cor_ans}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info " role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="wrong_{{$counter}}" name="answer[{{$counter}}]" class="form-check-input" value="wrong">
+                                                            <label class="form-check-label" for="wrong_{{$counter}}">{{$newLang->wrong_ans}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
                                             </div>
                                             <hr>
                                             @php $counter++ @endphp
-                                            @endforeach
-                                        </div>
-                                        <hr>
+                                            @elseif($question->type == "record")
 
-                                        @elseif($question->type == "video")
-                                        <h3> <span class="badge bg-secondary">Watch the video and solve</span></h3>
-                                        <div class="col-md-2 mt-2">
-                                            <button type="button" class="btn btn-primary position-relative">
-                                                Questions
-                                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                    {{$key + 1}}
-                                                    <span class="visually-hidden">unread messages</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="col-md-12 my-3">
-                                            <video width="100%" height="240" controls>
-                                                <source src='{{asset("uploads/$question->video")}}' type="video/mp4">
-                                                <source src='{{asset("uploads/$question->video")}}' type="video/ogg">
-                                                Your browser does not support the video tag.
-                                            </video>
-                                        </div>
-                                        <div class="col-md-10 row m-auto">
-                                            @foreach($question->info as $key=>$answer)
-                                            @php
-                                            $var3 = $answer->random();
-                                            @endphp
+
+                                            <h3> <span class="badge bg-secondary">{{$newLang->listenAudio}}</span></h3>
                                             <div class="col-md-2 mt-2">
                                                 <button type="button" class="btn btn-primary position-relative">
-                                                    Questions
+                                                    {{$newLang->Question}}
                                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                                         {{$key + 1}}
-                                                        <span class="visually-hidden">unread messages</span>
                                                     </span>
                                                 </button>
                                             </div>
-                                            <div class="col-md-12 mt-2">
-                                                <div class="alert bg-primary" role="alert">
-                                                    {{$answer->question}}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info " role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var3[0]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var3[0]}}">
-                                                        <label class="form-check-label" for="{{$var3[0]}}">{{$var3[0]}}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info" role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var3[1]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var3[1]}}">
-                                                        <label class="form-check-label" for="{{$var3[1]}}">{{$var3[1]}}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info" role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var3[2]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var3[2]}}">
-                                                        <label class="form-check-label" for="{{$var3[2]}}">{{$var3[2]}}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="alert alert-info" role="alert">
-                                                    <div class="form-check my-2">
-                                                        <input type="radio" id="{{$var3[3]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var3[3]}}">
-                                                        <label class="form-check-label" for="{{$var3[3]}}">{{$var3[3]}}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            @php $counter++ @endphp
-                                            @endforeach
-                                        </div>
-                                        @elseif($question->type == "reading")
-                                        <h3> <span class="badge bg-secondary">Read and solve</span></h3>
-                                        <div class="row">
-                                            <div class="col-md-2 mt-2">
-                                                <button type="button" class="btn btn-primary position-relative">
-                                                    Questions
-                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                        {{$key + 1}}
-                                                        <span class="visually-hidden">unread messages</span>
-                                                    </span>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-12 mt-2">
-                                                <div class="alert alert-primary" role="alert">
-                                                    {{$question->reading}}
+                                            <div class="col-md-12">
+                                                <div id="wrapper">
+                                                    <audio preload="auto" controls>
+                                                        <source src='{{asset("uploads/$question->record")}}'>
+                                                    </audio>
                                                 </div>
                                             </div>
                                             <div class="col-md-10 row m-auto">
                                                 @foreach($question->info as $key=>$answer)
                                                 @php
-                                                $var4 = $answer->random();
+                                                $var2 = $answer->random();
                                                 @endphp
                                                 <div class="col-md-2 mt-2">
                                                     <button type="button" class="btn btn-primary position-relative">
-                                                        Questions
+                                                        {{$newLang->Question}}
+
                                                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                                             {{$key + 1}}
-                                                            <span class="visually-hidden">unread messages</span>
+
                                                         </span>
                                                     </button>
                                                 </div>
@@ -563,32 +427,32 @@ subjects
                                                 <div class="col-md-6">
                                                     <div class="alert alert-info " role="alert">
                                                         <div class="form-check my-2">
-                                                            <input type="radio" id="{{$var4[0]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var4[0]}}">
-                                                            <label class="form-check-label" for="{{$var4[0]}}">{{$var4[0]}}</label>
+                                                            <input type="radio" id="{{$var2[0]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var2[0]}}">
+                                                            <label class="form-check-label" for="{{$var2[0]}}">{{$var2[0]}}</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="alert alert-info" role="alert">
                                                         <div class="form-check my-2">
-                                                            <input type="radio" id="{{$var4[1]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var4[1]}}">
-                                                            <label class="form-check-label" for="{{$var4[1]}}">{{$var4[1]}}</label>
+                                                            <input type="radio" id="{{$var2[1]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var2[1]}}">
+                                                            <label class="form-check-label" for="{{$var2[1]}}">{{$var2[1]}}</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="alert alert-info" role="alert">
                                                         <div class="form-check my-2">
-                                                            <input type="radio" id="{{$var4[2]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var4[2]}}">
-                                                            <label class="form-check-label" for="{{$var4[2]}}">{{$var4[2]}}</label>
+                                                            <input type="radio" id="{{$var2[2]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var2[2]}}">
+                                                            <label class="form-check-label" for="{{$var2[2]}}">{{$var2[2]}}</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="alert alert-info" role="alert">
                                                         <div class="form-check my-2">
-                                                            <input type="radio" id="{{$var4[3]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var4[3]}}">
-                                                            <label class="form-check-label" for="{{$var4[3]}}">{{$var4[3]}}</label>
+                                                            <input type="radio" id="{{$var2[3]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var2[3]}}">
+                                                            <label class="form-check-label" for="{{$var2[3]}}">{{$var2[3]}}</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -597,50 +461,179 @@ subjects
                                                 @endforeach
                                             </div>
                                             <hr>
-                                        </div>
-                                        @endif
-                                        @endforeach
-                                        <!-- <audio preload="auto" controls>
+
+                                            @elseif($question->type == "video")
+                                            <h3> <span class="badge bg-secondary">{{$newLang->watchVedio}}</span></h3>
+                                            <div class="col-md-2 mt-2">
+                                                <button type="button" class="btn btn-primary position-relative">
+                                                    {{$newLang->Question}}
+
+                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                        {{$key + 1}}
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-12 my-3">
+                                                <video width="100%" height="240" controls>
+                                                    <source src='{{asset("uploads/$question->video")}}' type="video/mp4">
+                                                    <source src='{{asset("uploads/$question->video")}}' type="video/ogg">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            </div>
+                                            <div class="col-md-10 row m-auto">
+                                                @foreach($question->info as $key=>$answer)
+                                                @php
+                                                $var3 = $answer->random();
+                                                @endphp
+                                                <div class="col-md-2 mt-2">
+                                                    <button type="button" class="btn btn-primary position-relative">
+                                                        {{$newLang->Question}}
+                                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                            {{$key + 1}}
+
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-12 mt-2">
+                                                    <div class="alert bg-primary" role="alert">
+                                                        {{$answer->question}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info " role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="{{$var3[0]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var3[0]}}">
+                                                            <label class="form-check-label" for="{{$var3[0]}}">{{$var3[0]}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info" role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="{{$var3[1]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var3[1]}}">
+                                                            <label class="form-check-label" for="{{$var3[1]}}">{{$var3[1]}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info" role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="{{$var3[2]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var3[2]}}">
+                                                            <label class="form-check-label" for="{{$var3[2]}}">{{$var3[2]}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="alert alert-info" role="alert">
+                                                        <div class="form-check my-2">
+                                                            <input type="radio" id="{{$var3[3]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var3[3]}}">
+                                                            <label class="form-check-label" for="{{$var3[3]}}">{{$var3[3]}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                @php $counter++ @endphp
+                                                @endforeach
+                                            </div>
+                                            @elseif($question->type == "reading")
+                                            <h3> <span class="badge bg-secondary">{{$newLang->Read_solve}}</span></h3>
+                                            <div class="row">
+                                                <div class="col-md-2 mt-2">
+                                                    <button type="button" class="btn btn-primary position-relative">
+                                                    {{$newLang->Question}}
+                                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                            {{$key + 1}}
+
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-12 mt-2">
+                                                    <div class="alert alert-primary" role="alert">
+                                                        {{$question->reading}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10 row m-auto">
+                                                    @foreach($question->info as $key=>$answer)
+                                                    @php
+                                                    $var4 = $answer->random();
+                                                    @endphp
+                                                    <div class="col-md-2 mt-2">
+                                                        <button type="button" class="btn btn-primary position-relative">
+                                                        {{$newLang->Question}}
+                                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                                {{$key + 1}}
+
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-12 mt-2">
+                                                        <div class="alert bg-primary" role="alert">
+                                                            {{$answer->question}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="alert alert-info " role="alert">
+                                                            <div class="form-check my-2">
+                                                                <input type="radio" id="{{$var4[0]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var4[0]}}">
+                                                                <label class="form-check-label" for="{{$var4[0]}}">{{$var4[0]}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="alert alert-info" role="alert">
+                                                            <div class="form-check my-2">
+                                                                <input type="radio" id="{{$var4[1]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var4[1]}}">
+                                                                <label class="form-check-label" for="{{$var4[1]}}">{{$var4[1]}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="alert alert-info" role="alert">
+                                                            <div class="form-check my-2">
+                                                                <input type="radio" id="{{$var4[2]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var4[2]}}">
+                                                                <label class="form-check-label" for="{{$var4[2]}}">{{$var4[2]}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="alert alert-info" role="alert">
+                                                            <div class="form-check my-2">
+                                                                <input type="radio" id="{{$var4[3]}}" name="answer[{{$counter}}]" class="form-check-input" value="{{$var4[3]}}">
+                                                                <label class="form-check-label" for="{{$var4[3]}}">{{$var4[3]}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    @php $counter++ @endphp
+                                                    @endforeach
+                                                </div>
+                                                <hr>
+                                            </div>
+                                            @endif
+                                            @endforeach
+                                            <!-- <audio preload="auto" controls>
                                             <source src=' {{asset("uploads/record/pwyFRYE6O2TpvxV8fxRcpc7zSPhPL3VH3E77eFOw.mp3")}}'>
                                                 </audio> -->
+                                        </div>
                                     </div>
-                                </div>
 
+                            </div>
+                            <button type="submit" class="btn btn-primary w-lg mt-2">Submit</button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary w-lg mt-2">Submit</button>
-                        </form>
                     </div>
                 </div>
             </div>
+            <!-- end col -->
         </div>
-        <!-- end col -->
+
     </div>
+</section>
 
-</div>
 @section('script')
-<script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
-
-<!-- Required datatable js -->
-<script src="{{asset('assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<!-- Buttons examples -->
-<script src="{{asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{asset('assets/libs/jszip/jszip.min.js')}}"></script>
-<script src="{{asset('assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
-<script src="{{asset('assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
-<!-- Responsive examples -->
-<script src="{{asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
-
-<!-- Datatable init js -->
-<script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
 <script src="{{asset('assets/js/audioplayer.js')}}"></script>
-
 <script>
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-36251023-1']);
@@ -659,5 +652,7 @@ subjects
         $('audio').audioPlayer();
     });
 </script>
+
+
 @endsection
 @endsection

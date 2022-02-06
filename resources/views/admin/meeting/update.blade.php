@@ -37,7 +37,8 @@ subjects
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Meetings</h4>
+            <h4 class="mb-0 font-size-18">{{$newLang->Meetings}}</h4>
+
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@ subjects
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Create Meeting</h5>
+                    <h5 class="card-title">{{$newLang->addMeeting}}</h5>
 
                     <div>
 
@@ -53,46 +54,46 @@ subjects
                             @csrf
                             <input type="hidden" name="idm" value="{{$users->id}}">
                             <div class="mb-3 ">
-                                <label for="example-password-input1" class="form-label">Meeting Title</label>
+                                <label for="example-password-input1" class="form-label">{{$newLang->meetTitle}}</label>
                                 <div class="">
-                                    <input class="form-control" value="{{$users->conference_title}}" type="text" id="example-password-input1" name="meeting_title" placeholder="Meeting Title">
+                                    <input class="form-control" value="{{$users->conference_title}}" type="text" id="example-password-input1" name="meeting_title" placeholder="{{$newLang->meetTitle}}">
                                 </div>
                             </div>
                             <div class="mb-3 ">
-                                <label for="example-password-input1" class="form-label">Meeting Description</label>
+                                <label for="example-password-input1" class="form-label">{{$newLang->meetDesc}}</label>
                                 <div class="">
-                                    <textarea class="form-control" rows="13" cols="20" name="meeting_description" placeholder="Meeting Description">{{$users->conference_desc}}</textarea>
+                                    <textarea class="form-control" rows="13" cols="20" name="meeting_description" placeholder="{{$newLang->meetDesc}}">{{$users->conference_desc}}</textarea>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="example-password-input1" class="form-label">Meeting Host </label>
-                                <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center">search users</button>
+                                <label for="example-password-input1" class="form-label">{{$newLang->meetHost}} </label>
+                                <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center">{{$newLang->searchUsers}}</button>
                                 <div id="hostUser" class="">
                                     <p class="name_host" id="n_host">{{$users->user_host('user')}}</p>
                                     <input type="text" class="form-control mt-2" name="user_host" hidden value="{{$users->user_host('user')}}">
                                     <input type="number" class="form-control mt-2" name="id" hidden value="{{$users->user_host('id')}}">
                                 </div>
                             </div>
-                            <label class="col-sm-2 form-label">Type of users </label>
+                            <label class="col-sm-2 form-label">{{$newLang->typeUsers}} </label>
                             <div>
                                 <div class="form-check my-2">
                                     <input type="radio" name="eventFor" onclick="hideSection()" class="form-check-input" {{$users->conference_target_type == 'admin' ? "checked" : "" }} value="admin">
-                                    <label class="form-check-label" for="customRadio1">Administrators</label>
+                                    <label class="form-check-label" for="customRadio1">{{$newLang->Administrators}}</label>
                                 </div>
                                 <div class="form-check my-2">
                                     <input type="radio" name="eventFor" onclick="hideSection()" class="form-check-input" {{$users->conference_target_type == 'Teacher' ? "checked" : "" }} value="Teacher">
-                                    <label class="form-check-label" for="customRadio1">Teacher</label>
+                                    <label class="form-check-label" for="customRadio1">{{$newLang->teachers}}</label>
                                 </div>
                                 <div class="form-check my-2">
                                     <input type="radio" name="eventFor" onclick="showSection()" class="form-check-input" {{$users->conference_target_type == 'student' ? "checked" : "" }} value="student">
-                                    <label class="form-check-label" for="customRadio1">Students</label>
+                                    <label class="form-check-label" for="customRadio1">{{$newLang->students}}</label>
                                 </div>
                                 <div class="form-check my-2">
                                     <input type="radio" name="eventFor" onclick="showSection()" class="form-check-input" {{$users->conference_target_type == 'parent' ? "checked" : "" }} value="parent">
-                                    <label class="form-check-label" for="customRadio1">parent</label>
+                                    <label class="form-check-label" for="customRadio1">{{$newLang->parents}}</label>
                                 </div>
                                 <div class="form-group class_section {{$users->conference_target_type == 'parent' || $users->conference_target_type == 'student' ? 'd-block' : 'd-none' }} ">
-                                    <label>Class</label>
+                                    <label>{{$newLang->class}}</label>
                                     <select class="form-control" multiple name="class[]" id="class">
                                         <option value="0">not select</option>
                                         @foreach($classes as $class)
@@ -106,7 +107,7 @@ subjects
                                     </select>
                                 </div>
                                 <div class="form-group class_section {{$users->conference_target_type == 'parent' || $users->conference_target_type == 'student' ? 'd-block' : 'd-none' }}">
-                                    <label>Section</label>
+                                    <label>{{$newLang->sections}}</label>
                                     <select class="form-control" multiple name="section[]" id="getSection">
                                         <option value="0">not select</option>
                                         @foreach($getSection as $section)
@@ -121,15 +122,15 @@ subjects
                                     </select>
                                 </div>
                             </div>
-                            <label class="col-sm-2 form-label">Scheduled Time</label>
+                            <label class="col-sm-2 form-label">{{$newLang->meetSchTime}}</label>
                             <div>
                                 <div class="form-check my-2">
                                     <input type="radio" name="time_date" onclick="hideTime()" class="form-check-input" checked="" value="now">
-                                    <label class="form-check-label" for="customRadio1"> Start meeting now</label>
+                                    <label class="form-check-label" for="customRadio1"> {{$newLang->startMeetNow}}</label>
                                 </div>
                                 <div class="form-check my-2">
                                     <input type="radio" name="time_date" onclick="showTime()" class="form-check-input"checked value="time">
-                                    <label class="form-check-label" for="customRadio1"> Schedule meeting</label>
+                                    <label class="form-check-label" for="customRadio1"> {{$newLang->schMeeting}}</label>
                                 </div>
                             </div>
                             <div class="mb-3 " id="time">
@@ -144,14 +145,14 @@ subjects
                                 </div>
                             </div>
                             <div class="mb-3 ">
-                                <label for="example-password-input1" class="form-label">Duration (Minutes)</label>
+                                <label for="example-password-input1" class="form-label">{{$newLang->confDuration}}</label>
                                 <div class="">
                                     <input class="form-control" type="number" value="{{$users->conference_duration}}" id="example-password-input1" name="mints" placeholder="Meeting Title">
                                 </div>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Add Grade level</button>
+                                <button type="submit" class="btn btn-primary">{{$newLang->addMeeting}}</button>
                             </div>
                         </form>
                     </div>

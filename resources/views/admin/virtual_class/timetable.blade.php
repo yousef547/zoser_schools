@@ -79,7 +79,31 @@ HomePage
                                         <tbody>
                                             @foreach($days as $day)
                                             <tr>
-                                                <td>{{$day->day}}</td>
+                                                <td>
+                                                    @switch($day->day)
+                                                    @case("Sunday")
+                                                    {{$newLang->Sunday}}
+                                                    @break
+                                                    @case("Monday")
+                                                    {{$newLang->Monday}}
+                                                    @break
+                                                    @case("Tuesday")
+                                                    {{$newLang->Tuesday}}
+                                                    @break
+                                                    @case("Wednesday")
+                                                    {{$newLang->Wednesday}}
+                                                    @break
+                                                    @case("Thursday")
+                                                    {{$newLang->Thurusday}}
+                                                    @break
+                                                    @case("Friday")
+                                                    {{$newLang->Friday}}
+                                                    @break
+                                                    @case("Saturday")
+                                                    {{$newLang->Saturday}}
+                                                    @break
+                                                    @endswitch
+                                                </td>
                                                 <td>
                                                     <div class="row">
                                                         @foreach($schedules as $schedule)
@@ -105,7 +129,7 @@ HomePage
                                                                             <button id="btnGroupDrop1" type="button" class="bg-transparent border-0" data-bs-toggle="dropdown" aria-expanded="false">
                                                                                 <i class="fas fa-ellipsis-v fa-2 text-white"></i>
                                                                             </button>
-                                                                          
+
                                                                         </div>
                                                                     </div>
                                                                 </div>

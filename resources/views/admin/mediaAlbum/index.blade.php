@@ -86,9 +86,15 @@ HomePage
                                 <img src='{{asset("uploads/$albums->albumImage")}}' class="w-100 h-100">
                                 <div class="el-overlay">
                                     <ul class=" lista list-unstyled h-100 d-flex justify-content-center align-items-center">
+                                        @can("mediaCenter_addAlbum")
                                         <li><a href='{{url("admin/media/show/$albums->id")}}' data-bs-toggle="tooltip" data-bs-placement="top" title="Show" class="btn default btn-outline"><i class="mdi mdi-magnify fs-4 "></i></a></li>
+                                        @endcan
+                                        @can("mediaCenter_addAlbum")
                                         <li class=""><a href='{{url("admin/media/edit/$albums->id")}}' data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="btn default btn-outline"><i class="fas fs-4 mt-1 fa-pencil-alt"></i></a></li>
+                                        @endcan
+                                        @can("mediaCenter_delAlbum")
                                         <li class=""><a href='{{url("admin/media/delete/$albums->id")}}' data-bs-toggle="tooltip" data-bs-placement="top" title="Remove" class="btn default btn-outline"><i class="fas fs-4 mt-1 fa-trash"></i></a></li>
+                                        @endcan
                                     </ul>
                                 </div>
                             </div>
@@ -118,9 +124,16 @@ HomePage
                                 @endif
                                 <div class="el-overlay">
                                     <ul class=" lista list-unstyled h-100 d-flex justify-content-center align-items-center">
+                                        @can("mediaCenter_addMedia")
                                         <li><a href='{{url("admin/item/show/$item->id")}}' data-bs-toggle="tooltip" data-bs-placement="top" title="Show" class="btn default btn-outline"><i class="mdi mdi-magnify fs-4 "></i></a></li>
+                                        @endcan
+                                        @can("mediaCenter_editMedia")
                                         <li class=""><a href='{{url("admin/item/edit/$item->id")}}' data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="btn default btn-outline"><i class="fas fs-4 mt-1 fa-pencil-alt"></i></a></li>
-                                        <li class=""><a href='{{url("admin/media/delete/")}}' data-bs-toggle="tooltip" data-bs-placement="top" title="Remove" class="btn default btn-outline"><i class="fas fs-4 mt-1 fa-trash"></i></a></li>
+                                       @endcan
+                                       @can("mediaCenter_delMedia")
+
+                                        <li class=""><a href='{{url("admin/item/delete/$item->id")}}' data-bs-toggle="tooltip" data-bs-placement="top" title="Remove" class="btn default btn-outline"><i class="fas fs-4 mt-1 fa-trash"></i></a></li>
+                                  @endcan
                                     </ul>
                                 </div>
 

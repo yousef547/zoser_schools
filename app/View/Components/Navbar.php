@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\language;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
@@ -25,6 +26,7 @@ class Navbar extends Component
      */
     public function render()
     {
+        $data['langs'] = language::get();
         $data['authUser'] = Auth::User();
         return view('components.navbar')->with($data);
     }

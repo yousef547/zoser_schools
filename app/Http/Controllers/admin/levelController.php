@@ -3,119 +3,67 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\exam;
-use App\Models\levels;
+use App\Models\level;
 use App\Models\question;
-use App\Models\questions_info;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Mockery\Undefined;
+use Illuminate\Validation\Rule;
 
 class levelController extends Controller
 {
     public function index()
     {
-        $getLevel = levels::get();
-        $inExam = exam::where("user_id", Auth::user()->id)->get();
-        if (count($inExam) != count($getLevel)) {
-            for ($i = 0; $i < count($getLevel); $i++) {
-                if ($getLevel[$i]->lavel_name == "placement_test") {
-                    $degree = 1;
-                } else {
-                    $degree = null;
-                }
-                if (count($inExam) == 0) {
-                    $arr = exam::create([
-                        "user_id" => Auth::user()->id,
-                        "level_id" => $getLevel[$i]->id,
-                        "degree" => $degree
-                    ]);
-                } elseif (!isset($inExam[$i])) {
-                    $arr = exam::create([
-                        "user_id" => Auth::user()->id,
-                        "level_id" => $getLevel[$i]->id,
-                        "degree" => null
-                    ]);
-                }
-            }
-        }
-        $nextExam = exam::where("user_id", Auth::user()->id)->get();
-        if(count($nextExam) == 0){
-            $levels = levels::get();
-        } else {
-            $levels = levels::join("exams","exams.level_id","levels.id")
-            ->where("exams.user_id",Auth::user()->id)
-            ->select("levels.*","exams.degree")
-            ->get();
-        }
-        // dd($levels);
-        // dd($getLevel);
-        return view("admin.exam.index", compact('getLevel','inExam','levels'));
+        $levels = level::paginate(10);
+        return view("admin.levels.index", compact("levels"));
     }
-    public function show($id)
+    public function create()
     {
-        $questions = question::where("level", $id)->get();
-        $check = exam::where("user_id",Auth::user()->id)
-        ->where("level_id",$id)->first();
-        if((int)$check->degree == null) {
-            return back()->with('error', 'You must test the previous level' );
-
-        }
-        if (count($questions) == 0) {
-            return back()->with('error', ' not found any questions');
-        }
-        $level_id = $id;
-
-        // if(user_id)
-        return view("admin.exam.show", compact('questions', 'level_id'));
+        return view("admin.levels.add_level");
     }
-    public function submit($id, Request $request)
+    public function submit(Request $request)
     {
-        $degree = 0;
-        $perCent = 1;
-        $questions = question::where("level", $id)->get();
-        if (count($questions) == 0) {
+        $levels = level::count();
+        $degree = [50,60,70,80];
+        $request->validate([
+            "lavel_name" => "required|string",
+            "desc" => "required|string",
+            "lowest_degree"=> Rule::in($degree),
+        ]);
+        $data['level'] = $levels;
+        $data['lavel_name'] = $request->lavel_name;
+        $data['desc'] = $request->desc;
+        $data['lowest_degree'] = $request->lowest_degree;
+        level::create($data);
+        return redirect()->route("level")->with('msg', 'Successed Create level');
+    }
+    public function view($id) {
+        $questions = question::where("level",$id)->get();
+        // dd($questions);
+        return view("admin.levels.view",compact("questions"));
+    }
+    public function edit($id) {
+        $level = level::find($id);
+        if(!$level) {
             return back()->with('error', 'this id not found');
         }
-        $rightAnswer = [];
-        for ($i = 0; $i < count($questions); $i++) {
-            if ($questions[$i]->rigth_ans != null) {
-                array_push($rightAnswer, $questions[$i]->rigth_ans);
-            } else {
-                $infoAnswer = questions_info::where("question_id", $questions[$i]->id)->get();
-                for ($y = 0; $y < count($infoAnswer); $y++) {
-                    array_push($rightAnswer, $infoAnswer[$y]->rigth_ans);
-                }
-            }
-        }
-        for ($y = 0; $y < count($rightAnswer); $y++) {
-            if (isset($request->answer[$y])) {
-                if ($rightAnswer[$y] == $request->answer[$y]) {
-                    $degree++;
-                }
-            }
-        }
-        $exam = exam::where("level_id", $id)
-        ->where("user_id", Auth::user()->id)->first();
-        if($degree != 0){
-            $perCent = ($degree/count($rightAnswer)) * 100;
-        }
-        $exam->update([
-            "degree"=>$perCent,
+        return view("admin.levels.edit",compact("level"));
+    }
+    public function update($id,Request $request){
+        $degree = [50,60,70,80];
+        $request->validate([
+            "lavel_name" => "required|string",
+            "desc" => "required|string",
+            "lowest_degree"=> Rule::in($degree),
         ]);
-        $exam = exam::where("user_id",Auth::user()->id)->where("level_id", $id + 1)->first();
-        // dd($exam);
+        $data['lavel_name'] = $request->lavel_name;
+        $data['desc'] = $request->desc;
+        $data['lowest_degree'] = $request->lowest_degree;
 
-        if($perCent > 49) {
-            $exam->update([
-                "degree"=>1,
-            ]);
-            return redirect()->route("exam")->with('msg', 'You passed the exam successfully with a score of ' .$perCent. '%');
+        $level = level::find($id);
+        if(!$level) {
+            return back()->with('error', 'this id not found');
         }
-        if($degree == 0){
-            $perCent = 0;
-        }
-        return redirect()->route("exam")->with('error', 'You failed the exam with a score of ' .$perCent. '%' );
-        // dd($exam);
+        $level->update($data);
+        return redirect()->route("level")->with('msg', 'Successed Create level');
+
     }
 }

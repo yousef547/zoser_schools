@@ -68,7 +68,9 @@ HomePage
                         <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
+                                    @can("studyMaterial_addMaterial")
                                     <a href="{{url('admin/materials/create')}}/{{$sub_id}}" class="btn btn-secondary buttons-copy buttons-html5">add materials</a>
+                                    @endcan
                                 </div>
                                 <div class="col-sm-12">
                                     <table id="datatable" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
@@ -91,13 +93,20 @@ HomePage
                                                 <td>{{$material->week}}</td>
                                                 <td>{{$material->className}} - {{$material->sectionName}}</td>
                                                 <td>
-                                                    @if($material->material_file) 
-                                                        <a href='{{asset("uploads/$material->material_file")}}' class="btn btn-warning btn-rounded mx-1" download><i class="fas fa-cloud-download-alt"></i></a>
+                                                    @can("studyMaterial_Download")
+                                                    @if($material->material_file)
+                                                    <a href='{{asset("uploads/$material->material_file")}}' class="btn btn-warning btn-rounded mx-1" download><i class="fas fa-cloud-download-alt"></i></a>
                                                     @endif
-                                                    <a  href='{{url("admin/materials/update/")}}/{{$material->id}}' class="btn btn-info btn-rounded mx-1" >
+                                                    @endcan
+                                                    @can("studyMaterial_editMaterial")
+                                                    <a href='{{url("admin/materials/update/")}}/{{$material->id}}' class="btn btn-info btn-rounded mx-1">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
+                                                    @endcan
+                                                    @can("studyMaterial_delMaterial")
+
                                                     <a href='{{url("admin/materials/delete/")}}/{{$material->id}}' class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i></a>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                             @endforeach

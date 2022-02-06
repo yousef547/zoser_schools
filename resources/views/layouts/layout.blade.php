@@ -1,3 +1,14 @@
+<?php
+
+use Illuminate\Support\Facades\Auth;
+use App\Models\language;
+
+
+$langUser = Auth::user()->defLang;
+$lang = language::find($langUser)->isRTL;
+
+// echo $lang;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,11 +26,12 @@
     <link href="{{asset('assets/libs/metrojs/release/MetroJs.Full/MetroJs.min.css')}}" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Css -->
-    <link href="{{asset('assets/css/bootstrap-dark.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/css/bootstrap-dark-min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css">
     <!-- Icons Css -->
     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
     <!-- App Css-->
     <link href="{{asset('assets/css/app-dark.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
+
     <link href="{{asset('assets/css/mystyle.css')}}" rel="stylesheet">
 
 
@@ -58,16 +70,15 @@
                                         <div id="sidebar-menu" class="mm-active">
                                             <!-- Left Menu Start -->
                                             <ul class="metismenu list-unstyled mm-show" id="side-menu">
-                                                <li class="menu-title">Main</li>
 
                                                 <li class="mm-active">
                                                     <a href="javascript: void(0);" class="waves-effect mm-active">
                                                         <i class="mdi mdi-speedometer"></i>
                                                         <span class="badge rounded-pill bg-danger float-end">9+</span>
-                                                        <span>Dashboards</span>
+                                                        <span>{{$newLang->dashboard}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse mm-show" aria-expanded="false">
-                                                        <li class="mm-active"><a href="{{url('/admin')}}" class="active">Dashboard 1</a></li>
+                                                        <li class="mm-active"><a href="{{url('/admin')}}" class="active"></a></li>
                                                         <!-- <li><a href="index-2.html">Dashboard 2</a></li> -->
                                                     </ul>
                                                 </li>
@@ -75,16 +86,16 @@
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-email-variant"></i>
-                                                        <span>Welcome Office</span>
+                                                        <span>{{$newLang->wel_office}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="email-inbox.html">Visitors</a></li>
-                                                        <li><a href="email-read.html">Phone Calls</a></li>
-                                                        <li><a href="email-compose.html">Postal</a></li>
-                                                        <li><a href="email-read.html">Contact Messages</a></li>
-                                                        <li><a href="email-compose.html">Enquiries</a></li>
-                                                        <li><a href="email-read.html">Complaints</a></li>
-                                                        <li><a href="email-compose.html">Office Categories</a></li>
+                                                        <li><a href="email-inbox.html">{{$newLang->visitors}}</a></li>
+                                                        <li><a href="email-read.html">{{$newLang->phn_calls}}</a></li>
+                                                        <li><a href="email-compose.html">{{$newLang->postal}}</a></li>
+                                                        <li><a href="email-read.html">{{$newLang->con_mess}}</a></li>
+                                                        <li><a href="email-compose.html">{{$newLang->enquiries}}</a></li>
+                                                        <li><a href="email-read.html">{{$newLang->complaints}}</a></li>
+                                                        <li><a href="email-compose.html">{{$newLang->wel_office_cat}}</a></li>
                                                     </ul>
                                                 </li>
 
@@ -93,64 +104,97 @@
                                                 <li>
                                                     <a href="{{url('admin/meeting')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Online Meetings</span>
+                                                        <span>{{$newLang->onlineMeetings}}</span>
                                                     </a>
                                                 </li>
                                                 @endcan
+                                                @can("level&exam_show")
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-email-variant"></i>
-                                                        <span>levels</span>
+                                                        <span>{{$newLang->levels_questions}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="{{route('level')}}">show</a></li>
-                                                        <li><a href="{{route('questions')}}">questions</a></li>
+                                                        @can("level_show")
+                                                        <li><a href="{{route('level')}}">{{$newLang->level}}</a></li>
+                                                        @endcan
+                                                        @can("question_show")
+                                                        <li><a href="{{route('questions')}}">{{$newLang->questions}}</a></li>
+                                                        @endcan
+                                                        @can("test_show")
+                                                        <li><a href="{{route('level_test')}}">{{$newLang->Level_Test}}</a></li>
+                                                        @endcan
+                                                        @can("report_show")
+                                                        <li><a href="{{route('report')}}">{{$newLang->report}}</a></li>
+                                                        @endcan
+                                                        @can("finelExam_show")
+
+                                                        <li><a href="{{route('finalexam')}}">{{$newLang->final_exam}}</a></li>
+                                                        @endcan
+
                                                     </ul>
                                                 </li>
+                                                @endcan
+                                                @can("Exam&report_show")
                                                 <li>
-                                                    <a href="{{route('exam')}}" class=" waves-effect">
-                                                        <i class="mdi mdi-calendar"></i>
-                                                        <span>exam</span>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-email-variant"></i>
+                                                        <span>{{$newLang->quiz_Reports}}</span>
                                                     </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        @can("examLevel_show")
+                                                        <li><a href="{{route('exam')}}">{{$newLang->exam}}</a></li>
+                                                        @endcan
+                                                        @can("report_show_myreport")
+                                                        <li><a href="{{route('report.myreport')}}">{{$newLang->my_report}}</a></li>
+                                                        @endcan
+                                                        @can("finelExam_pass")
+                                                        <li><a href="{{route('testexam')}}">{{$newLang->final_exam}}</a></li>
+                                                        @endcan
+                                                    </ul>
+
+
                                                 </li>
+                                                @endcan
                                                 <li>
                                                     <a href="{{url('admin/chat')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Messages</span>
+                                                        <span>{{$newLang->Messages}}</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Mail / SMS</span>
+                                                        <span>{{$newLang->mailsms}}</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Mobile Notifications</span>
+                                                        <span>{{$newLang->mobileNotifications}}</span>
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    <a href="{{url('admin/record')}}" class=" waves-effect">
+                                                <!-- <li>
+                                                    <a href="" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>record</span>
                                                     </a>
-                                                </li>
+                                                </li> -->
                                                 @can("classSch_list")
                                                 <li>
                                                     <a href="{{url('admin/class_schedulr')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Classes Schedule</span>
+                                                        <span>{{$newLang->classSch}}</span>
                                                     </a>
                                                 </li>
                                                 @endcan
                                                 <li>
                                                     <a href="{{url('admin/virtual_Class')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Virtual Classes Schedule</span>
+                                                        <span>{{$newLang->vclassSch}}</span>
                                                     </a>
                                                 </li>
+
                                                 <!-- <li class="menu-title">Components</li> -->
 
                                                 <!-- UI Elements -->
@@ -158,17 +202,17 @@
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-briefcase-check"></i>
-                                                        <span>Attendance</span>
+                                                        <span>{{$newLang->Attendance}}</span>
                                                     </a>
 
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         @can("Attendance_takeAttendance")
 
-                                                        <li><a href="{{url('admin/attendance')}}">Take Attendance</a></li>
+                                                        <li><a href="{{url('admin/attendance')}}">{{$newLang->takeAttendance}}</a></li>
                                                         @endcan
                                                         @can("Attendance_attReport")
 
-                                                        <li><a href="{{url('admin/attendance/report')}}">Attendance Report</a></li>
+                                                        <li><a href="{{url('admin/attendance/report')}}">{{$newLang->attReport}}</a></li>
                                                         @endcan
                                                     </ul>
                                                 </li>
@@ -179,14 +223,14 @@
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-buffer"></i>
-                                                        <span>Staff Attendance</span>
+                                                        <span>{{$newLang->staffAttendance}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         @can("staffAttendance_takeAttendance")
-                                                        <li><a href="{{url('admin/attendance/staff')}}">Take Attendance</a></li>
+                                                        <li><a href="{{url('admin/attendance/staff')}}">{{$newLang->takeAttendance}}</a></li>
                                                         @endcan
                                                         @can("staffAttendance_attReport")
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/staffAttendance_report">Attendance Report</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/staffAttendance_report">{{$newLang->attReport}}</a></li>
                                                         @endcan
                                                     </ul>
                                                 </li>
@@ -196,17 +240,17 @@
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-clipboard-outline"></i>
-                                                        <span>Vacation</span>
+                                                        <span>{{$newLang->Vacation}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         @can("Vacation_reqVacation")
-                                                        <li><a href="{{url('admin/vacation/request')}}">Request vacation</a></li>
+                                                        <li><a href="{{url('admin/vacation/request')}}">{{$newLang->reqVacation}}</a></li>
                                                         @endcan
                                                         @can("Vacation_appVacation")
-                                                        <li><a href="{{url('admin/vacation/approve')}}">Approve vacation</a></li>
+                                                        <li><a href="{{url('admin/vacation/approve')}}">{{$newLang->appVacation}}</a></li>
                                                         @endcan
                                                         @can("Vacation_myVacation")
-                                                        <li><a href="{{url('admin/vacation/my_vacations')}}">My vacations</a></li>
+                                                        <li><a href="{{url('admin/vacation/my_vacations')}}">{{$newLang->myVacation}}</a></li>
                                                         @endcan
                                                     </ul>
                                                 </li>
@@ -215,37 +259,37 @@
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-chart-arc"></i>
-                                                        <span>Library</span>
+                                                        <span>{{$newLang->Library}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/library_issues">Issue Book</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/library_return">Return Book</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/library">List Books</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/lib_subscription">Manage Subscription</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/library_issues">{{$newLang->issue_book}}</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/library_return">{{$newLang->book_return}}</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/library">{{$newLang->listBooks}}</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/lib_subscription">{{$newLang->mngSub}}</a></li>
                                                     </ul>
 
                                                 </li>
                                                 <li>
                                                     <a href="{{url('admin/media')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Media Center</span>
+                                                        <span>{{$newLang->mediaCenter}}</span>
                                                     </a>
                                                 </li>
                                                 <!-- Table -->
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-format-list-bulleted-type"></i>
-                                                        <span>Employees</span>
+                                                        <span>{{$newLang->employees}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         @can("employees_list")
-                                                        <li><a href="{{url('admin/employee')}}">Employees</a></li>
+                                                        <li><a href="{{url('admin/employee')}}">{{$newLang->employees}}</a></li>
                                                         @endcan
-                                                        <li><a href="{{url('admin/teacher')}}">Teachers</a></li>
+                                                        <li><a href="{{url('admin/teacher')}}">{{$newLang->teachers}}</a></li>
                                                         @can("depart_list")
-                                                        <li><a href="{{url('admin/department')}}">Departments</a></li>
+                                                        <li><a href="{{url('admin/department')}}">{{$newLang->depart}}</a></li>
                                                         @endcan
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/designations">Designations</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/designations">{{$newLang->desig}}</a></li>
                                                     </ul>
                                                 </li>
 
@@ -253,86 +297,92 @@
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-album"></i>
-                                                        <span>Students</span>
+                                                        <span>{{$newLang->students}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="{{url('admin/student')}}">Students</a></li>
-                                                        <li><a href="{{url('admin/student/create')}}">Students Admission</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/student/categories">Student Categories</a></li>
+                                                        @can("students_list")
+                                                        <li><a href="{{url('admin/student')}}">{{$newLang->students}}</a></li>
+                                                        @endcan
+                                                        @can("students_admission")
+                                                        <li><a href="{{url('admin/student/create')}}">{{$newLang->admission}}</a></li>
+                                                        @endcan
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/student/categories">{{$newLang->std_cat}}</a></li>
                                                     </ul>
 
                                                 </li>
                                                 <li>
                                                     <a href="{{url('admin/parent')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Parents</span>
+                                                        <span>{{$newLang->parents}}</span>
                                                     </a>
                                                 </li>
                                                 @can("gradeLevels_list")
                                                 <li>
                                                     <a href="{{url('admin/Gradelevels')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Grade levels</span>
+                                                        <span>{{$newLang->gradeLevels}}</span>
+                                                    </a>
+                                                </li>
+                                                @endcan
+                                                @can("studyMaterial_list")
+                                                <li>
+                                                    <a href="{{url('admin/materials')}}" class=" waves-effect">
+                                                        <i class="mdi mdi-calendar"></i>
+                                                        <span>{{$newLang->studyMaterial}}</span>
                                                     </a>
                                                 </li>
                                                 @endcan
                                                 <li>
-                                                    <a href="{{url('admin/materials')}}" class=" waves-effect">
-                                                        <i class="mdi mdi-calendar"></i>
-                                                        <span>Study Material</span>
-                                                    </a>
-                                                </li>
-                                                <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Homework</span>
+                                                        <span>{{$newLang->Homework}}</span>
                                                     </a>
                                                 </li>
                                                 @can("Assignments_list")
                                                 <li>
                                                     <a href="{{url('admin/assignments')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Assignments</span>
+                                                        <span>{{$newLang->Assignments}}</span>
                                                     </a>
                                                 </li>
                                                 @endcan
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Exams List</span>
+                                                        <span>{{$newLang->examsList}}</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Online Exams</span>
+                                                        <span>{{$newLang->Onlineexams}}</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>News Board</span>
+                                                        <span>{{$newLang->newsboard}}</span>
                                                     </a>
                                                 </li>
                                                 @can("events_list")
                                                 <li>
                                                     <a href="{{route('event')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Events</span>
+                                                        <span>{{$newLang->events}}</span>
                                                     </a>
                                                 </li>
                                                 @endcan
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-album"></i>
-                                                        <span>Classes</span>
+                                                        <span>{{$newLang->classes}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         @can("classes_list")
-                                                        <li><a href="{{url('admin/classes')}}">Classes</a></li>
+                                                        <li><a href="{{url('admin/classes')}}">{{$newLang->classes}}</a></li>
                                                         @endcan
                                                         @can("sections_list")
-                                                        <li><a href="{{url('admin/section')}}">sections</a></li>
+                                                        <li><a href="{{url('admin/section')}}">{{$newLang->sections}}</a></li>
                                                         @endcan
                                                     </ul>
                                                 </li>
@@ -340,57 +390,59 @@
                                                 <li>
                                                     <a href="{{url('admin/subjects')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Subjects</span>
+                                                        <span>{{$newLang->Subjects}}</span>
                                                     </a>
                                                 </li>
                                                 @endcan
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Certificates</span>
+                                                        <span>{{$newLang->Certificates}}</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>ID Cards</span>
+                                                        <span>{{$newLang->id_cards}}</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="calendar.html" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
-                                                        <span>Reports</span>
+                                                        <span>{{$newLang->Reports}}</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-album"></i>
-                                                        <span>frontend CMS</span>
+                                                        <span>{{$newLang->frontendCMS}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/frontend/pages">Control Pages</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/frontend/settings">frontend CMS Settings</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/frontend/pages">{{$newLang->controlPages}}</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/frontend/settings">{{$newLang->CMSSettings}}</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i class="mdi mdi-album"></i>
-                                                        <span>Administrative tasks</span>
+                                                        <span>{{$newLang->adminTasks}}</span>
                                                     </a>
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/academicYear">Academic Years</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/promotion">Promotion</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/mailsmsTemplates">Mail / SMS Templates</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/polls">Polls</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/dormitories">Dormitories</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/settings">General Settings</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/languages">Languages</a></li>
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/admins">Administrators</a></li>
-                                                        @can('academicyears_addAcademicyear')
-                                                        <li><a href="{{route('role')}}">Permission Roles</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/academicYear">{{$newLang->academicyears}}</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/promotion">{{$newLang->Promotion}}</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/mailsmsTemplates">{{$newLang->mailsmsTemplates}}</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/polls">{{$newLang->Polls}}</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/dormitories">{{$newLang->Dormitories}}</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/settings">{{$newLang->generalSettings}}</a></li>
+                                                        @can("Languages_list")
+                                                        <li><a href="{{route('languages')}}">{{$newLang->Languages}}</a></li>
                                                         @endcan
-                                                        <li><a href="https://kharagny.com/zoser3/portal#/terms">School Terms</a></li>
-                                                        <li><a href="{{route('database')}}">DB Export</a></li>
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/admins">{{$newLang->Administrators}}</a></li>
+                                                        @can('academicyears_addAcademicyear')
+                                                        <li><a href="{{route('role')}}">{{$newLang->roles}}</a></li>
+                                                        @endcan
+                                                        <li><a href="https://kharagny.com/zoser3/portal#/terms">{{$newLang->schoolTerms}}</a></li>
+                                                        <li><a href="{{route('database')}}">{{$newLang->dbExport}}</a></li>
                                                     </ul>
 
                                                 </li>

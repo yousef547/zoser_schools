@@ -16,16 +16,7 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Dashboard</h4>
-
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Amezia</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                </div>
-
+                <h4 class="mb-0 font-size-18">{{$newLang->dashboard}}</h4>
             </div>
         </div>
         <div class="row">
@@ -40,7 +31,7 @@ HomePage
                             </div>
                             <div class="col-8 align-self-center text-center">
                                 <div class="ms-2 text-end">
-                                    <p class="mb-1 text-muted font-size-13">Classes</p>
+                                    <p class="mb-1 text-muted font-size-13">{{$newLang->class}}</p>
                                     <h4 class="mb-1 font-size-20">{{$classes}}</h4>
                                 </div>
                             </div>
@@ -62,7 +53,7 @@ HomePage
                             </div>
                             <div class="col-8 align-self-center text-center">
                                 <div class="ms-2 text-end">
-                                    <p class="mb-1 text-muted font-size-13">Message</p>
+                                    <p class="mb-1 text-muted font-size-13">{{$newLang->Messages}}</p>
                                     <h4 class="mb-1 font-size-20">{{$student}}</h4>
                                 </div>
                             </div>
@@ -84,7 +75,7 @@ HomePage
                             </div>
                             <div class="col-8 align-self-center text-center">
                                 <div class="ms-2 text-end">
-                                    <p class="mb-1 text-muted font-size-13">Student</p>
+                                    <p class="mb-1 text-muted font-size-13">{{$newLang->students}}</p>
                                     <h4 class="mb-1 font-size-20">{{$student}}</h4>
                                 </div>
                             </div>
@@ -107,7 +98,7 @@ HomePage
                             </div>
                             <div class="col-8 align-self-center text-center">
                                 <div class="ms-2 text-end">
-                                    <p class="mb-1 text-muted font-size-13">Parent</p>
+                                    <p class="mb-1 text-muted font-size-13">{{$newLang->parents}}</p>
                                     <h4 class="mb-1 font-size-20">{{$parent}}</h4>
                                 </div>
                             </div>
@@ -132,7 +123,7 @@ HomePage
                             <!-- end col -->
                             <div class="col-8 align-self-center text-center">
                                 <div class="ms-2 text-end">
-                                    <p class="mb-0 text-muted font-size-13">Teacher</p>
+                                    <p class="mb-0 text-muted font-size-13">{{$newLang->teachers}}</p>
                                     <span class="font-size-20"><strong>{{$teacher}}</strong></span>
                                     <span class="badge badge-soft-success mt-1 shadow-none">Active</span>
                                 </div>
@@ -181,16 +172,16 @@ HomePage
                             <div class="online-circle">
                                 <i class="fas fa-circle text-success"></i>
                             </div>
-                            <h4 class="mt-3"><sup>Name:</sup>{{$authUser->username}}</h4>
-                            <h6 class="mt-3"><sup>Role:</sup>{{$authUser->role}}</h6>
-                            <p class="text-muted font-size-13"><sup>Email:</sup>{{$authUser->email}}</p>
-                            <a href="#" class="btn btn-primary btn-rounded px-5 my-2"><i class="ti-settings"></i>Account Setting</a><br>
-                            <a href="#" class="btn btn-primary btn-rounded px-5 my-2"><i class="mdi mdi-message-text-outline"></i> Messages </a><br>
+                            <h4 class="mt-3"><sup>{{$newLang->name}}:</sup>{{$authUser->username}}</h4>
+                            <h6 class="mt-3"><sup>{{$newLang->role}}:</sup>{{$authUser->role}}</h6>
+                            <p class="text-muted font-size-13"><sup>{{$newLang->email}}:</sup>{{$authUser->email}}</p>
+                            <a href="#" class="btn btn-primary btn-rounded px-5 my-2"><i class="ti-settings"></i>{{$newLang->AccountSettings}}</a><br>
+                            <a href="#" class="btn btn-primary btn-rounded px-5 my-2"><i class="mdi mdi-message-text-outline"></i> {{$newLang->AccountSettings}} </a><br>
                             <form id="logout-forms" method="post" action="{{ url('logout') }}" style="display: none">
                                 @csrf
                                 <button type="submit"> submit</button>
                             </form>
-                            <a href="#" id="logout-links" class="btn btn-primary btn-rounded px-5 my-2"><i class="fa fa-power-off"></i>Log out</a>
+                            <a href="#" id="logout-links" class="btn btn-primary btn-rounded px-5 my-2"><i class="fa fa-power-off"></i>{{$newLang->logout}}</a>
 
                         </div>
                     </div>
@@ -200,7 +191,7 @@ HomePage
             <div class="col-xl-4">
                 <div class="card profile">
                     <div class="card-body">
-                        <h4 class="card-title ng-binding"><i class="fa fa-trophy"></i> Student's leaderboard</h4>
+                        <h4 class="card-title ng-binding"><i class="fa fa-trophy"></i> {{$newLang->studentLeaderboard}}</h4>
                     </div>
                 </div>
                 <!-- end card -->
@@ -208,7 +199,7 @@ HomePage
             <div class="col-xl-4">
                 <div class="card profile">
                     <div class="card-body">
-                        <h4 class="card-title ng-binding"><i class="fa fa-trophy"></i> Teacher's leaderboard</h4>
+                        <h4 class="card-title ng-binding"><i class="fa fa-trophy"></i> {{$newLang->teacherLeaderboard}}</h4>
                     </div>
                 </div>
                 <!-- end card -->
@@ -216,7 +207,7 @@ HomePage
             <div class="col-xl-4">
                 <div class="card profile">
                     <div class="card-body">
-                        <h4 class="card-title ng-binding"><i class="fa fa-birthday-cake"></i> Celebrating birthday</h4>
+                        <h4 class="card-title ng-binding"><i class="fa fa-birthday-cake"></i> {{$newLang->celebBirthday}}</h4>
                     </div>
                 </div>
                 <!-- end card -->
@@ -224,27 +215,27 @@ HomePage
             <div class="col-xl-8">
                 <div class="card profile">
                     <div class="card-body">
-                        <h4 class="card-title ng-binding"><i class="fa fa-link"></i> Quick links</h4>
+                        <h4 class="card-title ng-binding"><i class="fa fa-link"></i>{{$newLang->quicklinks}}</h4>
                         <div class="row">
 
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Messages </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> News Board </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Events </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Class Schedule </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Mail / SMS22 </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Mobile Notifications </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Request vacation </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Staff Attendace </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Attwndance </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Reports </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Exams List </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="{{url('admin/materials')}}" class="btn btn-block btn-success"> Study Material </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Assignments </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> HomeWork </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Online Exams </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="{{url('admin/student')}}" class="btn btn-block btn-success"> Student </a></div>
-                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> Media Center </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->Messages}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->newsboard}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->events}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->ClassSchedule}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->vclassSch}}</a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->mailsms}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->mobileNotifications}}</a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->reqVacation}}</a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->staffAttendance}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->Attendance}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->Reports}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->examsList}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="{{url('admin/materials')}}" class="btn btn-block btn-success"> {{$newLang->studyMaterial}}</a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->Assignments}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->Homework}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->Onlineexams}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="{{url('admin/student')}}" class="btn btn-block btn-success"> {{$newLang->student}} </a></div>
+                            <div class="col-md-4" style="margin-bottom: 10px;"><a href="#" class="btn btn-block btn-success"> {{$newLang->mediaCenter}} </a></div>
                         </div>
                     </div>
 
@@ -254,7 +245,7 @@ HomePage
             <div class="col-xl-4">
                 <div class="card profile">
                     <div class="card-body">
-                        <h4 class="card-title ng-binding"> <i class="mdi mdi-bullhorn"></i> News &amp; Events</h4>
+                        <h4 class="card-title ng-binding"> <i class="mdi mdi-bullhorn"></i> {{$newLang->NewsEvents}}</h4>
                     </div>
                 </div>
                 <!-- end card -->
@@ -262,7 +253,7 @@ HomePage
             <div class="col-xl-4">
                 <div class="card profile">
                     <div class="card-body">
-                        <h4 class="card-title ng-binding"> <i class="mdi mdi-message-text-outline"></i> Messages</h4>
+                        <h4 class="card-title ng-binding"> <i class="mdi mdi-message-text-outline"></i> {{$newLang->Messages}}</h4>
                     </div>
                 </div>
                 <!-- end card -->
@@ -270,7 +261,7 @@ HomePage
             <div class="col-xl-4">
                 <div class="card profile">
                     <div class="card-body">
-                        <h4 class="card-title ng-binding"> <i class="mdi mdi-video"></i> Meetings</h4>
+                        <h4 class="card-title ng-binding"> <i class="mdi mdi-video"></i> {{$newLang->Meetings}}</h4>
                     </div>
                 </div>
                 <!-- end card -->
@@ -285,7 +276,7 @@ HomePage
             <div class="col-xl-4">
                 <div class="card profile">
                     <div class="card-body">
-                        <h4 class="card-title ng-binding"> <i class="fa fa-calendar"></i> Calendar</h4>
+                        <h4 class="card-title ng-binding"> <i class="fa fa-calendar"></i> {{$newLang->Calendar}}</h4>
                         <div class="row">
 
                             <div id="calendar" class="fullPageCalendar miniCal is-calendarsPicker" calendar-box="">

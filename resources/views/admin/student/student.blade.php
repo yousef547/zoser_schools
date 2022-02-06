@@ -108,9 +108,7 @@ HomePage
         <div class="" id="card">
             <div class="card">
                 <div class="card-body">
-
                     <h5 class="card-title">List students</h5>
-
                     <div class="table-responsive">
                         <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
@@ -119,11 +117,8 @@ HomePage
                                         <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-colvis" tabindex="0" aria-controls="datatable-buttons" type="button" aria-haspopup="true" aria-expanded="false"><span>Students Admission</span></button></div>
                                     </div>
                                 </div>
-
                             </div>
-
                             <div class="row">
-
                                 <div class="col-sm-12">
                                     <table id="datatable-buttons" class="table table-striped table-bordered w-100 dataTable no-footer" role="grid" aria-describedby="datatable-buttons_info">
                                         <thead>
@@ -153,7 +148,9 @@ HomePage
                                                     <span class="light">
                                                         <br><i class="fa fa-trophy"></i>
                                                         Leader Board
-                                                        <a class="light" href='{{url("admin/teacher/delete_leader")}}/{{$student->id}}'><i class="fas fa-trash"></i></a>
+                                                        @can("students_stdLeaderBoard")
+                                                        <a class="light" href="{{route('student.deleteLeader',$student->id)}}"><i class="fas fa-trash"></i></a>
+                                                        @endcan
                                                     </span>
                                                     @endif
 
@@ -168,13 +165,28 @@ HomePage
                                                     <div class="btn-group-vertical">
                                                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Operations <i class="mdi mdi-chevron-down ms-1"></i></button>
                                                         <div class="dropdown-menu">
+                                                            @can("students_Attendance")
                                                             <a class="dropdown-item" href='{{url("admin/student/attendace/$student->id")}}'><i class="fa fa-eye"></i>Attendance</a>
+                                                            @endcan
+                                                            @can("students_Marksheet")
                                                             <a class="dropdown-item" href="#"><i class="fa fa-table"></i> Marksheet</a>
+                                                            @endcan
+                                                            @can("students_stdLeaderBoard")
                                                             <a class="dropdown-item" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center" onclick='passId("{{$student->id}}")'><i class="fa fa-trophy"></i> Leader Board</a>
+                                                            @endcan
+                                                            @can("students_medHistory")
+
                                                             <a class="dropdown-item" href="#"><i class="fa fa-stethoscope"></i> Medical History</a>
+                                                            @endcan
+                                                            @can("students_Approve")
                                                             <a class="dropdown-item" href='{{url("admin/active_student/$student->id")}}'><i class="far fa-lightbulb"></i> Toggle Account Status</a>
+                                                            @endcan
+                                                            @can("students_editStudent")
                                                             <a class="dropdown-item" href='{{url("admin/student/edit/$student->id")}}'><i class="fas fa-pencil-alt"></i> Edit</a>
+                                                            @endcan
+                                                            @can("students_delStudent")
                                                             <a class="dropdown-item" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center2" onclick='setName("{{$student->fullName}}","{{$student->id}}")'><i class="fa fa-trash-o"></i> Remove</a>
+                                                            @endcan
                                                         </div>
                                                     </div>
                                                 </td>
@@ -279,7 +291,7 @@ HomePage
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{url('admin/teacher/leaderboard')}}">
+                <form method="POST" action="{{route('student.leaderboard')}}">
                     @csrf
                     <input type="hidden" value="55" name="id" class="teacherId">
                     <label class="form-label">Please enter leaderboard message</label>
@@ -304,7 +316,7 @@ HomePage
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h5>Do you sure to remove student  <span id="nameStudent"></span></h5>
+                <h5>Do you sure to remove student <span id="nameStudent"></span></h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
@@ -368,11 +380,12 @@ HomePage
         $('.birthday').text(birthday);
     });
 
-    function setName(nemeStudent,id) {
+    function setName(nemeStudent, id) {
         console.log(nemeStudent)
-        $("#delete").attr("href", "{{url('admin/student/delete/')}}/"+id)
+        $("#delete").attr("href", "{{url('admin/student/delete/')}}/" + id)
         $('#nameStudent').text(nemeStudent)
     }
+
     function passId(id) {
         console.log(id);
         $('.teacherId').val(id);

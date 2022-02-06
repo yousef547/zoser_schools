@@ -62,6 +62,7 @@ class subjectController extends Controller
 
     public function submit(Request $request)
     {
+        // dd($request->subject_id);
         $request->validate([
             'material_title' => 'required|string|min:5|max:50',
             'material_description' => 'required|string|min:5|max:500',

@@ -62,7 +62,7 @@ HomePage
                 <div class="card-block">
                     <div class="m-2">
                         <form method="get" action="{{url('/admin/teacher/search')}}">
-                        @csrf
+                            @csrf
                             <div class="form-group">
                                 <label>Gender</label>
                                 <div class="radio-list">
@@ -99,7 +99,9 @@ HomePage
                                     <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" id="search" aria-controls="datatable-buttons" type="button">
                                         <span>Advanced Search</span>
                                     </button>
+                                    @can("teachers_addTeacher")
                                     <a href="{{url('admin/teacher/create')}}" class="btn btn-secondary buttons-copy buttons-html5">add teacher</a>
+                                    @endcan
                                 </div>
                                 <div class="col-sm-12">
                                     <table id="datatable-buttons" class="table table-striped table-bordered w-100 dataTable no-footer" role="grid" aria-describedby="datatable-buttons_info">
@@ -128,28 +130,37 @@ HomePage
                                                     <span class="light">
                                                         <br><i class="fa fa-trophy"></i>
                                                         Leader Board
+                                                        @can("teachers_teacLeaderBoard")
                                                         <a class="light" href='{{url("admin/teacher/delete_leader")}}/{{$teacher->id}}'><i class="fas fa-trash"></i></a>
+                                                        @endcan
                                                     </span>
                                                     @endif
                                                 </td>
                                                 <td>{{$teacher->username}}</td>
                                                 <td>{{$teacher->email}}</td>
                                                 <td>
-
+                                                    @can("teachers_Approve")
                                                     <a class="btn btn-warning btn-rounded mx-1" onclick='goActive("{{$teacher->id}}")'>
                                                         <i class="far fa-lightbulb"></i>
                                                     </a>
+                                                    @endcan
+                                                    @can("teachers_teacLeaderBoard")
                                                     @if($teacher->isLeaderBoard == null)
                                                     <a class="btn btn-success btn-rounded mx-1" onclick='passId("{{$teacher->id}}")' data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center">
                                                         <i class="fa fa-trophy"></i>
                                                     </a>
                                                     @endif
+                                                    @endcan
+                                                    @can("teachers_EditTeacher")
                                                     <a href='{{url("admin/teacher/edit")}}/{{$teacher->id}}' class="btn btn-info btn-rounded mx-1">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
+                                                    @endcan
+                                                    @can("teachers_delTeacher")
                                                     <a onclick='deleteTeacher("{{$teacher->id}}")' class="btn btn-danger btn-rounded mx-1">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
+                                                    @endcan
                                                 </td>
                                             </tr>
                                             @endforeach

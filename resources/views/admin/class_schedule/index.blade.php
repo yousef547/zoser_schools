@@ -46,7 +46,7 @@ HomePage
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Select class to edit schedule</h5>
+                    <h5 class="card-title">{{$newLang->classEditSch}}</h5>
                     <div class="table-responsive">
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
@@ -59,9 +59,9 @@ HomePage
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col" style="font-size: 20px; font-weight: 600">Section name</th>
-                                                <th scope="col" style="font-size: 20px; font-weight: 600">Section Title</th>
-                                                <th scope="col" style="font-size: 20px; font-weight: 600">Operations</th>
+                                                <th scope="col" style="font-size: 20px; font-weight: 600">{{$newLang->section}}</th>
+                                                <th scope="col" style="font-size: 20px; font-weight: 600">{{$newLang->sectionTitle}}</th>
+                                                <th scope="col" style="font-size: 20px; font-weight: 600">{{$newLang->Operations}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

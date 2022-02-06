@@ -29,7 +29,7 @@ subjects
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Meetings</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->Meetings}}</h4>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@ subjects
                             <div class="row">
                                 <div class="col-sm-12">
                                     @can("Meetings_addMeeting")
-                                    <a class="btn btn-primary" href="{{url('admin/meeting/create')}}">Create Meeting</a>
+                                    <a class="btn btn-primary" href="{{url('admin/meeting/create')}}">{{$newLang->addMeeting}}</a>
                                     @endcan
                                 </div>
                             </div>
@@ -52,10 +52,10 @@ subjects
                                         <thead>
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 30%;">
-                                                    Meeting Title </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 30%;">Scheduled Time</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 30%;">Meeting Presenter </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 10%;">Operations </th>
+                                                    {{$newLang->meetTitle}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 30%;">{{$newLang->meetSchTime}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 30%;">{{$newLang->meetPresenter}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 10%;">{{$newLang->Operations}} </th>
 
 
                                             </tr>
@@ -69,7 +69,7 @@ subjects
                                                 </td>
                                                 <td>{{\Carbon\Carbon::parse($meeting->scheduled_date)->format('y/m/d h:i A')}}
                                                     <br>
-                                                    Duration (Minutes):{{$meeting->conference_duration}}
+                                                    {{$newLang->confDuration}}:{{$meeting->conference_duration}}
                                                 </td>
                                                 <td>{{$meeting->user_host('user')}} </td>
                                                 <td>

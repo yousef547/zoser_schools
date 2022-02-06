@@ -143,7 +143,7 @@ class mediaAlbomController extends Controller
         return view("admin.itemAlbum.show")->with($data);
     }
 
-    public function editItem($id,Request $request)
+    public function editItem($id, Request $request)
     {
         $data['item'] = media_item::find($id);
         if ($data['item'] == null) {
@@ -152,5 +152,15 @@ class mediaAlbomController extends Controller
         }
         // dd($data['item']);
         return view("admin.itemAlbum.edit")->with($data);
+    }
+    public function deleteItem($id)
+    {
+        $media = media_item::find($id);
+        // dd($media);
+        if ($media == null) {
+            return back()->with('error', 'Error ID Not Found');
+        }
+        $media->delete();
+        return back()->with('msg', 'Successed delete Album');
     }
 }

@@ -10,21 +10,27 @@ use App\Http\Controllers\admin\departmentController as AdminDepartmentController
 use App\Http\Controllers\admin\employeeController;
 use App\Http\Controllers\admin\eventController;
 use App\Http\Controllers\admin\examController;
+use App\Http\Controllers\admin\examsController;
+use App\Http\Controllers\admin\finalexamContoller;
 use App\Http\Controllers\admin\GradelevelsController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\languagesController;
 use App\Http\Controllers\admin\levelController;
+use App\Http\Controllers\admin\leveltestContoller;
 use App\Http\Controllers\admin\mediaAlbomController;
 use App\Http\Controllers\admin\meetimgController;
 use App\Http\Controllers\admin\OfficeController;
 use App\Http\Controllers\admin\parentController;
 use App\Http\Controllers\admin\questionsController;
 use App\Http\Controllers\admin\recordController;
+use App\Http\Controllers\admin\reportController;
 use App\Http\Controllers\admin\roleController;
 use App\Http\Controllers\admin\ruleController;
 use App\Http\Controllers\admin\settingsController;
 use App\Http\Controllers\admin\studentController;
 use App\Http\Controllers\admin\subjectController;
 use App\Http\Controllers\admin\teacherController as AdminTeacherController;
+use App\Http\Controllers\admin\testexamContoller;
 use App\Http\Controllers\admin\vacationController;
 use App\Http\Controllers\admin\virtualClassController;
 use App\Http\Controllers\databaseController;
@@ -62,26 +68,38 @@ Route::get('/phone_calls', [OfficeController::class, 'Phone']);
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name("home");
-        Route::get('/materials', [subjectController::class, 'Materials']);
-        Route::get('/materials/{id}', [subjectController::class, 'getMaterials']);
-        Route::get('/materials/create/{subject}', [subjectController::class, 'create']);
-        Route::get('/materials/create/getSection/{id}', [subjectController::class, 'getSection']);
-        Route::post('/materials/store', [subjectController::class, 'submit']);
-        Route::get('/materials/update/{id}', [subjectController::class, 'update']);
-        Route::post('/materials/edit', [subjectController::class, 'edit']);
-        Route::get('/materials/delete/{id}', [subjectController::class, 'remove']);
-        Route::get('/student', [studentController::class, 'getStudent'])->name('admin.student');
-        Route::get('/active_student/{id}', [studentController::class, 'activation']);
-        Route::get('/student/create', [studentController::class, 'create']);
-        Route::post('/student/submit', [studentController::class, 'submit']);
-        Route::get('/student/filter', [studentController::class, 'filter']);
-        Route::get('/student/edit/{id}', [studentController::class, 'edit']);
-        Route::post('/student/update/{id}', [studentController::class, 'update']);
-        Route::get('/student/delete/{id}', [studentController::class, 'delete']);
-        Route::get('/student/attendace/{id}', [studentController::class, 'attendace']);
-        Route::get('/sections/{id}', [studentController::class, 'sections']);
-        Route::get('/apiStudent/{gender}/{class}/{section}', [studentController::class, 'studentApi']);
-        Route::get('/edit_active/{id}', [studentController::class, 'editActive']);
+        /**************************start materials ****************** */
+        Route::group(['prefix' => 'materials'], function () {
+            Route::get('/', [subjectController::class, 'Materials'])->middleware("can:studyMaterial_list");
+            Route::get('/{id}', [subjectController::class, 'getMaterials'])->middleware("can:studyMaterial_list");
+            Route::get('/create/{subject}', [subjectController::class, 'create'])->middleware("can:studyMaterial_addMaterial");
+            Route::get('/create/getSection/{id}', [subjectController::class, 'getSection'])->middleware("can:studyMaterial_list");
+            Route::post('/store', [subjectController::class, 'submit'])->middleware("can:studyMaterial_addMaterial");
+            Route::get('/update/{id}', [subjectController::class, 'update'])->middleware("can:studyMaterial_editMaterial");
+            Route::post('/edit', [subjectController::class, 'edit'])->middleware("can:studyMaterial_editMaterial");
+            Route::get('/delete/{id}', [subjectController::class, 'remove'])->middleware("can:studyMaterial_delMaterial`");
+        });
+        /************************** end materials ****************** */
+
+        /**************************start student ****************** */
+        Route::group(['prefix' => 'student'], function () {
+            Route::get('/', [studentController::class, 'getStudent'])->name('admin.student')->middleware("can:students_list");
+            Route::get('/create', [studentController::class, 'create'])->middleware("can:students_admission");
+            Route::post('/submit', [studentController::class, 'submit'])->middleware("can:students_admission");
+            Route::get('/filter', [studentController::class, 'filter'])->middleware("can:students_list");
+            Route::get('/edit/{id}', [studentController::class, 'edit'])->middleware("can:students_editStudent");
+            Route::post('/update/{id}', [studentController::class, 'update'])->middleware("can:students_editStudent");
+            Route::get('/delete/{id}', [studentController::class, 'delete'])->middleware("can:students_delStudent");
+            Route::get('/attendace/{id}', [studentController::class, 'attendace'])->middleware("can:students_list");
+            Route::get('/sections/{id}', [studentController::class, 'sections'])->middleware("can:students_list");
+            Route::get('/deleteLeader/{id}', [AdminTeacherController::class, 'deleteLeader'])->name("student.deleteLeader")->middleware("can:students_stdLeaderBoard");
+            Route::post('/leaderboard', [AdminTeacherController::class, 'leaderBoard'])->name("student.leaderboard")->middleware("can:students_stdLeaderBoard");
+        });
+        Route::get('/active_student/{id}', [studentController::class, 'activation'])->middleware("can:students_Approve");
+        Route::get('/apiStudent/{gender}/{class}/{section}', [studentController::class, 'studentApi'])->middleware("can:students_list");
+        Route::get('/edit_active/{id}', [studentController::class, 'editActive'])->middleware("can:students_list");
+        /**************************end student ****************** */
+
 
         /**************************start subjects ****************** */
         Route::group(['prefix' => 'subjects'], function () {
@@ -93,21 +111,25 @@ Route::group(['middleware' => ['auth']], function () {
         });
         /**************************end subjects ****************** */
 
+        /*************************** start teacher ************* */
 
+        Route::group(['prefix' => 'teacher'], function () {
+            Route::get('/', [AdminTeacherController::class, 'index'])->middleware("can:teachers_list");
+            Route::get('/create', [AdminTeacherController::class, 'addTeacher'])->middleware("can:teachers_addTeacher");
+            Route::post('/store', [AdminTeacherController::class, 'store'])->middleware("can:teachers_addTeacher");
+            Route::post('/leaderboard', [AdminTeacherController::class, 'leaderBoard'])->middleware("can:teachers_teacLeaderBoard");
+            Route::get('/delete_leader/{id}', [AdminTeacherController::class, 'deleteLeader'])->middleware("can:teachers_teacLeaderBoard");
+            Route::get('/active/{id}', [AdminTeacherController::class, 'editActive'])->middleware("can:teachers_Approve");
+            Route::get('/edit/{id}', [AdminTeacherController::class, 'editTeacher'])->middleware("can:teachers_EditTeacher");
+            Route::post('/update', [AdminTeacherController::class, 'uptate'])->middleware("can:teachers_EditTeacher");
+            Route::get('/delete/{id}', [AdminTeacherController::class, 'delete'])->middleware("can:teachers_delTeacher");
+            Route::get('/delete/{id}', [AdminTeacherController::class, 'delete'])->middleware("can:teachers_delTeacher");
+            Route::get('/search', [AdminTeacherController::class, 'searchGender'])->middleware("can:teachers_list");
+            Route::get('/filters', [AdminTeacherController::class, 'searchGender'])->middleware("can:teachers_list");
+        });
 
-        Route::get('teacher', [AdminTeacherController::class, 'index']);
-        Route::get('teacher/create', [AdminTeacherController::class, 'addTeacher']);
-        Route::post('/teacher/store', [AdminTeacherController::class, 'store']);
-        Route::post('/teacher/leaderboard', [AdminTeacherController::class, 'leaderBoard']);
-        Route::get('/teacher/delete_leader/{id}', [AdminTeacherController::class, 'deleteLeader']);
-        Route::get('/teacher/active/{id}', [AdminTeacherController::class, 'editActive']);
-        Route::get('/teacher/edit/{id}', [AdminTeacherController::class, 'editTeacher']);
-        Route::post('/teacher/update', [AdminTeacherController::class, 'uptate']);
-        Route::get('/teacher/delete/{id}', [AdminTeacherController::class, 'delete']);
-        Route::get('/teacher/delete/{id}', [AdminTeacherController::class, 'delete']);
-        Route::get('/teacher/search', [AdminTeacherController::class, 'searchGender']);
-        Route::get('/teacher/filters', [AdminTeacherController::class, 'searchGender']);
         /*************************** start employee ************* */
+
         Route::group(['prefix' => 'employee'], function () {
             Route::get('/', [employeeController::class, 'index'])->middleware("can:employees_list");
             Route::get('/active/{id}', [employeeController::class, 'editActive'])->middleware("can:employees_editEmployee");
@@ -254,46 +276,103 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/my_vacations', [vacationController::class, 'myVacations'])->middleware("Vacation_myVacation");
         });
         /************* end  vacation ***************/
+        /************* start  media ***************/
 
+        Route::group(['prefix' => 'media'], function () {
+            Route::get('/', [mediaAlbomController::class, 'index'])->middleware("can:mediaCenter_View");
+            Route::get('/upload', [mediaAlbomController::class, 'upload'])->middleware("can:mediaCenter_addAlbum");
+            Route::post('/submit_upload', [mediaAlbomController::class, 'submitUpload'])->middleware("can:mediaCenter_addAlbum");
+            Route::get('/show/{id}', [mediaAlbomController::class, 'show'])->middleware("can:mediaCenter_View");
+            Route::get('/edit/{id}', [mediaAlbomController::class, 'edit'])->middleware("can:mediaCenter_editAlbum");
+            Route::post('/submit_edit/{id}', [mediaAlbomController::class, 'updata'])->middleware("can:mediaCenter_editAlbum");
+            Route::get('/delete/{id}', [mediaAlbomController::class, 'delete'])->middleware("can:mediaCenter_delAlbum");
+        });
+        /************* end  media ***************/
 
-        Route::get('media', [mediaAlbomController::class, 'index']);
-        Route::get('media/upload', [mediaAlbomController::class, 'upload']);
-        Route::post('media/submit_upload', [mediaAlbomController::class, 'submitUpload']);
-        Route::get('media/show/{id}', [mediaAlbomController::class, 'show']);
-        Route::get('media/edit/{id}', [mediaAlbomController::class, 'edit']);
-        Route::post('media/submit_edit/{id}', [mediaAlbomController::class, 'updata']);
-        Route::get('media/delete/{id}', [mediaAlbomController::class, 'delete']);
-        Route::get('item/create', [mediaAlbomController::class, 'create']);
-        Route::post('item/submit_item', [mediaAlbomController::class, 'submitItem']);
-        Route::get('item/show/{id}', [mediaAlbomController::class, 'showItem']);
-        Route::get('item/edit/{id}', [mediaAlbomController::class, 'editItem']);
-        Route::get('virtual_Class', [virtualClassController::class, 'index']);
-        Route::get('virtual_Class/timetable/{id}', [virtualClassController::class, 'timetable']);
+        /************* start  item ***************/
+        Route::group(['prefix' => 'item'], function () {
+            Route::get('/create', [mediaAlbomController::class, 'create'])->middleware("can:mediaCenter_addMedia");
+            Route::post('/submit_item', [mediaAlbomController::class, 'submitItem'])->middleware("can:mediaCenter_addMedia");
+            Route::get('/show/{id}', [mediaAlbomController::class, 'showItem'])->middleware("can:mediaCenter_editMedia");
+            Route::get('/edit/{id}', [mediaAlbomController::class, 'editItem'])->middleware("can:mediaCenter_editMedia");
+            Route::get('/delete/{id}', [mediaAlbomController::class, 'deleteItem'])->middleware("can:mediaCenter_delMedia");
+        });
+        /************* end  item ***************/
+        /************* start  virtual_Class ***************/
+        Route::prefix('virtual_Class')->group(function () {
+            Route::get('/', [virtualClassController::class, 'index']);
+            Route::get('/timetable/{id}', [virtualClassController::class, 'timetable']);
+        });
+        /************* end  virtual_Class ***************/
+        /************* start  level ***************/
 
         Route::prefix('level')->group(function () {
-            Route::get('/', [examController::class, 'index'])->name("level");
-            Route::get('/create', [examController::class, 'create'])->name("level.create");
-            Route::post('/submit', [examController::class, 'submit'])->name("level.submit");
-            Route::get('/edit/{id}', [examController::class, 'edit'])->name("level.edit");
-            Route::post('/update/{id}', [examController::class, 'update'])->name("level.update");
-            Route::get('/view/{id}', [examController::class, 'view'])->name("level.view");
+            Route::get('/', [levelController::class, 'index'])->name("level")->middleware("can:level_show");
+            Route::get('/create', [levelController::class, 'create'])->name("level.create")->middleware("can:level_create");
+            Route::post('/submit', [levelController::class, 'submit'])->name("level.submit")->middleware("can:level_create");
+            Route::get('/view/{id}', [levelController::class, 'view'])->name("level.view")->middleware("can:level_show_question");
+            Route::get('/edit/{id}', [levelController::class, 'edit'])->name("level.edit")->middleware("can:level_edit");
+            Route::post('/update/{id}', [levelController::class, 'update'])->name("level.update")->middleware("can:level_edit");
+        });
+        /************* end  level ***************/
+        /********************* start level test *********************************/
+
+        Route::prefix('level_test')->group(function () {
+            Route::get('/', [leveltestContoller::class, 'index'])->name("level_test")->middleware("can:test_show");
+            Route::post('submit', [leveltestContoller::class, 'submit'])->name("level_test.submit")->middleware("can:test_create");
+            Route::get('add/{level}/{test}', [leveltestContoller::class, 'add'])->name("level_test.add")->middleware("can:test_add_questions");
+            Route::post('addQusetions', [leveltestContoller::class, 'addQusetions'])->name("level_test.addQusetions")->middleware("can:test_add_questions");
+            Route::get('show/{level}/{test}', [leveltestContoller::class, 'show'])->name("level_test.show")->middleware("can:test_show");
         });
 
+
+        /********************* end level test *********************************/
+        /************* start  questions ***************/
         Route::prefix('questions')->group(function () {
-            Route::get('/', [questionsController::class, 'index'])->name("questions");
-            Route::get('/create', [questionsController::class, 'create'])->name("questions.create");
-            Route::post('/choices', [questionsController::class, 'choices'])->name("questions.choices");
-            Route::post('/correction', [questionsController::class, 'correction'])->name("questions.correction");
-            Route::post('/recording', [questionsController::class, 'recording'])->name("questions.recording");
-            Route::post('/vedio', [questionsController::class, 'vedio'])->name("questions.vedio");
-            Route::post('/reading', [questionsController::class, 'reading'])->name("questions.reading");
+            Route::get('', [questionsController::class, 'index'])->name("questions")->middleware("can:question_show");
+            Route::post('/choices', [questionsController::class, 'choices'])->name("questions.choices")->middleware("can:question_create");
+            Route::post('/correction', [questionsController::class, 'correction'])->name("questions.correction")->middleware("can:question_create");
+            Route::post('/recording', [questionsController::class, 'recording'])->name("questions.recording")->middleware("can:question_create");
+            Route::post('/vedio', [questionsController::class, 'vedio'])->name("questions.vedio")->middleware("can:question_create");
+            Route::post('/reading', [questionsController::class, 'reading'])->name("questions.reading")->middleware("can:question_create");
         });
-        Route::prefix('exam')->group(function () {
-            Route::get('/', [levelController::class, 'index'])->name("exam");
-            Route::get('/show/{id}', [levelController::class, 'show'])->name("exam.show");
-            Route::post('/submit/{id}', [levelController::class, 'submit'])->name("exam.submit");
+        /************* end  questions ***************/
+        /************* start  exam & report ***************/
+        Route::prefix('exam')->middleware("can:examLevel_show")->group(function () {
+            Route::get('/', [examsController::class, 'index'])->name("exam");
+            Route::get('/test/{id}', [examsController::class, 'test'])->name("exam.test");
+            Route::get('/show/{level}/{test}', [examsController::class, 'show'])->name("exam.show");
+            Route::post('/submit/{level}/{test}', [examsController::class, 'submit'])->name("exam.submit");
         });
 
+        Route::prefix('report')->group(function () {
+            Route::get('/', [reportController::class, 'index'])->name("report")->middleware("can:report_show");
+            Route::get('/report/{id}', [reportController::class, 'create'])->name("report.show")->middleware("can:report_create");
+            Route::post('/submit', [reportController::class, 'submit'])->name("report.submit")->middleware("can:report_create");
+            Route::get('/myreport', [reportController::class, 'myreport'])->name("report.myreport")->middleware("can:report_show_myreport");
+            Route::get('/myreport/show/{id}', [reportController::class, 'myreportShow'])->name("report.myreport.show")->middleware("can:report_show_myreport");
+            Route::get('/details/{id}', [reportController::class, 'details'])->name("report.details")->middleware("can:report_show");
+        });
+        /************* end  exam & report ***************/
+        /********************* start final Exam *********************************/
+        Route::prefix('finalexam')->group(function () {
+            Route::get('/', [finalexamContoller::class, 'index'])->name("finalexam")->middleware("can:finelExam_show");
+            Route::post('save', [finalexamContoller::class, 'save'])->name("finalexam.save")->middleware("can:finelExam_create");
+            Route::get('add/{id}', [finalexamContoller::class, 'add'])->name("finalexam.add")->middleware("can:finelExam_add_questions");
+            Route::get('show/{id}', [finalexamContoller::class, 'show'])->name("finalexam.show")->middleware("can:finelExam_add_questions");
+            Route::post('submit', [finalexamContoller::class, 'submit'])->name("finalexam.submit")->middleware("can:finelExam_add_questions");
+            Route::get('filter', [finalexamContoller::class, 'filter'])->name("finalexam.filter")->middleware("can:finelExam_add_questions");
+        });
+
+        Route::prefix('testexam')->group(function () {
+            Route::get('/', [testexamContoller::class, 'index'])->name("testexam");
+            Route::get('test/{id}', [testexamContoller::class, 'test'])->name("testexam.test");
+            Route::post('submit', [testexamContoller::class, 'submit'])->name("testexam.submit");
+            // Route::get('add/{id}', [finalexamContoller::class, 'add'])->name("finalexam.add");
+        });
+
+        /********************* end final Exam *********************************/
+        /************* start  role ***************/
         Route::group(['prefix' => 'role'], function () {
             Route::get('/', [roleController::class, 'index'])->name("role")->middleware('can:roles_list');
             Route::get('/create', [roleController::class, 'create'])->name("role.create")->middleware('can:roles_add_role');
@@ -301,12 +380,30 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/edit/{id}', [roleController::class, 'edit'])->name("role.edit")->middleware('can:roles_modify_role');
             Route::post('/update/{id}', [roleController::class, 'update'])->name("role.update")->middleware('can:roles_modify_role');
         });
-
-        // dbExport_dbExport
+        /************* end  role ***************/
+        /************* start  dbExport_dbExport ***************/
         Route::group(['prefix' => 'database', 'middleware' => 'can:dbExport_dbExport'], function () {
             Route::get('/', [AdminDatabaseController::class, 'index'])->name("database");
             Route::get('/our_backup_database', [AdminDatabaseController::class, 'our_backup_database'])->name('our_backup_database');
         });
+        /************* end  dbExport_dbExport ***************/
+
+
+        /************* start languages ***************/
+        Route::group(['prefix' => 'languages'], function () {
+            Route::get("/",[languagesController::class,"index"])->name("languages")->middleware("can:Languages_list");
+            Route::get("/create",[languagesController::class,"create"])->name("languages.create")->middleware("can:Languages_addLanguage");
+            Route::post("/submit",[languagesController::class,"submit"])->name("languages.submit")->middleware("can:Languages_addLanguage");
+            Route::get("/edit/{id}",[languagesController::class,"edit"])->name("languages.edit")->middleware("can:Languages_editLanguage");
+            Route::post("/update/{id}",[languagesController::class,"update"])->name("languages.update")->middleware("can:Languages_editLanguage");
+
+
+
+            Route::get("submitLang/{id}",[languagesController::class,"submitLang"])->name("languages.submitLang");
+
+        });
+
+        /************* end languages ***************/
 
 
 
@@ -323,12 +420,13 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-        Route::get('record', [recordController::class, 'index']);
+
+        Route::get('record', [recordController::class, 'index'])->name("record");
         Route::get('record/send', [recordController::class, 'send']);
     });
 });
 
 
-Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
-    Route::get('/', [TeacherController::class, 'index']);
-});
+// Route::prefix('teacher')->middleware(['auth', 'isTeacher'])->group(function () {
+//     Route::get('/', [TeacherController::class, 'index']);
+// });

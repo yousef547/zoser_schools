@@ -30,6 +30,20 @@ class studentController extends Controller
         // dd($data['sections']);
         return view('admin.student.student')->with($data);
     }
+    public function deleteLeader($id, Request $request)
+    {
+        $user = User::find($id);
+        if ($user == null) {
+            $request->session()->flash('error', 'Error ID Not Found');
+            return back();
+        }
+        User::where('id', '=', $id)->update([
+            'isLeaderBoard' => null,
+        ]);
+        $request->session()->flash('msg', 'Delete successed ');
+        return back();
+    }
+
     public function activation($id, Request $request)
     {
         $user = User::find($id);
@@ -260,8 +274,9 @@ class studentController extends Controller
         $request->session()->flash('msg', 'Successed Removed Employee');
         return back();
     }
-    public function attendace($id){
-        $data['studentAttendance'] = attendance::where('id',$id)->get();
+    public function attendace($id)
+    {
+        $data['studentAttendance'] = attendance::where('id', $id)->get();
         return view('admin.student.Attendance')->with($data);
     }
 }

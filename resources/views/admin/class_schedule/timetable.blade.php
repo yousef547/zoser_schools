@@ -67,19 +67,43 @@ HomePage
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h5 class="card-title">Classes Schedule : Class {{$section->classe->className}} Section name {{$section->sectionTitle}}</h5>
+                                    <h5 class="card-title">{{$newLang->classSch." : ".$newLang->className." ".$section->classe->classNam." ".$newLang->section." ".$section->sectionTitle}}</h5>
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col" style="font-size: 20px; font-weight: 600; width:10%">Day</th>
-                                                <th scope="col" style="font-size: 20px; font-weight: 600; width:80%">Class Schedule</th>
-                                                <th scope="col" style="font-size: 20px; font-weight: 600; width:10%">Add Schedule</th>
+                                                <th scope="col" style="font-size: 20px; font-weight: 600; width:10%">{{$newLang->day}}</th>
+                                                <th scope="col" style="font-size: 20px; font-weight: 600; width:80%">{{$newLang->ClassSchedule}}</th>
+                                                <th scope="col" style="font-size: 20px; font-weight: 600; width:10%">{{$newLang->addSch}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($days as $day)
                                             <tr>
-                                                <td>{{$day->day}}</td>
+                                                <td>
+                                                    @switch($day->day)
+                                                    @case("Sunday")
+                                                    {{$newLang->Sunday}}
+                                                    @break
+                                                    @case("Monday")
+                                                    {{$newLang->Monday}}
+                                                    @break
+                                                    @case("Tuesday")
+                                                    {{$newLang->Tuesday}}
+                                                    @break
+                                                    @case("Wednesday")
+                                                    {{$newLang->Wednesday}}
+                                                    @break
+                                                    @case("Thursday")
+                                                    {{$newLang->Thurusday}}
+                                                    @break
+                                                    @case("Friday")
+                                                    {{$newLang->Friday}}
+                                                    @break
+                                                    @case("Saturday")
+                                                    {{$newLang->Saturday}}
+                                                    @break
+                                                    @endswitch
+                                                </td>
                                                 <td>
                                                     <div class="row">
                                                         @foreach($schedules as $schedule)
@@ -96,7 +120,7 @@ HomePage
                                                                     <div class="col-md-5 text-center">
                                                                         <span>{{$schedule->startTime}}</span>
                                                                         <br>
-                                                                        TO
+                                                                        {{$newLang->to}}
                                                                         <br>
                                                                         <span>{{$schedule->endTime}}</span>
                                                                     </div>
@@ -108,11 +132,11 @@ HomePage
                                                                             </button>
                                                                             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                                                 @can("classSch_editSch" )
-                                                                                <li><a class="dropdown-item" data-bs-toggle="modal" onclick='getSchedule("{{$section->classe->id}}","{{$section->id}}","{{$day->id}}","{{$schedule->subjectTitle}}","{{$schedule->user_id}}","{{$schedule->startTime}}","{{$schedule->endTime}}","{{$schedule->id}}")' data-bs-target="#exampleModal">Edit</a></li>
+                                                                                <li><a class="dropdown-item" data-bs-toggle="modal" onclick='getSchedule("{{$section->classe->id}}","{{$section->id}}","{{$day->id}}","{{$schedule->subjectTitle}}","{{$schedule->user_id}}","{{$schedule->startTime}}","{{$schedule->endTime}}","{{$schedule->id}}")' data-bs-target="#exampleModal">{{$newLang->Edit}}</a></li>
                                                                                 @endcan
                                                                                 @can("classSch_delSch" )
 
-                                                                                <li><a class="dropdown-item" data-bs-toggle="modal" onclick='removeClass("{{$schedule->subjectTitle}}","{{$schedule->id}}")' data-bs-target="#exampleModalRemove">Remove</a></li>
+                                                                                <li><a class="dropdown-item" data-bs-toggle="modal" onclick='removeClass("{{$schedule->subjectTitle}}","{{$schedule->id}}")' data-bs-target="#exampleModalRemove">{{$newLang->Remove}}</a></li>
                                                                                 @endcan
                                                                             </ul>
                                                                         </div>
@@ -154,7 +178,6 @@ HomePage
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title align-self-center" id="exampleModalform1">New message</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -165,10 +188,10 @@ HomePage
                     <input type="hidden" name="section_id" value="{{$section->id}}">
                     <input type="hidden" name="day_id" id="day">
                     <div class="mb-3 row">
-                        <label class="col-sm-2 form-label">Subject</label>
+                        <label class="col-sm-2 form-label">{{$newLang->subjectName}}</label>
                         <div class="col-sm-12">
                             <select name="subject_id" class="form-select">
-                                <option selected="">Open this select menu</option>
+                                <option selected="">{{$newLang->select." ".$newLang->Subject}}</option>
                                 @foreach($subjects as $subject)
                                 <option value="{{$subject->id}}">{{$subject->subjectTitle}}</option>
                                 @endforeach
@@ -176,10 +199,10 @@ HomePage
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-sm-2 form-label">Teacher</label>
+                        <label class="col-sm-2 form-label">{{$newLang->teacher}}</label>
                         <div class="col-sm-12">
                             <select name="user_id" class="form-select">
-                                <option selected="">Open this select menu</option>
+                                <option selected="">{{$newLang->select." ".$newLang->teacher}}</option>
                                 @foreach($teachers as $teacher)
                                 <option value="{{$teacher->id}}">{{$teacher->username}}</option>
                                 @endforeach
@@ -187,14 +210,14 @@ HomePage
                         </div>
                     </div>
                     <div class="md-form">
-                        <label class="my-2" for="input_starttime">Start Time</label>
+                        <label class="my-2" for="input_starttime">{{$newLang->startTime}}</label>
                         <input placeholder="Selected time" type="time" id="timePicker" name="startTime" class="form-control timepicker">
                     </div>
                     <div class="md-form">
-                        <label class="my-2" for="input_starttime">End Time</label>
+                        <label class="my-2" for="input_starttime">{{$newLang->endTime}}</label>
                         <input placeholder="Selected time" type="time" name="endTime" id="timePicker2" class="form-control timepicker">
                     </div>
-                    <button type="submit" class="btn btn-primary w-lg mt-2">submit</button>
+                    <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
                 </form>
             </div>
         </div>
@@ -206,18 +229,17 @@ HomePage
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="get" action="{{url('admin/class_schedulr/delete')}}">
                 @csrf
                 <input type="hidden" name="id" id="itemId">
                 <div class="modal-body">
-                    <p>Are You Sure Delete Subject <span id="removeSubject"></span></p>
+                    <p>{{$newLang->delSubject}} <span id="removeSubject"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Remove</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{$newLang->close}}</button>
+                    <button type="submit" class="btn btn-primary">{{$newLang->Remove}}</button>
                 </div>
             </form>
         </div>
@@ -229,7 +251,6 @@ HomePage
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title align-self-center" id="exampleModalform1">New message</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -241,10 +262,10 @@ HomePage
                     <input type="hidden" name="section_id" id="section">
                     <input type="hidden" name="day_id" id="dayId">
                     <div class="mb-3 row">
-                        <label class="col-sm-2 form-label">Subject</label>
+                        <label class="col-sm-2 form-label">{{$newLang->subjectName}}</label>
                         <div class="col-sm-12">
                             <select name="subject_id" id="subject" class="form-select">
-                                <option selected="">Open this select menu</option>
+                                <option selected="">{{$newLang->select." ".$newLang->Subject}}</option>
                                 @foreach($subjects as $subject)
                                 <option class="sub" id="{{$subject->subjectTitle}}" value="{{$subject->id}}">{{$subject->subjectTitle}}</option>
                                 @endforeach
@@ -252,10 +273,10 @@ HomePage
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-sm-2 form-label">Teacher</label>
+                        <label class="col-sm-2 form-label">{{$newLang->teacher}}</label>
                         <div class="col-sm-12">
                             <select name="user_id" id="user" class="form-select">
-                                <option>Open this select menu</option>
+                                <option>{{$newLang->select." ".$newLang->teacher}}</option>
                                 @foreach($teachers as $teacher)
                                 <option class="teachers" value="{{$teacher->id}}">{{$teacher->username}}</option>
                                 @endforeach
@@ -263,14 +284,14 @@ HomePage
                         </div>
                     </div>
                     <div class="md-form">
-                        <label class="my-2" for="input_starttime">Start Time</label>
+                        <label class="my-2" for="input_starttime">{{$newLang->startTime}}</label>
                         <input placeholder="Selected time" type="time" id="start" name="startTime" class="form-control timepicker">
                     </div>
                     <div class="md-form">
-                        <label class="my-2" for="input_starttime">End Time</label>
+                        <label class="my-2" for="input_starttime">{{$newLang->endTime}}</label>
                         <input placeholder="Selected time" type="time" name="endTime" id="end" class="form-control timepicker">
                     </div>
-                    <button type="submit" class="btn btn-primary w-lg mt-2">submit</button>
+                    <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
                 </form>
             </div>
         </div>

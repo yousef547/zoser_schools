@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\levels;
+use App\Models\level;
 use App\Models\question;
 use App\Models\questions_info;
 use Illuminate\Http\Request;
@@ -11,14 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class questionsController extends Controller
 {
+   
     public function index()
     {
-        return view("admin.questions.index");
-    }
-    public function create()
-    {
-        $levels = levels::get();
-        return view("admin.questions.create", compact("levels"));
+        $levels = level::get();
+        return view("admin.questions.index", compact("levels"));
     }
     public function choices(Request $request)
     {

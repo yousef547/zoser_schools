@@ -2,6 +2,21 @@
 
 $roles_perms = array(
     "academicyears" => array("list", "addAcademicyear", "editAcademicYears", "delAcademicYears"),
+    "level&exam" => array("show"),
+    "level" => array("show","show_question","create","edit"),
+    "question" => array("show","create"),
+    "test" => array("show","create","add_questions",),
+    "finelExam" => array("show","create","add_questions","pass"),
+    "examLevel" => array("show"),
+
+
+    "report" => array("show","create","show_myreport",),
+    
+
+
+    "Exam&report" => array("show"),
+
+
     "staticPages" => array("list", "addPage", "editPage", "delPage"),
     "Administrators" => array("list", "addAdministrator", "editAdministrator", "delAdministrator"),
     "employees" => array("list", "addEmployee", "editEmployee", "delEmployee"),
