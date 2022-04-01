@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "223cb634c868104a93c5c10ebf1a0b23",
+    "content-hash": "0c1de9d43fb6d0f3e74455118b1659cd",
     "packages": [
         {
             "name": "ably/ably-php",
@@ -2342,6 +2342,58 @@
                 "source": "https://github.com/opis/closure/tree/3.6.2"
             },
             "time": "2021-04-09T13:42:10+00:00"
+        },
+        {
+            "name": "outscraper/google-maps-scraper-php",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/outscraper/google-maps-scraper-php.git",
+                "reference": "fb82db87c9f86db0e06957fc4f70ebb8a16ef613"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/outscraper/google-maps-scraper-php/zipball/fb82db87c9f86db0e06957fc4f70ebb8a16ef613",
+                "reference": "fb82db87c9f86db0e06957fc4f70ebb8a16ef613",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "google-maps-scraper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vlad",
+                    "email": "vlad@outscraper.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP SDK that allows scraping Google Maps and Google Reviews via Outscraper API.",
+            "homepage": "https://github.com/outscraper/google-maps-scraper-php",
+            "keywords": [
+                "Google Maps scraper",
+                "Google Reviews",
+                "Google Reviews scraper",
+                "Outscrpaer",
+                "google",
+                "google maps",
+                "google places",
+                "scrape google maps"
+            ],
+            "support": {
+                "issues": "https://github.com/outscraper/google-maps-scraper-php/issues",
+                "source": "https://github.com/outscraper/google-maps-scraper-php/tree/v1.1.1"
+            },
+            "time": "2021-11-20T14:56:27+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",

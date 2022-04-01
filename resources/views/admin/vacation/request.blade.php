@@ -45,32 +45,32 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Vacation</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->Vacation}}</h4>
             </div>
         </div>
         <div class="col-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">Select vacation dates</h5>
+                    <h5 class="card-title">{{$newLang->selectVacationDates}}</h5>
                     <form method="POST" action="{{url('admin/vacation/submit')}}">
                         @csrf
                         <div class="row">
                             <div class="col-lg-12 mt-3">
-                                <label for="example-date-input" class="col-sm-2 form-label">From</label>
+                                <label for="example-date-input" class="col-sm-2 form-label">{{$newLang->from}}</label>
                                 <div class="mb-0 row">
                                     <div class="col-sm-12">
                                         <input class="form-control" type="date" name="from" id="example-date-input">
                                     </div>
                                 </div>
 
-                                <label for="example-date-input" class="mt-3 col-sm-2 form-label">To</label>
+                                <label for="example-date-input" class="mt-3 col-sm-2 form-label">{{$newLang->to}}</label>
                                 <div class="mb-0 row">
                                     <div class="col-sm-12">
                                         <input class="form-control" name="to" type="date" id="example-date-input">
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary w-lg mt-2">Submit</button>
+                                <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
                             </div>
                         </div>
                     </form>

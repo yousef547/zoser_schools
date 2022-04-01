@@ -39,14 +39,14 @@ HomePage
         @include('admin.inc.massage')
         <div class="col-6">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h2 class="mb-0 font-size-18">Teacher</h2>
+                <h2 class="mb-0 font-size-18">{{$newLang->studyMaterial}}</h2>
 
             </div>
         </div>
         <div class="col-6">
             <div class="page-title-box d-flex align-items-center justify-content-end">
                 <div class="d-flex flex-column text-end justify-content-end" style="width: 35%;">
-                    <h4 class="mb-0 font-size-18">Search by Week</h4><br>
+                    <h4 class="mb-0 font-size-18">{{$newLang->SearchWeek}}</h4><br>
                     <select name="week" class="w-100" style="height: 30px;">
                         <option value=""></option>
                         @foreach($weeks as $week)
@@ -69,19 +69,19 @@ HomePage
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
                                     @can("studyMaterial_addMaterial")
-                                    <a href="{{url('admin/materials/create')}}/{{$sub_id}}" class="btn btn-secondary buttons-copy buttons-html5">add materials</a>
+                                    <a href="{{url('admin/materials/create')}}/{{$sub_id}}" class="btn btn-secondary buttons-copy buttons-html5">{{$newLang->addMaterial}}</a>
                                     @endcan
                                 </div>
                                 <div class="col-sm-12">
                                     <table id="datatable" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 15%;">Material Title</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:25%;"> Material Description</th>
-                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 15%;">Subject name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:10%;"> Week</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:15%;"> Classes</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%">Operations</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 15%;">{{$newLang->materialTitle}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:25%;"> {{$newLang->materialTitle}} </th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 15%;">{{$newLang->subjectName}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:10%;"> {{$newLang->week}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:15%;"> {{$newLang->class}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%">{{$newLang->Operations}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

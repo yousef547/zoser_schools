@@ -45,30 +45,30 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Section</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->Sec}}</h4>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">List Section</h5>
+                    <h5 class="card-title">{{$newLang->listSections}}</h5>
                     <div class="table-responsive">
 
                         <form method="POST" action="{{url('admin/section/submitSection')}}">
                             @csrf
-                            <label class="col-sm-2 text-right control-label col-form-label ng-binding">Section name * </label>
+                            <label class="col-sm-2 text-right control-label col-form-label ng-binding">{{$newLang->section}} * </label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="sectionName" placeholder="Class name">
+                                    <input type="text" class="form-control" name="sectionName" placeholder="{{$newLang->section}}">
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label ng-binding">Section Title * </label>
+                            <label class="col-sm-2 text-right control-label col-form-label ng-binding">{{$newLang->sectionTitle}} * </label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="sectionTitle" placeholder="Section Title ">
+                                    <input type="text" class="form-control" name="sectionTitle" placeholder="{{$newLang->sectionTitle}} ">
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label">Class *</label>
+                            <label class="col-sm-2 text-right control-label col-form-label">{{$newLang->class}} *</label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
                                     <select class="form-control" name="classes" >
@@ -78,7 +78,7 @@ HomePage
                                     </select>
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label">Section teacher *</label>
+                            <label class="col-sm-2 text-right control-label col-form-label">{{$newLang->teacher}} *</label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
                                     <select class="form-control" name="sectionTeacher[]" multiple="">
@@ -99,7 +99,7 @@ HomePage
                                 </div>
                             </div> -->
 
-                            <button type="submit" class="btn btn-info waves-effect waves-light " >Add class</button>
+                            <button type="submit" class="btn btn-info waves-effect waves-light " >{{$newLang->addSection}}</button>
 
                         </form>
 

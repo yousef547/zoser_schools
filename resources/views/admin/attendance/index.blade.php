@@ -45,20 +45,20 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Take Attendance</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->takeAttendance}}</h4>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">Select attendance info to add</h5>
+                    <h5 class="card-title">{{$newLang->selectAttendance}}</h5>
                     <form method="get" action="{{url('admin/attendance/take_attendance')}}">
                     @csrf
                         <div class="mb-3 ">
-                            <label for="example-email-input1" class="form-label pt-0">Class </label>
+                            <label for="example-email-input1" class="form-label pt-0">{{$newLang->class}}</label>
                             <div class="">
                                 <select class="form-select" name="class" id="class">
-                                    <option selected="">Open this select menu</option>
+                                    <option selected="">{{$newLang->select." ".$newLang->class}}</option>
                                     @foreach($classes as $classe)
                                     <option value="{{$classe->id}}">{{$classe->className}}</option>
                                     @endforeach
@@ -66,19 +66,19 @@ HomePage
                             </div>
                         </div>
                         <div class="mb-3 ">
-                            <label for="example-email-input1" class="form-label pt-0">Section name</label>
+                            <label for="example-email-input1" class="form-label pt-0">{{$newLang->section}}</label>
                             <div class="">
                                 <select class="form-select" name="section" id="getSection">
-                                    <option selected="">Open this select menu</option>
+                                    <option selected="">{{$newLang->select." ".$newLang->Sec}}</option>
 
                                 </select>
                             </div>
                         </div>
                         <div class=" my-3">
-                            <label for="example-email-input1" class="form-label pt-0">Date </label>
+                            <label for="example-email-input1" class="form-label pt-0">{{$newLang->Date}} </label>
                             <input class="form-control" type="date" name="date" value="2011-W33" id="example-week-input">
                         </div>
-                        <button type="submit" class="btn btn-primary w-lg">Control attendance</button>
+                        <button type="submit" class="btn btn-primary w-lg">{{$newLang->controlAttendance}}</button>
                     </form>
                 </div>
             </div>

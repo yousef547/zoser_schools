@@ -36,11 +36,10 @@ HomePage
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        {{$title}}
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Teacher</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->teachers}}</h4>
             </div>
         </div>
     </div>
@@ -52,7 +51,7 @@ HomePage
                 <div class="card-header bg-primary">
                     <div class="row">
                         <div class="col-md-10">
-                            <h4 class="text-light">Advanced Search</h4>
+                            <h4 class="text-light">{{$newLang->advSearch}}</h4>
                         </div>
                         <div class="col-md-2">
                             <a class="fs-5 text-light" onclick="(function(){$('#close').addClass('d-none');$('#card').removeClass('col-md-9')})();return false;">x</a>
@@ -64,23 +63,23 @@ HomePage
                         <form method="get" action="{{url('/admin/teacher/search')}}">
                             @csrf
                             <div class="form-group">
-                                <label>Gender</label>
+                                <label>{{$newLang->Gender}}</label>
                                 <div class="radio-list">
                                     <label>
                                         <input type="radio" name="gender" value="male">
-                                        Male
+                                        {{$newLang->Male}}
                                     </label>
                                 </div>
                                 <div class=" radio-list">
                                     <label>
                                         <input type="radio" name="gender" value="fmale">
-                                        Female
+                                        {{$newLang->Female}}
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group m-b-0">
                                 <div class="col-md-12">
-                                    <button type="submit" id="btn_search" class="btn btn-info ">Advanced Search</button>
+                                    <button type="submit" id="btn_search" class="btn btn-info ">{{$newLang->Search}}</button>
                                 </div>
                             </div>
                         </form>
@@ -97,21 +96,21 @@ HomePage
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
                                     <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" id="search" aria-controls="datatable-buttons" type="button">
-                                        <span>Advanced Search</span>
+                                        <span>{{$newLang->advSearch}}</span>
                                     </button>
                                     @can("teachers_addTeacher")
-                                    <a href="{{url('admin/teacher/create')}}" class="btn btn-secondary buttons-copy buttons-html5">add teacher</a>
+                                    <a href="{{url('admin/teacher/create')}}" class="btn btn-secondary buttons-copy buttons-html5">{{$newLang->addTeacher}}</a>
                                     @endcan
                                 </div>
                                 <div class="col-sm-12">
                                     <table id="datatable-buttons" class="table table-striped table-bordered w-100 dataTable no-footer" role="grid" aria-describedby="datatable-buttons_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 5%;">ID</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:25%;">Full name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%">Username</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30%">Email address</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 20%;">Operations</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 5%;">#</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:25%;">{{$newLang->FullName}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%">{{$newLang->username}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30%">{{$newLang->email}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 20%;">{{$newLang->Operations}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -183,49 +182,49 @@ HomePage
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title align-self-center" id="myModalLabel">Profile <span class="fullname"></span></h5>
+                <h5 class="modal-title align-self-center" id="myModalLabel">{{$newLang->Profile}} <span class="fullname"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div ng-bind-html="modalContent" class="ng-binding ng-scope">
                     <div class="text-center "><img class="user-image img-circle photo" style="width:70px; height:70px;" src=""></div>
-                    <h4>Student Information</h4>
+                    <h4>{{$newLang->studentInfo}}</h4>
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td>Full name</td>
+                                <td>{{$newLang->FullName}}</td>
                                 <td class="fullname"></td>
                             </tr>
                             <tr>
-                                <td>Roll</td>
+                                <td>{{$newLang->rollid}}</td>
                                 <td class="role"></td>
                             </tr>
                             <tr>
-                                <td>Username</td>
+                                <td>{{$newLang->username}}</td>
                                 <td class="username"></td>
                             </tr>
                             <tr>
-                                <td>Email address</td>
+                                <td>{{$newLang->email}}</td>
                                 <td class="email"></td>
                             </tr>
                             <tr>
-                                <td>Birthday</td>
+                                <td>{{$newLang->Birthday}}</td>
                                 <td class="birthday"></td>
                             </tr>
                             <tr>
-                                <td>Gender</td>
+                                <td>{{$newLang->Gender}}</td>
                                 <td class="gender"></td>
                             </tr>
                             <tr>
-                                <td>Address</td>
+                                <td>{{$newLang->Address}}</td>
                                 <td class="address"> </td>
                             </tr>
                             <tr>
-                                <td>Phone No</td>
+                                <td>{{$newLang->phoneNo}}</td>
                                 <td class="phone"></td>
                             </tr>
                             <tr>
-                                <td>Mobile No</td>
+                                <td>{{$newLang->mobileNo}}</td>
                                 <td class="mobe"></td>
                             </tr>
 
@@ -243,17 +242,17 @@ HomePage
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title align-self-center" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title align-self-center" id="exampleModalLabel">{{$newLang->leaderboard}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="{{url('admin/teacher/leaderboard')}}">
                     @csrf
                     <input type="hidden" name="id" class="teacherId">
-                    <label class="form-label">Please enter leaderboard message</label>
-                    <textarea class="form-control" id="field-7" name="massage" placeholder="Please enter leaderboard message" style="margin-top: 0px; margin-bottom: 0px; height: 137px;"></textarea>
+                    <label class="form-label">{{$newLang->leaderBoardMessage}}</label>
+                    <textarea class="form-control" id="field-7" name="massage" placeholder="{{$newLang->leaderBoardMessage}}" style="margin-top: 0px; margin-bottom: 0px; height: 137px;"></textarea>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Send message</button>
+                        <button type="submit" class="btn btn-primary">{{$newLang->submit}}</button>
                     </div>
                 </form>
             </div>

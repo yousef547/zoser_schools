@@ -34,7 +34,7 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Teacher</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->add_depart}}</h4>
             </div>
         </div>
     </div>
@@ -48,19 +48,19 @@ HomePage
 
                 <form method="post" action="{{url('/admin/department/store')}}" enctype="multipart/form-data">
                     @csrf
-                    <label class="form-label">Department Title *</label>
+                    <label class="form-label">{{$newLang->depart_title}}*</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" name="depart_title"  placeholder="Department Title">
+                            <input class="form-control" type="text" name="depart_title"  placeholder="{{$newLang->depart_title}}">
                         </div>
                     </div>
-                    <label class="form-label">Department description *</label>
+                    <label class="form-label">{{$newLang->depart_desc}} *</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" name="depart_desc"  placeholder="Department description">
+                            <input class="form-control" type="text" name="depart_desc"  placeholder="{{$newLang->depart_desc}}">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary w-lg mt-2">submit</button>
+                    <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
                 </form>
             </div>
         </div>

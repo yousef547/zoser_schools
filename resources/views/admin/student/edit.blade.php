@@ -52,84 +52,83 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Students</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->editStudent}}</h4>
             </div>
         </div>
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="">Modals Examples</h5>
                     <div>
                         <form method="POST" action='{{url("admin/student/update/$student->id")}}' enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Full Name</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->FullName}}</label>
                                     <div class="">
-                                        <input class="form-control" type="text" value="{{$student->fullName}}" name="full_name" placeholder="full Name">
+                                        <input class="form-control" type="text" value="{{$student->fullName}}" name="full_name" placeholder="{{$newLang->FullName}}">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Gender</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->Gender}}</label>
                                     <div class="">
                                         <div class="col-sm-4 control-label mt-2">
                                             <div class="radio-list me-5" style="display: inline-block;">
                                                 <label>
                                                     <input type="radio" name="gender" value="male" {{$student->gender == 'male' ? "checked" : "" }}>
-                                                    Male
+                                                    {{$newLang->Male}}
                                                 </label>
                                             </div>
                                             <div class="radio-list" style="display: inline-block;">
                                                 <label>
                                                     <input type="radio" name="gender" value="fmale" {{$student->gender == 'fmale' ? "checked" : "" }}>
-                                                    Female
+                                                    {{$newLang->Female}}
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Email</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->email}}</label>
                                     <div class="">
-                                        <input class="form-control" type="email" value="{{$student->email}}" name="email" placeholder="Email">
+                                        <input class="form-control" type="email" value="{{$student->email}}" name="email" placeholder="{{$newLang->email}}">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Birth Day</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->birthday}}</label>
                                     <div class="">
                                         <input class="form-control" type="date" value="{{$student->birthday}}" name="birth_bay" id="example-date-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Address</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->Address}}</label>
                                     <div class="">
-                                        <input class="form-control" type="text" value="{{$student->address}}" name="Address" placeholder="Address">
+                                        <input class="form-control" type="text" value="{{$student->address}}" name="Address" placeholder="{{$newLang->Address}}">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Phone No</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->phoneNo}}</label>
                                     <div class="">
                                         <input class="form-control" type="tel" value="{{$student->phoneNo}}" name="Phone_No" id="example-date-input">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Mobile No</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->mobileNo}}</label>
                                     <div class="">
                                         <input class="form-control" type="tel" value="{{$student->mobileNo}}" id="telephone" value="" name="mobile_no" placeholder="Address">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Religion</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->religion}}</label>
 
                                     <div class="">
-                                        <input class="form-control" type="text" value="{{$student->religion}}" name="religion" placeholder="Address">
+                                        <input class="form-control" type="text" value="{{$student->religion}}" name="religion" placeholder="{{$newLang->religion}}">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">User Name</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->username}}</label>
 
                                     <div class="">
-                                        <input class="form-control" type="text" value="{{$student->username}}" name="user_name" placeholder="User Name">
+                                        <input class="form-control" type="text" value="{{$student->username}}" name="user_name" placeholder="{{$newLang->username}}">
                                     </div>
                                 </div><hr/>
                                 <!-- <div class="mb-3 col-md-6">
@@ -140,10 +139,10 @@ HomePage
                                     </div>
                                 </div> -->
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Class </label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->class}} </label>
                                     <div class="">
                                         <select class="form-select" name="class" id="class">
-                                            <option>select</option>
+                                            <option>{{$newLang->select." ". $newLang->class}} </option>
                                             @foreach($classes as $classe)
 
                                             <option {{$student->class_id  == $classe->id ? "selected" : "" }} value="{{$classe->id}}">{{$classe->className}}</option>
@@ -152,10 +151,10 @@ HomePage
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Section </label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->section}}</label>
                                     <div class="">
                                         <select class="form-select" name="section" id="getSection">
-                                            <option>select</option>
+                                            <option>{{$newLang->select." ". $newLang->section}}</option>
                                             @foreach($sections as $section)
                                             <option {{$student->section_id  == $section->id ? "selected" : "" }} value="{{$section->id}}">{{$section->sectionName}}</option>
                                             @endforeach
@@ -163,48 +162,48 @@ HomePage
                                     </div>
                                 </div>
                                 <div class=" col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Photo</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->Photo}}</label>
                                     <div class="input-group mb-3">
                                         <input type="file" class="form-control" name="img" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Biometric ID </label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->bioId}} </label>
                                     <div class="">
-                                        <input class="form-control" type="number" value="{{$student->biometric_id}}" name="biometric_id" placeholder="Biometric ID">
+                                        <input class="form-control" type="number" value="{{$student->biometric_id}}" name="biometric_id" placeholder="{{$newLang->bioId}} ">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Admission Number</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->admNumber}}</label>
                                     <div class="">
-                                        <input class="form-control" type="number" value="{{$student->admission_number}}" name="Admission_Number" placeholder="Admission Number">
+                                        <input class="form-control" type="number" value="{{$student->admission_number}}" name="Admission_Number" placeholder="{{$newLang->admNumber}}">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="example-email-input1" class="form-label pt-0">Admission Date</label>
+                                    <label for="example-email-input1" class="form-label pt-0">{{$newLang->admDate}}</label>
                                     <div class="">
                                         <input class="form-control" value="{{$student->admission_date}}" type="date" name="Admission_Date" id="example-date-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="col-md-3 my-2 control-label">Communication</label>
+                                    <label class="col-md-3 my-2 control-label">{{$newLang->Communication}}</label>
                                     <div class="row">
                                         <div class="checkbox my-2 col-4">
                                             <div class="form-check">
                                                 <input type="checkbox" name="communication[]" value="Mail" {{str_contains($student->comVia, 'Mail') ? "checked" : "" }}  class="form-check-input" id="customCheck02" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="form-check-label" for="customCheck02">Mail</label>
+                                                <label class="form-check-label" for="customCheck02">{{$newLang->mail}}</label>
                                             </div>
                                         </div>
                                         <div class="checkbox my-2 col-4">
                                             <div class="form-check">
                                                 <input type="checkbox" name="communication[]" value="SMS" {{str_contains($student->comVia, 'SMS') ? "checked" : "" }} class="form-check-input" id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="form-check-label" for="customCheck3">SMS</label>
+                                                <label class="form-check-label" for="customCheck3">{{$newLang->sms}}</label>
                                             </div>
                                         </div>
                                         <div class="checkbox my-2 col-4">
                                             <div class="form-check">
                                                 <input type="checkbox" name="communication[]" {{str_contains($student->comVia, 'phone') ? "checked" : "" }} value="phone" class="form-check-input" id="customCheck5" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="form-check-label" for="customCheckDisabled">Phone</label>
+                                                <label class="form-check-label" for="customCheckDisabled">{{$newLang->phone}}</label>
 
                                             </div>
                                         </div>
@@ -212,19 +211,19 @@ HomePage
                                 </div>
 
                                 <div class="col-md-12 mt-5">
-                                    <h4 class="card-title ng-binding">Medical History</h4>
+                                    <h4 class="card-title ng-binding">{{$newLang->medHistory}}</h4>
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Insurance Policy </label>
+                                            <label class="form-label pt-0">{{$newLang->insPolicy}} </label>
                                             <div class="">
-                                                <input type="text" name="medical[Policy]" value="{{$student->medical('Policy')}}" class="form-control " placeholder="Insurance Policy">
+                                                <input type="text" name="medical[Policy]" value="{{$student->medical('Policy')}}" class="form-control " placeholder="{{$newLang->insPolicy}}">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Blood Group </label>
+                                            <label class="form-label pt-0">{{$newLang->bloodGroup}}</label>
                                             <div class="">
                                                 <select class="form-control" name="medical[blood]">
-                                                    <option value="">select</option>
+                                                    <option value="">{{$newLang->select ." ".$newLang->bloodGroup}}</option>
                                                     @foreach($bloods as $blood)
                                                     <option {{$student->medical('blood')  == $blood ? "selected" : "" }}  value="{{$blood}}">{{$blood}}</option>
                                                     @endforeach
@@ -233,91 +232,91 @@ HomePage
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Weight </label>
+                                            <label class="form-label pt-0">{{$newLang->Weight}} </label>
                                             <div class="">
-                                                <input type="text" name="medical[Weight]" class="form-control " value="{{$student->medical('Weight')}}" placeholder="Weight">
+                                                <input type="text" name="medical[Weight]" class="form-control " value="{{$student->medical('Weight')}}" placeholder="{{$newLang->Weight}}">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Height </label>
+                                            <label class="form-label pt-0">{{$newLang->height}} </label>
                                             <div class="">
-                                                <input type="text" name="medical[Height]" class="form-control"  value="{{$student->medical('Height')}}" placeholder="Height">
+                                                <input type="text" name="medical[Height]" class="form-control"  value="{{$student->medical('Height')}}" placeholder="{{$newLang->height}}">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Disability Type </label>
+                                            <label class="form-label pt-0">{{$newLang->disType}} </label>
                                             <div class="">
-                                                <input type="text" name="medical[Disability]" class="form-control " value="{{$student->medical('Disability')}}"  placeholder="Disability Type">
+                                                <input type="text" name="medical[Disability]" class="form-control " value="{{$student->medical('Disability')}}"  placeholder="{{$newLang->disType}}">
                                             </div>
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Contact Information </label>
+                                            <label class="form-label pt-0">{{$newLang->contactInfo}} </label>
                                             <div class="">
-                                                <input type="text" name="medical[Contact]" class="form-control" value="{{$student->medical('Contact')}}"  placeholder="Contact Information">
+                                                <input type="text" name="medical[Contact]" class="form-control" value="{{$student->medical('Contact')}}"  placeholder="{{$newLang->contactInfo}} ">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12 mt-5">
-                                    <h4 class="card-title ng-binding">Parent</h4>
+                                    <h4 class="card-title ng-binding">{{$newLang->parent}}</h4>
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Father Name </label>
+                                            <label class="form-label pt-0">{{$newLang->fatheName}} </label>
                                             <div class="">
-                                                <input type="text" name="father[Name]" class="form-control" value="{{$student->father('Name')}}" placeholder="Father Name">
+                                                <input type="text" name="father[Name]" class="form-control" value="{{$student->father('Name')}}" placeholder="{{$newLang->fatheName}}">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Mother Name </label>
+                                            <label class="form-label pt-0">{{$newLang->motherName}} </label>
                                             <div class="">
-                                                <input type="text" name="mother[Name]" class="form-control " value="{{$student->mother('Name')}}" placeholder="Mother Name">
+                                                <input type="text" name="mother[Name]" class="form-control " value="{{$student->mother('Name')}}" placeholder="{{$newLang->motherName}}">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Father Mobile </label>
+                                            <label class="form-label pt-0">{{$newLang->fatherMob}}</label>
                                             <div class="">
-                                                <input type="text" name="father[mobile]" class="form-control " value="{{$student->father('mobile')}}" placeholder="Father Mobile">
+                                                <input type="text" name="father[mobile]" class="form-control " value="{{$student->father('mobile')}}" placeholder="{{$newLang->fatherMob}}<">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Mother Mobile </label>
+                                            <label class="form-label pt-0">{{$newLang->motherMob}}< </label>
                                             <div class="">
-                                                <input type="text" name="mother[mobile]" class="form-control " value="{{$student->mother('mobile')}}" placeholder="Mother Mobile">
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Father Job </label>
-                                            <div class="">
-                                                <input type="text" name="father[Job]" class="form-control " value="{{$student->father('Job')}}" placeholder="Father Job">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Mother Job </label>
-                                            <div class="">
-                                                <input type="text" name="mother[Job]" class="form-control " value="{{$student->mother('Job')}}" placeholder="Mother Job">
+                                                <input type="text" name="mother[mobile]" class="form-control " value="{{$student->mother('mobile')}}" placeholder="{{$newLang->motherMob}}">
                                             </div>
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Father Notes </label>
+                                            <label class="form-label pt-0">{{$newLang->fatherJob}} </label>
                                             <div class="">
-                                                <input type="text" name="father[notes]" class="form-control " value="{{$student->father('notes')}}" placeholder="Father Notes">
+                                                <input type="text" name="father[Job]" class="form-control " value="{{$student->father('Job')}}" placeholder="{{$newLang->fatherJob}}">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label pt-0">Mother Notes </label>
+                                            <label class="form-label pt-0">{{$newLang->motherJob}} </label>
                                             <div class="">
-                                                <input type="text" name="mother[notes]" class="form-control " value="{{$student->mother('notes')}}" placeholder="Mother Notes">
+                                                <input type="text" name="mother[Job]" class="form-control " value="{{$student->mother('Job')}}" placeholder="{{$newLang->motherJob}} ">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label pt-0">{{$newLang->fatherNotes}} </label>
+                                            <div class="">
+                                                <input type="text" name="father[notes]" class="form-control " value="{{$student->father('notes')}}" placeholder="{{$newLang->fatherNotes}}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label pt-0">{{$newLang->motherNotes}} </label>
+                                            <div class="">
+                                                <input type="text" name="mother[notes]" class="form-control " value="{{$student->mother('notes')}}" placeholder="{{$newLang->motherNotes}}">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-3">
-                                    <label for="example-password-input1" class="form-label">Meeting Host </label>
-                                    <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center">search users</button>
+                                    <label for="example-password-input1" class="form-label">{{$newLang->hoster}} </label>
+                                    <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center">{{$newLang->Search}}</button>
                                     <div id="hostUser" class="">
                                         <p class="name_host" id="n_host">{{$parent->username}}</p>
                                         <input type="text" class="form-control mt-2" value="{{$parent->username}}" name="user_host" hidden>
@@ -325,7 +324,7 @@ HomePage
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary w-lg">Add student</button>
+                                <button type="submit" class="btn btn-primary w-lg">{{$newLang->submit}}</button>
                             </div>
                         </form>
                     </div>

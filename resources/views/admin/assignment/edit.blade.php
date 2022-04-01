@@ -49,48 +49,47 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Assignments</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->Assignments}}</h4>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">Add assignment</h5>
+                    <h5 class="card-title">{{$newLang->editAssignment}}</h5>
                     <div class="table-responsive">
 
                         <form method="post" action='{{url("admin/assignments/update/$assignment->id")}}' enctype="multipart/form-data">
                             @csrf
-                            <label class="col-sm-2 text-right control-label col-form-label">Assignment title * </label>
+                            <label class="col-sm-2 text-right control-label col-form-label">{{$newLang->AssignmentTitle}} * </label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
-                                    <input type="text" name="AssignTitle" class="form-control" placeholder="Assignment title" value="{{$assignment->AssignTitle}}">
+                                    <input type="text" name="AssignTitle" class="form-control" placeholder="{{$newLang->AssignmentTitle}}" value="{{$assignment->AssignTitle}}">
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label ">Assignment Description</label>
+                            <label class="col-sm-2 text-right control-label col-form-label ">{{$newLang->AssignmentDescription}}</label>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <textarea rows="10" name="AssignDescription" style="width: 100%;" >{{$assignment->AssignDescription}}
+                                    <textarea rows="10" name="AssignDescription" style="width: 100%;" placehoder="{{$newLang->AssignmentDescription}}">{{$assignment->AssignDescription}}
                                 </textarea>
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label ">Assignment Deadline *</label>
+                            <label class="col-sm-2 text-right control-label col-form-label ">{{$newLang->AssignmentDeadline}} *</label>
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <input type="date" value="{{$assignment->AssignDeadLine}}" id="datemask" name="AssignDeadLine" class="form-control ">
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label ">Assignment File</label>
+                            <label class="col-sm-2 text-right control-label col-form-label ">{{$newLang->AssignmentFile}}</label>
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <input type="file" class="form-control" name="file" id="inputGroupFile03">
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label ng-binding" >Class *</label>
+                            <label class="col-sm-2 text-right control-label col-form-label ng-binding" >{{$newLang->class}} *</label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
                                     <select class="form-control " id="class" name="classId">
-                                        <option>Not Select</option>
-
+                                        <option>{{$newLang->select.' '.$newLang->class}} </option>
                                         @foreach($classes as $classe)
                                         <option {{$assignment->classId == $classe->id ? "selected" : " "}} value="{{$classe->id}}">{{$classe->className}}</option>
                                         @endforeach
@@ -98,11 +97,11 @@ HomePage
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 text-right control-label col-form-label" >Section *</label>
+                                <label class="col-sm-2 text-right control-label col-form-label" >{{$newLang->sections}} *</label>
                                 <div class="col-sm-12">
                                     <select class="form-control" multiple id="getSection" name="section[]"> 
                                         @foreach($sections as $section)
-                                        <!-- ngRepeat: section in sections -->
+                                        <option>{{$newLang->select.' '.$newLang->sections}}</option>
                                             @foreach(json_decode( $assignment->sectionid) as $item)
                                                 <option {{$item == $section->id ? "selected" : " "}}   value="{{$section->id}}">{{$section->sectionTitle}}</option>
                                             @endforeach
@@ -110,7 +109,7 @@ HomePage
                                     </select>
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label " >Subject *</label>
+                            <label class="col-sm-2 text-right control-label col-form-label " >{{$newLang->Subject}} *</label>
                             <div class="form-group row ">
                                 <div class="col-sm-12">
                                     <select class="form-control" name="subject" >
@@ -124,7 +123,7 @@ HomePage
                             </div>
                             <div class="form-group m-b-0">
 
-                                <button type="submit" class="btn btn-info waves-effect waves-light ">Add assignment</button>
+                                <button type="submit" class="btn btn-info waves-effect waves-light ">{{$newLang->AddAssignments}}</button>
                             </div>
                         </form>
 

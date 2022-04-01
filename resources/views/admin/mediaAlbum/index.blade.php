@@ -67,16 +67,16 @@ HomePage
     <div class="row">
         <div class="col-6">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Media Center</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->mediaCenter}}</h4>
             </div>
         </div>
         <div class="col-md-6 col-4 align-self-center text-end">
-            <a href="{{url('admin/media/upload')}}" class="btn pull-right btn-primary card-block-input-item"><i class="mdi mdi-plus-circle"></i> Upload media</a>
-            <a href="{{url('admin/item/create')}}" class="btn pull-right btn-primary card-block-input-item"><i class="mdi mdi-plus-circle"></i> Add album</a>
+            <a href="{{url('admin/media/upload')}}" class="btn pull-right btn-primary card-block-input-item"><i class="mdi mdi-plus-circle"></i> {{$newLang->uploadMedia}}</a>
+            <a href="{{url('admin/item/create')}}" class="btn pull-right btn-primary card-block-input-item"><i class="mdi mdi-plus-circle"></i> {{$newLang->addAlbum}}</a>
         </div>
         @if(count($albums) > 0)
         <div class="col-12">
-            <h5 class="card-title">Albums</h5>
+            <h5 class="card-title">{{$newLang->albums}}</h5>
             <div class="row">
                 @foreach($albums as $albums)
                 <div class="col-lg-3 col-md-6 ">
@@ -110,7 +110,7 @@ HomePage
         @endif
         @if(count($items) > 0)
         <div class="col-12">
-            <h5 class="card-title">Media</h5>
+            <h5 class="card-title">{{$newLang->media}}</h5>
             <div class="row">
                 @foreach($items as $item)
                 <div class="col-lg-3 col-md-6 ">

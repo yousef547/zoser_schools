@@ -29,7 +29,7 @@ subjects
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">subject</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->Subject}}</h4>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@ subjects
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
-                                @can('Subjects_addSubject') <a href="{{url('admin/subjects/addsubject')}}" class="btn btn-primary">add sbject</a>@endcan
+                                @can('Subjects_addSubject') <a href="{{url('admin/subjects/addsubject')}}" class="btn btn-primary">{{$newLang->addSubject}}</a>@endcan
                                 </div>
                             </div>
                             <div class="row">
@@ -49,10 +49,10 @@ subjects
                                     <table id="datatable" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 15%;">Subject name </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 35%;">Teachers</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 35%;">Pass grade / Final grade </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 15%;">Operations</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 15%;">{{$newLang->subjectName}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 35%;">{{$newLang->teachers}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 35%;">{{$newLang->passGrade.'/'.$newLang->finalGrade}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 15%;">{{$newLang->Operations}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

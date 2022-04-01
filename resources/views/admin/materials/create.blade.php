@@ -39,7 +39,7 @@ HomePage
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h2 class="mb-0 font-size-18">Study Material</h2>
+                <h2 class="mb-0 font-size-18">{{$newLang->studyMaterial}}</h2>
 
             </div>
         </div>
@@ -55,33 +55,33 @@ HomePage
                         <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h4>Add Material</h4>
+                                    <h4>{{$newLang->addMaterial}}</h4>
                                     <form method="POST" action="{{url('admin/materials/store')}}" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="subject_id" value="{{$id}}">
-                                        <label for="example-text-input" class="col-sm-2 form-label">material title</label>
+                                        <label for="example-text-input" class="col-sm-2 form-label">{{$newLang->materialTitle}}</label>
                                         <div class="mb-3 row">
                                             <div class="col-sm-12">
-                                                <input class="form-control" type="text" name="material_title" placeholder="material title">
+                                                <input class="form-control" type="text" name="material_title" placeholder="{{$newLang->materialTitle}}">
                                             </div>
                                         </div>
-                                        <label for="example-text-input" class="col-sm-2 form-label">material description</label>
+                                        <label for="example-text-input" class="col-sm-2 form-label">{{$newLang->materialDesc}}</label>
                                         <div class="mb-3 row">
                                             <div class="col-sm-12">
-                                                <input class="form-control" type="text" name="material_description" placeholder="material description">
+                                                <input class="form-control" type="text" name="material_description" placeholder="{{$newLang->materialDesc}}">
                                             </div>
                                         </div>
-                                        <label for="example-text-input" class="col-sm-2 form-label">Material file</label>
+                                        <label for="example-text-input" class="col-sm-2 form-label">{{$newLang->materialFile}}</label>
                                         <div class="">
                                             <div class="input-group mb-3">
                                                 <input type="file" class="form-control" name="file" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
                                             </div>
                                         </div>
-                                        <label for="example-text-input" class="col-sm-2 form-label">Week</label>
+                                        <label for="example-text-input" class="col-sm-2 form-label">{{$newLang->week}}</label>
                                         <div class="mb-3 row">
                                             <div class="col-sm-12">
                                                 <select class="form-select" name="week">
-                                                    <option>Select</option>
+                                                    <option>{{$newLang->select.' '. $newLang->week}}</option>
                                                     @foreach($weeks as $week)
                                                     <option value="{{$week->id}}">{{$week->week}}</option>
                                                     @endforeach
@@ -89,10 +89,10 @@ HomePage
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label class="col-sm-2 form-label">Class</label>
+                                            <label class="col-sm-2 form-label">{{$newLang->class}}</label>
                                             <div class="col-sm-12">
                                                 <select class="form-select" name="Class" id="class">
-                                                    <option></option>
+                                                    <option>{{$newLang->select.' '. $newLang->class}}</option>
                                                     @foreach($classes as $classe)
                                                     <option value="{{$classe->id}}">{{$classe->className}}</option>
                                                     @endforeach
@@ -101,7 +101,7 @@ HomePage
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label class="col-sm-2 form-label">Sections</label>
+                                            <label class="col-sm-2 form-label">{{$newLang->sections}}</label>
                                             <div class="col-sm-12">
                                                 <select class="form-select" name="Sections[]" id="getSection" multiple="multiple">
 
@@ -109,11 +109,11 @@ HomePage
                                             </div>
                                         </div>
                                         <!-- <input type="hidden" name="subject_id" value=""> -->
-                                        <label for="example-text-input" class="col-sm-2 form-label">subject</label>
+                                        <label for="example-text-input" class="col-sm-2 form-label">{{$newLang->Subject}}</label>
                                         <div class="mb-3 row">
                                             <div class="col-sm-12">
                                                 <select class="form-select" name="teacher">
-                                                    <option>Select</option>
+                                                    <option>{{$newLang->select .' '.$newLang->Subject}}</option>
                                                     @foreach($teachers as $teacher)
                                                     <option value="{{$teacher->id}}">{{$teacher->username}}</option>
                                                     @endforeach
@@ -122,7 +122,7 @@ HomePage
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-0">
-                                                <button type="submit" class="btn btn-primary ">add material</button>
+                                                <button type="submit" class="btn btn-primary ">{{$newLang->submit}}</button>
                                             </div>
                                         </div>
                                     </form>

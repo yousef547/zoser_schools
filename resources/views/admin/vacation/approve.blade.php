@@ -45,21 +45,21 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Vacation</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->Vacation}}</h4>
             </div>
         </div>
         <div class="col-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">Select vacation dates</h5>
+                    <h5 class="card-title">{{$newLang->appVacation}}</h5>
                     <table class="table table-striped border">
                         <thead>
                             <tr>
-                                <th scope="col">User</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">From</th>
-                                <th scope="col">To</th>
-                                <th scope="col">Operations</th>
+                                <th scope="col">{{$newLang->user}}</th>
+                                <th scope="col">{{$newLang->role}}</th>
+                                <th scope="col">{{$newLang->from}}</th>
+                                <th scope="col">{{$newLang->to}}</th>
+                                <th scope="col">{{$newLang->Operations}}</th>
 
                             </tr>
                         </thead>
@@ -72,8 +72,8 @@ HomePage
                                 <td>{{\Carbon\Carbon::parse((int)$vacation->startVac)->format('y/m/d')}}</td>
                                 <td>{{\Carbon\Carbon::parse((int)$vacation->endVac)->format('y/m/d')}}</td>
                                 <td>
-                                    <a href='{{url("admin/vacation/approve_vacation/$vacation->id/1")}}' class="btn btn-info btn-default">Accepted Vacation</a>
-                                    <a href='{{url("admin/vacation/approve_vacation/$vacation->id/0")}}' class="btn btn-danger btn-default">Rejected Vacation</a>
+                                    <a href='{{url("admin/vacation/approve_vacation/$vacation->id/1")}}' class="btn btn-info btn-default">{{$newLang->acceptedVacation}}</a>
+                                    <a href='{{url("admin/vacation/approve_vacation/$vacation->id/0")}}' class="btn btn-danger btn-default">{{$newLang->rejectedVacation}}</a>
                                 </td>
 
                             </tr>

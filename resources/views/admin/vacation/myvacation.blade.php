@@ -45,18 +45,18 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Vacation</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->Vacation}}</h4>
             </div>
         </div>
         <div class="col-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">Select vacation dates</h5>
+                    <h5 class="card-title">{{$newLang->myVacation}}</h5>
                     <table class="table table-striped border">
                         <thead>
                             <tr>
-                                <th scope="col">From => To</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">{{$newLang->from ." => ". $newLang->to}}</th>
+                                <th scope="col">{{$newLang->Status}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,11 +64,11 @@ HomePage
                             <tr>
                                 <th>{{\Carbon\Carbon::parse((int)$vacation->startVac)->format('y/m/d')}} => {{\Carbon\Carbon::parse((int)$vacation->endVac)->format('y/m/d')}}</th>
                                 @if($vacation->acceptedVacation == -1)
-                                <td>Waiting Action</td>
+                                <td>{{$newLang->waitAction}}</td>
                                 @elseif($vacation->acceptedVacation == 1)
-                                <td class="text-success">Accepted Vacation</td>
+                                <td class="text-success">{{$newLang->acceptedVacation}}</td>
                                 @elseif($vacation->acceptedVacation == 0)
-                                <td class="text-danger">Rejected Vacation</td>
+                                <td class="text-danger">{{$newLang->rejectedVacation}}</td>
                                 @endif
                             </tr>
                             @endforeach

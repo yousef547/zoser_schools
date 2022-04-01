@@ -45,32 +45,32 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Staff Attendance</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->staffAttendance}}</h4>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">Select attendance info to add</h5>
+                    <h5 class="card-title">{{$newLang->selectAttendance}}</h5>
                     <form method="get" action="{{url('admin/attendance/take_staff')}}">
                         @csrf
                         <div class=" my-3">
-                            <label for="example-email-input1" class="form-label pt-0">Date </label>
+                            <label for="example-email-input1" class="form-label pt-0">{{$newLang->Date}} </label>
                             <input class="form-control" type="date" name="date"  id="example-week-input">
                         </div>
                         <div>
-                            <h5>type</h5>
+                            <h5>{{$newLang->type}}</h5>
                             <div class="radio-list">
                                 
                                 <label>
-                                    <input type="radio" class="type" value="in" name="type"> In
+                                    <input type="radio" class="type" value="in" name="type"> {{$newLang->in}}
                                 </label><br>
                                 <label>
-                                    <input type="radio" class="type" value="out" name="type"> Out
+                                    <input type="radio" class="type" value="out" name="type"> {{$newLang->out}}
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary w-lg">Control attendance</button>
+                        <button type="submit" class="btn btn-primary w-lg">{{$newLang->controlAttendance}}</button>
                     </form>
                 </div>
             </div>

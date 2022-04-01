@@ -45,25 +45,25 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Media Center</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->mediaCenter}}</h4>
             </div>
         </div>
         <div class="col-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">Select vacation dates</h5>
+                    <h5 class="card-title">{{$newLang->addAlbum}}</h5>
                     <form method="POST" action="{{url('admin/media/submit_upload')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-lg-12 mt-3">
-                                <label for="example-date-input" class="col-sm-2 form-label">Album title </label>
+                                <label for="example-date-input" class="col-sm-2 form-label">{{$newLang->albumTitle}}</label>
                                 <div class="mb-0 row">
                                     <div class="col-sm-12">
                                         <input class="form-control" type="text"  name="title" id="example-date-input">
                                     </div>
                                 </div>
 
-                                <label for="example-date-input" class="mt-3 col-sm-2 form-label">Album description
+                                <label for="example-date-input" class="mt-3 col-sm-2 form-label">{{$newLang->albumDesc}}
                                 </label>
                                 <div class="mb-0 row">
                                     <div class="col-sm-12">
@@ -71,13 +71,13 @@ HomePage
                                     </div>
                                 </div>
 
-                                <label for="inputGroupFile03" class="mt-3 col-sm-2 form-label">Album image</label>
+                                <label for="inputGroupFile03" class="mt-3 col-sm-2 form-label">{{$newLang->albumImage}}</label>
                                 <div class="">
                                     <div class="input-group mb-3">
                                         <input type="file" class="form-control" name="image" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-lg mt-2">Submit</button>
+                                <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
                             </div>
                         </div>
                     </form>

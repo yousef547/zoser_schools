@@ -24,7 +24,7 @@ Exam
         <div class="row">
             <div class="col-md-12 col-xl-12">
                 @can("Languages_addLanguage")
-                <a href="{{route('languages.create')}}" class="btn btn-primary mb-2">add languages</a>
+                <a href="{{route('languages.create')}}" class="btn btn-primary mb-2">{{$newLang->addLanguage}}</a>
                 @endcan
                 <div class="card">
                     <div class="card-body">
@@ -33,8 +33,8 @@ Exam
                                 <thead class="thead-default">
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Actions</th>
+                                        <th>{{$newLang->languageName}}</th>
+                                        <th>{{$newLang->Operations}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

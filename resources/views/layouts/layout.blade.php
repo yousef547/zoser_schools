@@ -2,11 +2,14 @@
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\language;
-
+use App\Models\static_page;
 
 $langUser = Auth::user()->defLang;
 $lang = language::find($langUser)->isRTL;
 
+
+
+$pades = static_page::get();
 // echo $lang;
 ?>
 <!DOCTYPE html>
@@ -99,7 +102,27 @@ $lang = language::find($langUser)->isRTL;
                                                     </ul>
                                                 </li>
 
-                                                <!-- Calender "  -->
+
+
+
+
+
+
+
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-book-multiple"></i>
+                                                        <span>{{$newLang->staticPages}}</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a href="{{route('static_pages')}}">{{$newLang->controlPages}}</a></li>
+                                                        @foreach($pades as $pade)
+                                                        <li><a href="{{route('static_pages.read_page',$pade->id)}}">{{$pade->pageTitle}}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                                
+                                                <!-- Calender -->
                                                 @can("Meetings_list")
                                                 <li>
                                                     <a href="{{url('admin/meeting')}}" class=" waves-effect">
@@ -358,12 +381,14 @@ $lang = language::find($langUser)->isRTL;
                                                         <span>{{$newLang->Onlineexams}}</span>
                                                     </a>
                                                 </li>
+                                                @can("newsboard_list")
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{route('board')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>{{$newLang->newsboard}}</span>
                                                     </a>
                                                 </li>
+                                                @endcan
                                                 @can("events_list")
                                                 <li>
                                                     <a href="{{route('event')}}" class=" waves-effect">
@@ -407,7 +432,7 @@ $lang = language::find($langUser)->isRTL;
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="calendar.html" class=" waves-effect">
+                                                    <a href="{{route('reports')}}" class=" waves-effect">
                                                         <i class="mdi mdi-calendar"></i>
                                                         <span>{{$newLang->Reports}}</span>
                                                     </a>
@@ -420,6 +445,16 @@ $lang = language::find($langUser)->isRTL;
                                                     <ul class="sub-menu mm-collapse" aria-expanded="false">
                                                         <li><a href="https://kharagny.com/zoser3/portal#/frontend/pages">{{$newLang->controlPages}}</a></li>
                                                         <li><a href="https://kharagny.com/zoser3/portal#/frontend/settings">{{$newLang->CMSSettings}}</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="mdi mdi-album"></i>
+                                                        <span>{{$newLang->HostelManage}}</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        @can("Hostel_AddHostel")<li><a href="{{route('hostel')}}">{{$newLang->Hostel}}</a></li>@endcan
+                                                        @can("Hostel_HostelCat")<li><a href="{{route('catehostel')}}">{{$newLang->HostelCat}}</a></li>@endcan
                                                     </ul>
                                                 </li>
                                                 <li>

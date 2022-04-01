@@ -37,7 +37,7 @@ HomePage
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Students</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->listStudents}}</h4>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@ HomePage
                 <div class="card-header bg-primary">
                     <div class="row">
                         <div class="col-md-10">
-                            <h4 class="text-light">Advanced Search</h4>
+                            <h4 class="text-light">{{$newLang->advSearch}}</h4>
                         </div>
                         <div class="col-md-2">
                             <a class="fs-5 text-light" onclick="(function(){$('#close').addClass('d-none');$('#card').removeClass('col-md-9')})();return false;">x</a>
@@ -57,33 +57,33 @@ HomePage
                 <div class="card-block">
                     <div class="m-2">
                         <div class="form-group">
-                            <label>Search</label>
+                            <label>{{$newLang->Search}}</label>
                             <input type="text" class="form-control" id="searchByAll">
                         </div>
 
                         <div class="form-group">
-                            <label>Email address</label>
+                            <label>{{$newLang->email}}</label>
                             <input type="text" class="form-control" id="searchByEmail">
                         </div>
                         <div class="form-group">
-                            <label>Gender</label>
+                            <label>{{$newLang->Gender}}</label>
                             <div class="radio-list">
                                 <label>
                                     <input type="radio" name="gender" value="male">
-                                    Male
+                                    {{$newLang->Male}}
                                 </label>
                             </div>
                             <div class=" radio-list">
                                 <label>
                                     <input type="radio" name="gender" value="fmale">
-                                    Female
+                                    {{$newLang->Female}}
                                 </label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Class</label>
+                            <label>{{$newLang->class}}</label>
                             <select class="form-control" name="class" id="class">
-                                <option value="0">not select</option>
+                                <option value="0">{{$newLang->select .' ' .$newLang->class}}</option>
                                 @foreach($classes as $classe)
 
                                 <option value="{{$classe->id}}">{{$classe->className}}</option>
@@ -91,14 +91,14 @@ HomePage
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Section name</label>
+                            <label>{{$newLang->section}}</label>
                             <select class="form-control" name="section" id="getSection">
-                                <option value="0">not select</option>
+                                <option value="0">{{$newLang->select .' ' . $newLang->section}}</option>
                             </select>
                         </div>
                         <div class="form-group m-b-0">
                             <div class="col-md-12">
-                                <button type="button" id="btn_search" class="btn btn-info ">Advanced Search</button>
+                                <button type="button" id="btn_search" class="btn btn-info ">{{$newLang->submit}}</button>
                             </div>
                         </div>
                     </div>
@@ -108,13 +108,13 @@ HomePage
         <div class="" id="card">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">List students</h5>
+                    <h5 class="card-title">{{$newLang->listStudents}}</h5>
                     <div class="table-responsive">
                         <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
-                                    <div class="dt-buttons btn-group flex-wrap"> <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>import</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>List Graduate Students</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" id="search" aria-controls="datatable-buttons" type="button"><span>Advanced Search</span></button><button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Waiting approval</span></button>
-                                        <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-colvis" tabindex="0" aria-controls="datatable-buttons" type="button" aria-haspopup="true" aria-expanded="false"><span>Students Admission</span></button></div>
+                                    <div class="dt-buttons btn-group flex-wrap"> <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>{{$newLang->Import}}</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>{{$newLang->listGradStd}}</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" id="search" aria-controls="datatable-buttons" type="button"><span>{{$newLang->advSearch}}</span></button><button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>{{$newLang->waitingApproval}}</span></button>
+                                        <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-colvis" tabindex="0" aria-controls="datatable-buttons" type="button" aria-haspopup="true" aria-expanded="false"><span>{{$newLang->admission}}</span></button></div>
                                     </div>
                                 </div>
                             </div>
@@ -123,12 +123,12 @@ HomePage
                                     <table id="datatable-buttons" class="table table-striped table-bordered w-100 dataTable no-footer" role="grid" aria-describedby="datatable-buttons_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 70px;">ID</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 400px;">Full Name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 140.425px;">Username</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 400px;">Email Addres</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 260.6px;">Class / Section</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 160px;">Operations</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 5%;">#</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:20%;">{{$newLang->FullName}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 10%">{{$newLang->username}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 20%">{{$newLang->email}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 20%;">{{$newLang->class.'/'. $newLang->section}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 20%;">{{$newLang->Operations}}</th>                                    
                                             </tr>
                                         </thead>
                                         <tbody id="old_data">
@@ -147,7 +147,7 @@ HomePage
                                                     @if($student->isLeaderBoard != null)
                                                     <span class="light">
                                                         <br><i class="fa fa-trophy"></i>
-                                                        Leader Board
+                                                        {{$newLang->leaderboard}}
                                                         @can("students_stdLeaderBoard")
                                                         <a class="light" href="{{route('student.deleteLeader',$student->id)}}"><i class="fas fa-trash"></i></a>
                                                         @endcan
@@ -163,29 +163,29 @@ HomePage
                                                 </td>
                                                 <td class="centers">
                                                     <div class="btn-group-vertical">
-                                                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Operations <i class="mdi mdi-chevron-down ms-1"></i></button>
+                                                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{$newLang->Operations}} <i class="mdi mdi-chevron-down ms-1"></i></button>
                                                         <div class="dropdown-menu">
                                                             @can("students_Attendance")
-                                                            <a class="dropdown-item" href='{{url("admin/student/attendace/$student->id")}}'><i class="fa fa-eye"></i>Attendance</a>
+                                                            <a class="dropdown-item" href='{{url("admin/student/attendace/$student->id")}}'><i class="fa fa-eye"></i>{{$newLang->Attendance}}</a>
                                                             @endcan
                                                             @can("students_Marksheet")
-                                                            <a class="dropdown-item" href="#"><i class="fa fa-table"></i> Marksheet</a>
+                                                            <a class="dropdown-item" href="#"><i class="fa fa-table"></i> {{$newLang->Marksheet}}</a>
                                                             @endcan
                                                             @can("students_stdLeaderBoard")
-                                                            <a class="dropdown-item" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center" onclick='passId("{{$student->id}}")'><i class="fa fa-trophy"></i> Leader Board</a>
+                                                            <a class="dropdown-item" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center" onclick='passId("{{$student->id}}")'><i class="fa fa-trophy"></i> {{$newLang->leaderboard}}</a>
                                                             @endcan
                                                             @can("students_medHistory")
 
-                                                            <a class="dropdown-item" href="#"><i class="fa fa-stethoscope"></i> Medical History</a>
+                                                            <a class="dropdown-item" href="#"><i class="fa fa-stethoscope"></i> {{$newLang->medHistory}}</a>
                                                             @endcan
                                                             @can("students_Approve")
-                                                            <a class="dropdown-item" href='{{url("admin/active_student/$student->id")}}'><i class="far fa-lightbulb"></i> Toggle Account Status</a>
+                                                            <a class="dropdown-item" href='{{url("admin/active_student/$student->id")}}'><i class="far fa-lightbulb"></i> {{$newLang->toggleStatus}}</a>
                                                             @endcan
                                                             @can("students_editStudent")
-                                                            <a class="dropdown-item" href='{{url("admin/student/edit/$student->id")}}'><i class="fas fa-pencil-alt"></i> Edit</a>
+                                                            <a class="dropdown-item" href='{{url("admin/student/edit/$student->id")}}'><i class="fas fa-pencil-alt"></i> {{$newLang->editStudent}}</a>
                                                             @endcan
                                                             @can("students_delStudent")
-                                                            <a class="dropdown-item" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center2" onclick='setName("{{$student->fullName}}","{{$student->id}}")'><i class="fa fa-trash-o"></i> Remove</a>
+                                                            <a class="dropdown-item" data-bs-toggle="modal" data-animation="bounce" data-bs-target=".bs-example-modal-center2" onclick='setName("{{$student->fullName}}","{{$student->id}}")'><i class="fa fa-trash-o"></i> {{$newLang->Remove}}</a>
                                                             @endcan
                                                         </div>
                                                     </div>
@@ -215,61 +215,61 @@ HomePage
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title align-self-center" id="myModalLabel">Profile <span class="fullname"></span></h5>
+                <h5 class="modal-title align-self-center" id="myModalLabel">{{$newLang->Profile}} <span class="fullname"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div ng-bind-html="modalContent" class="ng-binding ng-scope">
                     <div class="text-center "><img class="user-image img-circle photo" style="width:70px; height:70px;" src="index.php/dashboard/profileImage/1120131"></div>
-                    <h4>Student Information</h4>
+                    <h4>{{$newLang->studentInfo}}</h4>
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td>Full name</td>
+                                <td>{{$newLang->FullName}}</td>
                                 <td class="fullname"></td>
                             </tr>
                             <tr>
-                                <td>Roll id</td>
+                                <td>{{$newLang->role}}</td>
                                 <td class="role"></td>
                             </tr>
                             <tr>
-                                <td>Class</td>
+                                <td>{{$newLang->class}}</td>
                                 <td class="classes"></td>
                             </tr>
                             <tr>
-                                <td>Section</td>
+                                <td>{{$newLang->section}}</td>
                                 <td class="section"></td>
                             </tr>
                             <tr>
-                                <td>Username</td>
+                                <td>{{$newLang->username}}</td>
                                 <td class="username"></td>
                             </tr>
                             <tr>
-                                <td>Email address</td>
+                                <td>{{$newLang->email}}</td>
                                 <td class="email"></td>
                             </tr>
                             <tr>
-                                <td>Birthday</td>
+                                <td>{{$newLang->Birthday}}</td>
                                 <td class="birthday"></td>
                             </tr>
                             <tr>
-                                <td>Gender</td>
+                                <td>{{$newLang->Gender}}</td>
                                 <td class="gender"></td>
                             </tr>
                             <tr>
-                                <td>Address</td>
+                                <td>{{$newLang->Address}}</td>
                                 <td class="address"> </td>
                             </tr>
                             <tr>
-                                <td>Phone No</td>
+                                <td>{{$newLang->phoneNo}}</td>
                                 <td class="phone"></td>
                             </tr>
                             <tr>
-                                <td>Mobile No</td>
+                                <td>{{$newLang->mobileNo}}</td>
                                 <td class="mobe"></td>
                             </tr>
                             <tr>
-                                <td>Parent</td>
+                                <td>{{$newLang->parent}}</td>
                                 <td class="parent">no</td>
                             </tr>
 

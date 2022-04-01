@@ -53,13 +53,13 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Attendance Report</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->attReport}}</h4>
             </div>
         </div>
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="">Report classification
+                    <h5 class="">{{$newLang->reportClassif}}
                     </h5>
                     <div>
                         <div class="form">
@@ -68,9 +68,9 @@ HomePage
                                 @csrf
                                 <div class="form-group row has-error" >
                                     <div class="col-sm-12">
-                                        <label class="col-sm-2 text-right control-label col-form-label ng-binding">Class </label>
+                                        <label class="col-sm-2 text-right control-label col-form-label ng-binding">{{$newLang->class}} </label>
                                         <select class="form-control " name="classId" id="class">
-                                            <option >not select</option>
+                                            <option >{{$newLang->select." ".$newLang->class}}</option>
                                             @foreach($classes as $classe)
                                             <option value="{{$classe->id}}">{{$classe->className}}</option>
                                             @endforeach
@@ -81,9 +81,9 @@ HomePage
 
                                 <div class="form-group row has-error" >
                                     <div class="col-sm-12">
-                                        <label class="col-sm-2 text-right control-label col-form-label ">Section name </label>
+                                        <label class="col-sm-2 text-right control-label col-form-label ">{{$newLang->section}} </label>
                                         <select class="form-control" name="sectionId" id="getSection">
-                                            <option value="? undefined:undefined ?"></option>
+                                            <option value="? undefined:undefined ?">{{$newLang->select." ".$newLang->Sec}}</option>
                                             <!-- ngRepeat: section in sections -->
                                         </select>
                                     </div>
@@ -91,21 +91,21 @@ HomePage
 
                                 <div class="form-group row has-error" >
                                     <div class="col-sm-12">
-                                        <label class="col-sm-2 text-right control-label col-form-label ">From </label>
+                                        <label class="col-sm-2 text-right control-label col-form-label ">{{$newLang->from}} </label>
                                         <input type="date"  name="attendanceDayFrom"  class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group row has-error"  >
                                     <div class="col-sm-12">
-                                        <label class="col-sm-2 text-right control-label col-form-label ">To </label>
+                                        <label class="col-sm-2 text-right control-label col-form-label ">{{$newLang->to}} </label>
                                         <input type="date"  name="attendanceDayTo"  class="form-control ">
                                     </div>
                                 </div>
 
                                 <div class="form-group m-b-0">
                                     <div class="offset-sm-2 col-sm-10">
-                                        <button type="submit" class="btn btn-info waves-effect waves-light ">Control attendance</button>
+                                        <button type="submit" class="btn btn-info waves-effect waves-light "> {{$newLang->controlAttendance}}</button>
                                     </div>
                                 </div>
                             </form>

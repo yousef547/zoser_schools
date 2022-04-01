@@ -45,24 +45,24 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Classes</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->classes}}</h4>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">List classes</h5>
+                    <h5 class="card-title">{{$newLang->listClasses}}</h5>
                     <div class="table-responsive">
 
                         <form method="POST" action='{{url("admin/classes/update/$classe->id")}}'>
                             @csrf
-                            <label class="col-sm-2 text-right control-label col-form-label ng-binding">Class name * </label>
+                            <label class="col-sm-2 text-right control-label col-form-label ng-binding">{{$newLang->className}} * </label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" value="{{$classe->className}}" name="className" placeholder="Class name">
+                                    <input type="text" class="form-control" value="{{$classe->className}}" name="className" placeholder="{{$newLang->className}}">
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label">Class teacher *</label>
+                            <label class="col-sm-2 text-right control-label col-form-label">{{$newLang->classTeacher}} *</label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
                                     <select class="form-control" name="classTeacher[]" multiple="">
@@ -77,7 +77,7 @@ HomePage
                                     </select>
                                 </div>
                             </div>
-                            <label class="col-sm-2 text-right control-label col-form-label ">Associated subjects *</label>
+                            <label class="col-sm-2 text-right control-label col-form-label ">{{$newLang->associatedSubjects}} *</label>
                             <div class="form-group ">
                                 <div class="col-sm-12">
                                     <select class="form-control" name="classSubjects[]" multiple="">
@@ -102,7 +102,7 @@ HomePage
                                 </div>
                             </div> -->
 
-                            <button type="submit" class="btn btn-info waves-effect waves-light ">Add class</button>
+                            <button type="submit" class="btn btn-info waves-effect waves-light ">{{$newLang->addClass}}</button>
 
                         </form>
 

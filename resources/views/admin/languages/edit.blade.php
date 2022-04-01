@@ -32,13 +32,13 @@ Exam
                     <div class="card-body">
                         <form method="POST" action='{{route("languages.update",$id)}}' enctype="multipart/form-data">
                             @csrf
-                            <label class="col-sm-2 control-label">Add language * </label>
+                            <label class="col-sm-2 control-label">{{$newLang->editLanguage}} * </label>
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <input type="text" name="languageTitle" class="form-control" value="{{$lang->languageTitle}}" required placeholder="Add language">
                                 </div>
                             </div>
-                            <label class="col-sm-2 control-label">Language universal code * </label>
+                            <label class="col-sm-2 control-label">{{$newLang->LanguageCode}}* </label>
                             <div class="form-group row" ng-class="{'has-error': addLang.languageUniversal.$invalid}">
                                 <div class="col-sm-12">
                                     <input type="text" name="languageUniversal" value="{{$lang->languageUniversal}}"  class="form-control" required placeholder="Language universal code">
@@ -51,19 +51,19 @@ Exam
                                 </div>
                             </div>
                             <div class="form-group row" >
-                                <label class="col-sm-2 control-label">Direction *</label>
+                                <label class="col-sm-2 control-label">{{$newLang->direction}} *</label>
                                 <div class="col-sm-10">
 
                                     <div class="radio-list">
                                         <label>
                                             <input type="radio" name="isRTL" value="0" {{$lang->languagePhrases? "" : "checked"}} required>
-                                            Left to right
+                                            {{$newLang->ltr}}
                                         </label>
                                     </div>
                                     <div class="radio-list">
                                         <label>
                                             <input type="radio" name="isRTL" value="1" {{$lang->languagePhrases ? "checked" : ""}}  required>
-                                            Right to left
+                                            {{$newLang->rtl}}
                                         </label>
                                     </div>
 
@@ -72,7 +72,7 @@ Exam
                             <div class="form-group row">
                                 <div class="col-sm-12 phraseList">
                                     <div class="row">
-                                        <h4 class="col-sm-12">Language phrases</h4>
+                                        <h4 class="col-sm-12">{{$newLang->languagePhrases}}</h4>
                                         @foreach($words as $key=>$val)
                                         <label class="col-sm-2">{{$val}} <br /> <input type="text" name="languagePhrases[{{$key}}]" value="{{$val}}"> </label>
                                         @endforeach

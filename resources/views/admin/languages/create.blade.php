@@ -32,38 +32,41 @@ Exam
                     <div class="card-body">
                         <form method="POST" action='{{route("languages.submit")}}' enctype="multipart/form-data">
                             @csrf
-                            <label class="col-sm-2 control-label">Add language * </label>
+                            <label class="col-sm-2 control-label">{{$newLang->languageName}} * </label>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <input type="text" name="languageTitle" class="form-control" required placeholder="Add language">
+                                    <input type="text" name="languageTitle" class="form-control" required placeholder="{{$newLang->languageName}}">
                                 </div>
                             </div>
-                            <label class="col-sm-2 control-label">Language universal code * </label>
+                            <label class="col-sm-2 control-label">{{$newLang->LanguageCode}} * </label>
                             <div class="form-group row" ng-class="{'has-error': addLang.languageUniversal.$invalid}">
                                 <div class="col-sm-12">
-                                    <input type="text" name="languageUniversal"  class="form-control" required placeholder="Language universal code">
+                                    <input type="text" name="languageUniversal"  class="form-control" required placeholder="{{$newLang->LanguageCode}}">
                                 </div>
                             </div>
                             <div class="">
+                            <label class="col-sm-2 control-label">{{$newLang->image}} * </label>
+
                                 <div class="input-group mb-3">
                                     <input type="file" class="form-control" name="image">
                                     
                                 </div>
                             </div>
                             <div class="form-group row" >
-                                <label class="col-sm-2 control-label">Direction *</label>
+                                <label class="col-sm-2 control-label">{{$newLang->direction}} *</label>
                                 <div class="col-sm-10">
 
                                     <div class="radio-list">
                                         <label>
                                             <input type="radio" name="isRTL" value="0"  required>
-                                            Left to right
+                                            {{$newLang->ltr}}
                                         </label>
                                     </div>
                                     <div class="radio-list">
                                         <label>
                                             <input type="radio" name="isRTL" value="1"  required>
-                                            Right to left
+                                            {{$newLang->rtl}}
+
                                         </label>
                                     </div>
 
@@ -72,7 +75,7 @@ Exam
                             <div class="form-group row">
                                 <div class="col-sm-12 phraseList">
                                     <div class="row">
-                                        <h4 class="col-sm-12">Language phrases</h4>
+                                        <h4 class="col-sm-12">{{$newLang->languagePhrases}}</h4>
                                         @foreach($words as $key=>$val)
                                         <label class="col-sm-2">{{$val}} <br /> <input type="text" name="languagePhrases[{{$key}}]"> </label>
                                         @endforeach
@@ -83,7 +86,7 @@ Exam
                             </div>
                             <div class="form-group m-b-0">
                                 <div class="offset-sm-2 col-sm-10">
-                                    <button type="submit" class="btn btn-info waves-effect waves-light" >add lang</button>
+                                    <button type="submit" class="btn btn-info waves-effect waves-light" >{{$newLang->addLanguage}}</button>
                                 </div>
                             </div>
                         </form>

@@ -29,7 +29,7 @@ subjects
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Event</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->events}}</h4>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@ subjects
                             <div class="row">
                                 <div class="col-sm-12">
                                     @can("events_addEvent")
-                                    <a class="btn btn-primary" href="{{url('admin/event/create')}}">add event</a>
+                                    <a class="btn btn-primary" href="{{url('admin/event/create')}}">{{$newLang->addEvent}}</a>
                                     @endcan
                                 </div>
                             </div>
@@ -52,12 +52,12 @@ subjects
                                         <thead>
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 15%;">
-                                                    Event Title </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 25%;">Event Description</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%;">Event Place </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 15%;">From </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 10%;">Date</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 25%;">Operations </th>
+                                                   {{$newLang->eventTitle}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 25%;">{{$newLang->eventDescription}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%;">{{$newLang->eventPlace}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 15%;">{{$newLang->for}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 10%;">{{$newLang->Date}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 25%;">{{$newLang->Operations}} </th>
 
 
                                             </tr>

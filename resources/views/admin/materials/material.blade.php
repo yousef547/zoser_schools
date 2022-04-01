@@ -13,7 +13,7 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Study Material</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->studyMaterial}}</h4>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@ HomePage
         <div class="col-xl-12">
             <div class="card profile">
                 <div class="card-body">
-                   <h5>List Study Material</h5>
+                   <h5>{{$newLang->listStudyMaterial}}</h5>
                    <div class="">
                        <div class="row">
                            @foreach($materials as $material)

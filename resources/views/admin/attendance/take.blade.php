@@ -45,15 +45,15 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Take Attendance</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->takeAttendance}}</h4>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">Select attendance info to add</h5>
+                    <h5 class="card-title">{{$newLang->selectAttendance}}</h5>
                     <div class="text-center">
-                        <h5>Class : {{$classe->className}}, Date : {{$dates}}</h5>
+                        <h5>{{$newLang->class}} : {{$classe->className}}, {{$newLang->Date}} : {{$dates}}</h5>
                     </div>
                     <div>
                         <form class="form-horizontal" method="post" action="{{url('admin/attendance/click')}}">
@@ -64,19 +64,19 @@ HomePage
                                 <tbody>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th class="ng-binding">Student Name</th>
+                                        <th class="ng-binding">{{$newLang->studentName}}</th>
                                         <th class="ng-binding">Attendance</th>
-                                        <th class="ng-binding">Notes</th>
+                                        <th class="ng-binding">{{$newLang->Notes}}</th>
                                     </tr>
                                     <tr>
                                         <td style="width: 10px">#</td>
                                         <td>Select All</td>
                                         <td>
-                                            <input type="button" onclick="btnAttendance('.absent')" class="btn btn-info btn-sm" value="Absent">
-                                            <input type="button" onclick="btnAttendance('.present')" class="btn btn-info btn-sm" value="Present">
-                                            <input type="button" onclick="btnAttendance('.late')" class="btn btn-info btn-sm" value="Late">
-                                            <input type="button" onclick="btnAttendance('.late_with_excuse')" class="btn btn-info btn-sm" value="Late with excuse">
-                                            <input type="button" onclick="btnAttendance('.early_dismissal')" class="btn btn-info btn-sm" value="Early Dismissal">
+                                            <input type="button" onclick="btnAttendance('.absent')" class="btn btn-info btn-sm" value="{{$newLang->Absent}}">
+                                            <input type="button" onclick="btnAttendance('.present')" class="btn btn-info btn-sm" value="{{$newLang->Present}}">
+                                            <input type="button" onclick="btnAttendance('.late')" class="btn btn-info btn-sm" value="{{$newLang->Late}}">
+                                            <input type="button" onclick="btnAttendance('.late_with_excuse')" class="btn btn-info btn-sm" value=" {{$newLang->LateExecuse}}">
+                                            <input type="button" onclick="btnAttendance('.early_dismissal')" class="btn btn-info btn-sm" value="{{$newLang->earlyDismissal}}">
                                         </td>
                                         <td></td>
                                     </tr>
@@ -92,26 +92,26 @@ HomePage
                                             <div>
                                                 <div class="radio-list">
                                                     <label>
-                                                        <input type="radio" class="absent" value="absent" name="attendance[{{$key}}]"> Absent
+                                                        <input type="radio" class="absent" value="absent" name="attendance[{{$key}}]"> {{$newLang->Absent}}
                                                     </label>
                                                     <label>
-                                                        <input type="radio" class="present" value="present" name="attendance[{{$key}}]"> present
+                                                        <input type="radio" class="present" value="present" name="attendance[{{$key}}]"> {{$newLang->Present}}
                                                     </label>
                                                     <label>
-                                                        <input type="radio" class="late" value="late" name="attendance[{{$key}}]"> Late
+                                                        <input type="radio" class="late" value="late" name="attendance[{{$key}}]"> {{$newLang->Late}}
                                                     </label>
                                                     <label>
-                                                        <input type="radio" class="late_with_excuse" value="late_with_excuse" name="attendance[{{$key}}]"> Late with excuse
+                                                        <input type="radio" class="late_with_excuse" value="late_with_excuse" name="attendance[{{$key}}]"> {{$newLang->LateExecuse}}
                                                     </label>
                                                     <label>
-                                                        <input type="radio" class="early_dismissal" value="early_dismissal" name="attendance[{{$key}}]"> Early Dismissal
+                                                        <input type="radio" class="early_dismissal" value="early_dismissal" name="attendance[{{$key}}]">{{$newLang->earlyDismissal}}
                                                     </label>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <input type="hidden" name="id[]" value="{{$section->id}}">
-                                            <input type="text" name="attNotes[]"  class="form-control " placeholder="Notes">
+                                            <input type="text" name="attNotes[]"  class="form-control " placeholder={{$newLang->notes}}>
                                         </td>
                                     </tr>
                                     @endforeach

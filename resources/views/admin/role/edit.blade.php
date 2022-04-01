@@ -24,7 +24,7 @@ HomePage
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Students</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->roles}}</h4>
             </div>
         </div>
     </div>
@@ -34,49 +34,49 @@ HomePage
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 text-end">
-                            <a href="{{route('role')}}" class="btn btn-primary mb-2">back</a>
+                            <a href="{{route('role')}}" class="btn btn-primary mb-2">{{$newLang->back}}</a>
                         </div>
                         <form method="POST" action="{{route('role.update',$id)}}">
                             @csrf
                             <div class="col-md-12">
-                                <label class="col-sm-2 text-right control-label col-form-label ">Role Title * </label>
+                                <label class="col-sm-2 text-right control-label col-form-label ">{{$newLang->role_title}} * </label>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <input type="text" name="role_title" value="{{$oneRole->role_title}}" class="form-control " placeholder="Role Title" required="">
+                                        <input type="text" name="role_title" value="{{$oneRole->role_title}}" class="form-control " placeholder="{{$newLang->role_title}}" required="">
                                     </div>
                                 </div>
-                                <label class="col-sm-2 text-right control-label col-form-label ">Role Description * </label>
+                                <label class="col-sm-2 text-right control-label col-form-label ">{{$newLang->role_desc}} * </label>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <textarea name="role_description" class="form-control" placeholder="Role Description">{{$oneRole->role_description}} </textarea>
+                                        <textarea name="role_description" class="form-control" placeholder="{{$newLang->role_desc}} ">{{$oneRole->role_description}} </textarea>
                                     </div>
                                 </div>
-                                <label class="col-sm-2 text-right control-label col-form-label g">Default Permission for * </label>
+                                <label class="col-sm-2 text-right control-label col-form-label g">{{$newLang->role_default}} * </label>
                                 <div class="form-group row">
                                     <div class="col-sm-10">
                                         <div class="radio-list">
                                             <label>
-                                                <input type="radio" name="def_for" value="none" required="" {{$oneRole->def_for == "none" ? "checked" : ""}} class=""> None
+                                                <input type="radio" name="def_for" value="none" required="" {{$oneRole->def_for == "none" ? "checked" : ""}} class=""> {{$newLang->None}}
                                             </label>
                                         </div>
                                         <div class="radio-list">
                                             <label class="ng-binding">
-                                                <input type="radio" name="def_for" value="teacher" required="" class="" {{$oneRole->def_for == "teacher" ? "checked" : ""}}> Teacher
+                                                <input type="radio" name="def_for" value="teacher" required="" class="" {{$oneRole->def_for == "teacher" ? "checked" : ""}}> {{$newLang->teacher}}
                                             </label>
                                         </div>
                                         <div class="radio-list">
                                             <label class="ng-binding">
-                                                <input type="radio" name="def_for" value="student" required="" class="" {{$oneRole->def_for == "student" ? "checked" : ""}}> Student
+                                                <input type="radio" name="def_for" value="student" required="" class="" {{$oneRole->def_for == "student" ? "checked" : ""}}> {{$newLang->student}}
                                             </label>
                                         </div>
                                         <div class="radio-list">
                                             <label class="ng-binding">
-                                                <input type="radio" name="def_for" value="parent" required="" class="" {{$oneRole->def_for == "parent" ? "checked" : ""}}> Parent
+                                                <input type="radio" name="def_for" value="parent" required="" class="" {{$oneRole->def_for == "parent" ? "checked" : ""}}> {{$newLang->parent}}
                                             </label>
                                         </div>
                                         <div class="radio-list">
                                             <label class="ng-binding">
-                                                <input type="radio" name="def_for" value="admin" required="" class="" {{$oneRole->def_for == "admin" ? "checked" : ""}}> Administrators
+                                                <input type="radio" name="def_for" value="admin" required="" class="" {{$oneRole->def_for == "admin" ? "checked" : ""}}> {{$newLang->Administrators}}
                                             </label>
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@ HomePage
 
                                 </table>
                             </div>
-                            <button type="submit" class="btn btn-info">submit</button>
+                            <button type="submit" class="btn btn-info">{{$newLang->submit}}</button>
                         </form>
                     </div>
 

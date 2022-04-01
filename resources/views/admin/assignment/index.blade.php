@@ -45,13 +45,13 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Take Attendance</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->Assignments}}</h4>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="card ">
                 <div class="card-body">
-                    <h5 class="card-title">List Assignments</h5>
+                    <h5 class="card-title">{{$newLang->listAssignments}}</h5>
                     <div class="table-responsive">
                         <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row">
@@ -59,7 +59,7 @@ HomePage
                                 <div class="col-sm-12 col-md-12">
                                     <div id="datatable_filter" class="dataTables_filter">
                                         @can("Assignments_AddAssignments")
-                                        <a href="{{url('admin/assignments/create')}}" class="btn btn-primary w-lg mb-2">Add Assignment</a>
+                                        <a href="{{url('admin/assignments/create')}}" class="btn btn-primary w-lg mb-2">{{$newLang->AddAssignments}}</a>
                                         @endcan
                                     </div>
                                 </div>
@@ -69,11 +69,11 @@ HomePage
                                     <table id="datatable" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 5%;">ID</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 24%;">Assignment title</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 24%;">Assignment Description </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 24%;">Assignment Deadline </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width:23%;">Operations</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 5%;">#</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 24%;">{{$newLang->AssignmentTitle}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 24%;">{{$newLang->AssignmentDescription}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 24%;">{{$newLang->AssignmentDeadline}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width:23%;">{{$newLang->Operations}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

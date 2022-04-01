@@ -94,8 +94,4 @@ class roleController extends Controller
         $oneRole->update($role);
         return back()->with('msg', 'Successed');
     }
-
-
-
-   
 }

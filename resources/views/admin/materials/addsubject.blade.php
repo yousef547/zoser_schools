@@ -19,7 +19,7 @@ subjects
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Add subject</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->addSubject}}</h4>
             </div>
         </div>
     </div>
@@ -31,24 +31,24 @@ subjects
 
                     <form method="post" action="{{url('/admin/subject/store')}}">
                         @csrf
-                        <label class="form-label">Subject</label>
+                        <label class="form-label">{{$newLang->subjectName}}</label>
                         <div class="mb-3 row">
                             <div class="col-sm-12">
-                                <input class="form-control" type="text" name="subject" id="subject2" placeholder="Subject Name">
+                                <input class="form-control" type="text" name="subject" id="subject2" placeholder="{{$newLang->subjectName}}">
                             </div>
                         </div>
                         
                         <div class="mb-3 row">
                             <div class="col-lg-6  mo-b-15">
-                                <label class="form-label">pass </label>
-                                <input class="form-control" type="number" id="name" name="pass_grade" placeholder="Pass grade">
+                                <label class="form-label">{{$newLang->passGrade}} </label>
+                                <input class="form-control" type="number" id="name" name="pass_grade" placeholder="{{$newLang->passGrade}}">
                             </div>
                             <div class="col-lg-6">
-                                <label class="form-label">final</label>
-                                <input class="form-control" type="number" id="example-email-input3" name="final_grade" placeholder="Final grade">
+                                <label class="form-label">{{$newLang->finalGrade}}</label>
+                                <input class="form-control" type="number" id="example-email-input3" name="final_grade" placeholder="{{$newLang->finalGrade}}">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary w-lg mt-2">Add</button>
+                        <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
                     </form>
                 </div>
             </div>

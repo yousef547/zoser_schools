@@ -29,7 +29,7 @@ subjects
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Grade levels</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->gradeLevels}}</h4>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@ subjects
                             <div class="row">
                                 <div class="col-sm-12">
                                     @can("gradeLevels_addLevel")
-                                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalform">add Grade levels</a>
+                                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalform">{{$newLang->addLevel}}</a>
                                     @endcan
                                 </div>
                             </div>
@@ -52,11 +52,11 @@ subjects
                                         <thead>
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 5%;">
-                                                    Grade Name </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 30%;">Grade Description</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 30%;">Grade Point </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%;">From -> To </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 15%;">Operations</th>
+                                                    {{$newLang->gradeName}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 30%;">{{$newLang->gradeDesc}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 30%;">{{$newLang->gradePoint}} </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%;">{{$newLang->from.' -> '. $newLang->to}}  </th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 15%;">{{$newLang->Operations}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -98,7 +98,7 @@ subjects
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title align-self-center" id="myLargeModalLabel">add teacher </h5>
+                    <h5 class="modal-title align-self-center" id="myLargeModalLabel">{{$newLang->editLevel}} </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -108,8 +108,8 @@ subjects
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade Name </label>
-                                    <input type="text" class="form-control" name="gradeName" id="name" placeholder="Grade Name">
+                                    <label for="field-3" class="form-label">{{$newLang->gradeName}} </label>
+                                    <input type="text" class="form-control" name="gradeName" id="name" placeholder="{{$newLang->gradeName}}">
                                 </div>
                             </div>
                         </div>
@@ -117,24 +117,24 @@ subjects
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade Description</label>
-                                    <input type="text" class="form-control" name="gradeDescription" id="description" placeholder="Grade Description">
+                                    <label for="field-3" class="form-label">{{$newLang->gradeDesc}}</label>
+                                    <input type="text" class="form-control" name="gradeDescription" id="description" placeholder="{{$newLang->gradeDesc}}">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade Point</label>
-                                    <input type="text" class="form-control" name="gradePoints" id="Point" placeholder="Grade Point">
+                                    <label for="field-3" class="form-label">{{$newLang->gradePoint}}</label>
+                                    <input type="text" class="form-control" name="gradePoints" id="Point" placeholder="{{$newLang->gradePoint}}">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade From</label>
-                                    <input type="text" class="form-control" id="from" name="gradeFrom" placeholder="Grade From">
+                                    <label for="field-3" class="form-label">{{$newLang->gradeFrom}}</label>
+                                    <input type="text" class="form-control" id="from" name="gradeFrom" placeholder="{{$newLang->gradeFrom}}>
                                 </div>
                             </div>
                         </div>
@@ -143,14 +143,14 @@ subjects
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade To</label>
-                                    <input type="text" class="form-control" id="to" name="gradeTo" placeholder="Grade To">
+                                    <label for="field-3" class="form-label">{{$newLang->gradeTo}}</label>
+                                    <input type="text" class="form-control" id="to" name="gradeTo" placeholder="{{$newLang->gradeTo}}">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Add Grade level</button>
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">{{$newLang->close}}</button>
+                            <button type="submit" class="btn btn-primary">{{$newLang->submit}}</button>
                         </div>
                     </form>
                 </div>
@@ -163,7 +163,7 @@ subjects
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title align-self-center" id="exampleModalform1">Add Grade level</h5>
+                    <h5 class="modal-title align-self-center" id="exampleModalform1">{{$newLang->addLevel}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -172,8 +172,8 @@ subjects
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade Name </label>
-                                    <input type="text" class="form-control" name="gradeName" id="field-3" placeholder="Grade Name">
+                                    <label for="field-3" class="form-label">{{$newLang->gradeName}} </label>
+                                    <input type="text" class="form-control" name="gradeName" id="field-3" placeholder="{{$newLang->gradeName}}">
                                 </div>
                             </div>
                         </div>
@@ -181,24 +181,24 @@ subjects
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade Description</label>
-                                    <input type="text" class="form-control" name="gradeDescription" id="field-3" placeholder="Grade Description">
+                                    <label for="field-3" class="form-label">{{$newLang->gradeDesc}}</label>
+                                    <input type="text" class="form-control" name="gradeDescription" id="field-3" placeholder="{{$newLang->gradeDesc}}">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade Point</label>
-                                    <input type="text" class="form-control" name="gradePoints" id="field-3" placeholder="Grade Point">
+                                    <label for="field-3" class="form-label">{{$newLang->gradePoint}}</label>
+                                    <input type="text" class="form-control" name="gradePoints" id="field-3" placeholder="{{$newLang->gradePoint}}">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade From</label>
-                                    <input type="text" class="form-control" id="field-3" name="gradeFrom" placeholder="Grade From">
+                                    <label for="field-3" class="form-label">{{$newLang->gradeFrom}}</label>
+                                    <input type="text" class="form-control" id="field-3" name="gradeFrom" placeholder="{{$newLang->gradeFrom}}">
                                 </div>
                             </div>
                         </div>
@@ -207,14 +207,14 @@ subjects
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="field-3" class="form-label">Grade To</label>
-                                    <input type="text" class="form-control" id="field-3" name="gradeTo" placeholder="Grade To">
+                                    <label for="field-3" class="form-label">{{$newLang->gradeTo}}</label>
+                                    <input type="text" class="form-control" id="field-3" name="gradeTo" placeholder="{{$newLang->gradeTo}}">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Add Grade level</button>
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">{{$newLang->close}}</button>
+                            <button type="submit" class="btn btn-primary">{{$newLang->submit}}</button>
                         </div>
                     </form>
                 </div>

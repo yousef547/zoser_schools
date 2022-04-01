@@ -97,12 +97,10 @@ class mediaAlbomController extends Controller
         $request->session()->flash('msg', 'Successed delete Album');
         return back();
     }
-
     public function create()
     {
         return view("admin.itemAlbum.create");
     }
-
     public function submitItem(Request $request)
     {
         $request->validate([
@@ -142,7 +140,6 @@ class mediaAlbomController extends Controller
         }
         return view("admin.itemAlbum.show")->with($data);
     }
-
     public function editItem($id, Request $request)
     {
         $data['item'] = media_item::find($id);

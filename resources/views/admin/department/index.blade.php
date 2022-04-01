@@ -39,7 +39,7 @@ HomePage
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Teacher</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->depart}}</h4>
             </div>
         </div>
     </div>
@@ -54,16 +54,16 @@ HomePage
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
                                     @can("depart_add_depart")
-                                    <a href="{{url('admin/department/create')}}" class="btn btn-secondary buttons-copy buttons-html5">add Department</a>
+                                    <a href="{{url('admin/department/create')}}" class="btn btn-secondary buttons-copy buttons-html5">{{$newLang->add_depart}}</a>
                                     @endcan
                                 </div>
                                 <div class="col-sm-12">
                                     <table id="datatable" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 45%;">Department Title</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:45%;"> Department description</th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 10%">Operations</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 45%;">{{$newLang->depart_title}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width:45%;">{{ $newLang->depart_desc}}</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 10%">{{$newLang->Operations}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -100,26 +100,26 @@ HomePage
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title align-self-center" id="myLargeModalLabel">Large modal</h5>
+                <h5 class="modal-title align-self-center" id="myLargeModalLabel">edit_depart</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="{{url('admin/department/update')}}">
                     @csrf
                     <input type="hidden" name="id" id="id">
-                    <label class="form-label">Department Title *</label>
+                    <label class="form-label">{{$newLang->depart_title}} *</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" id="title" name="depart_title" placeholder="Department Title">
+                            <input class="form-control" type="text" id="title" name="depart_title" placeholder="{$newLang->depart_title}}">
                         </div>
                     </div>
-                    <label class="form-label">Department description *</label>
+                    <label class="form-label">{{$newLang->depart_desc}} *</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <input class="form-control" type="text" id="desc" name="depart_desc" placeholder="Department description">
+                            <input class="form-control" type="text" id="desc" name="depart_desc" placeholder="{{$newLang->depart_desc}}">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary w-lg mt-2">submit</button>
+                    <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
 
                 </form>
             </div>

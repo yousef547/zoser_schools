@@ -34,7 +34,7 @@ HomePage
         @include('admin.inc.massage')
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Account Settings</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->AccountSettings}}</h4>
             </div>
         </div>
     </div>
@@ -42,19 +42,19 @@ HomePage
         <div class="col-md-3" id='close'>
             <div class="card setting">
                 <ul class="list-unstyled my-3 mx-3 border border-light border-2 rounded">
-                    <li class="actives canActive" data-setting="invoices">My Invoices</li>
-                    <li class="canActive" data-setting="change_profile">Change profile data</li>
-                    <li class="canActive" data-setting="change_email">Change e-mail address</li>
-                    <li class="canActive" data-setting="change_password">Change password</li>
+                    <li class="actives canActive" data-setting="invoices">{{$newLang->myInvoices}}</li>
+                    <li class="canActive" data-setting="change_profile">{{$newLang->ChgProfileData}}</li>
+                    <li class="canActive" data-setting="change_email">{{$newLang->chgEmailAddress}}</li>
+                    <li class="canActive" data-setting="change_password">{{$newLang->chgPassword}}</li>
                 </ul>
             </div>
         </div>
         <div class="col-md-9 allsetting" id="invoices">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">My Invoices</h5>
+                    <h5 class="card-title">{{$newLang->myInvoices}}</h5>
                     <div>
-                        My Invoices My Invoices
+                    {{$newLang->myInvoices}}
                     </div>
                 </div>
             </div>
@@ -62,86 +62,86 @@ HomePage
         <div class="col-md-9 d-none allsetting" id="change_profile">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Change profile data</h5>
+                    <h5 class="card-title">{{$newLang->ChgProfileData}}</h5>
                     <div>
                         <form method="POST" action="{{url('/admin/settings/profile')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3 ">
-                                <label for="example-email-input1" class="form-label pt-0">Full name </label>
+                                <label for="example-email-input1" class="form-label pt-0">{{$newLang->FullName}} </label>
                                 <div class="">
-                                    <input class="form-control" type="text" name="fullName" value="{{$user->fullName}}" id="example-email-input1" placeholder="Full Name">
+                                    <input class="form-control" type="text" name="fullName" value="{{$user->fullName}}" id="example-email-input1" placeholder="{{$newLang->FullName}}">
                                 </div>
                             </div>
                             <div class="form-check my-2">
                                 <input type="radio" id="customRadio1" {{$user->gender == 'male' ? "checked" : "" }} name="gender" value="male" class="form-check-input" checked="">
-                                <label class="form-check-label" for="customRadio1">Male</label>
+                                <label class="form-check-label" for="customRadio1">{{$newLang->Male}}</label>
                             </div>
                             <div class="form-check my-2">
                                 <input type="radio" id="customRadio1" {{$user->gender == 'fmale' ? "checked" : "" }} name="gender" value="fmale" class="form-check-input">
-                                <label class="form-check-label" for="customRadio1">Female</label>
+                                <label class="form-check-label" for="customRadio1">{{$newLang->Female}}</label>
                             </div>
                             <div class="mb-0 row">
-                                <label for="example-date-input" class="col-sm-2 form-label">Birthday</label>
+                                <label for="example-date-input" class="col-sm-2 form-label">{{$newLang->Birthday}}</label>
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="date" name="birthday" placeholder="Birthday" value="{{$user->birthday}}" id="example-date-input">
+                                    <input class="form-control" type="date" name="birthday" placeholder="{{$newLang->Birthday}}" value="{{$user->birthday}}" id="example-date-input">
                                 </div>
                             </div>
                             <div class="mb-3 ">
-                                <label for="example-email-input1" class="col-sm-2 form-label">Address</label>
+                                <label for="example-email-input1" class="col-sm-2 form-label">{{$newLang->Address}}</label>
                                 <div class="">
-                                    <input class="form-control" type="text" value="{{$user->address}}" name="address" id="example-email-input1" placeholder="Address">
+                                    <input class="form-control" type="text" value="{{$user->address}}" name="address" id="example-email-input1" placeholder="{{$newLang->Address}}">
                                 </div>
                             </div>
 
                             <div class="mb-3 ">
-                                <label for="example-email-input1" class="col-sm-2 form-label">Zoom Link</label>
+                                <label for="example-email-input1" class="col-sm-2 form-label">{{$newLang->zoomLink}}</label>
                                 <div class="">
-                                    <input class="form-control" type="text" value="{{$user->zoomLink}}" name="zoomLink" id="example-email-input1" placeholder="zoomLink">
+                                    <input class="form-control" type="text" value="{{$user->zoomLink}}" name="zoomLink" id="example-email-input1" placeholder="{{$newLang->zoomLink}}">
                                 </div>
                             </div>
 
 
-                            <label class="form-label">Phone No</label>
+                            <label class="form-label">{{$newLang->phoneNo}}</label>
                             <div class="mb-3 row">
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="tel" name="phoneNo" value="{{$user->phoneNo}}" placeholder="Phone No">
+                                    <input class="form-control" type="tel" name="phoneNo" value="{{$user->phoneNo}}" placeholder="{{$newLang->phoneNo}}">
                                 </div>
                             </div>
 
-                            <label class="form-label">Mobile No</label>
+                            <label class="form-label">{{$newLang->mobileNo}}</label>
                             <div class="mb-3 row">
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="tel" name="mobileNo" id="telephone" value="{{$user->mobileNo}}" placeholder="Mobile No">
+                                    <input class="form-control" type="tel" name="mobileNo" id="telephone" value="{{$user->mobileNo}}" placeholder="{{$newLang->mobileNo}}">
                                 </div>
                             </div>
-                            <label class="col-md-3 my-2 control-label">Communication</label>
+                            <label class="col-md-3 my-2 control-label">{{$newLang->Communication}}</label>
                             <div class="col-md-9">
                                 <div class="checkbox my-2">
                                     <div class="form-check">
                                         <input type="checkbox" name="comVia[]" value="Mail" class="form-check-input" {{str_contains($user->comVia, 'Mail') ? "checked" : "" }} id="customCheck02" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                        <label class="form-check-label" for="customCheck02">Mail</label>
+                                        <label class="form-check-label" for="customCheck02">{{$newLang->mail}}</label>
                                     </div>
                                 </div>
                                 <div class="checkbox my-2">
                                     <div class="form-check">
                                         <input type="checkbox" name="comVia[]" value="SMS" class="form-check-input" {{str_contains($user->comVia, 'SMS') ? "checked" : "" }} id="customCheck3" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                        <label class="form-check-label" for="customCheck3">SMS</label>
+                                        <label class="form-check-label" for="customCheck3">{{$newLang->sms}}</label>
                                     </div>
                                 </div>
                                 <div class="checkbox my-2">
                                     <div class="form-check">
                                         <input type="checkbox" name="comVia[]" value="phone" class="form-check-input" {{str_contains($user->comVia, 'phone') ? "checked" : "" }} id="customCheck5" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                        <label class="form-check-label" for="customCheckDisabled">Phone</label>
+                                        <label class="form-check-label" for="customCheckDisabled">{{$newLang->Photo}}</label>
 
                                     </div>
                                 </div>
                             </div>
-                            <label class="col-sm-2 form-label" for="inputGroupFile01">Upload</label>
+                            <label class="col-sm-2 form-label" for="inputGroupFile01">{{$newLang->Upload}}</label>
                             <div class="input-group mb-3">
                                 <input type="file" class="form-control" name="photo" id="inputGroupFile01">
 
                             </div>
-                            <button type="submit" class="btn btn-primary w-lg mt-2">submit</button>
+                            <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
                         </form>
                     </div>
                 </div>
@@ -150,29 +150,29 @@ HomePage
         <div class="col-md-9 d-none allsetting" id="change_email">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Change e-mail address</h5>
+                    <h5 class="card-title">{{$newLang->chgEmailAddress}}</h5>
                     <div>
                         <form method="POST" action="{{url('admin/settings/email')}}">
                             @csrf
                             <div class="mb-3 ">
-                                <label for="example-email-input1" class="form-label pt-0">Password </label>
+                                <label for="example-email-input1" class="form-label pt-0">{{$newLang->password}} </label>
                                 <div class="">
                                     <input class="form-control" type="password" name="password" value="" id="example-email-input1" placeholder="password">
                                 </div>
                             </div>
                             <div class="mb-3 ">
-                                <label for="example-email-input1" class="form-label pt-0">Email address </label>
+                                <label for="example-email-input1" class="form-label pt-0">{{$newLang->email}} </label>
                                 <div class="">
-                                    <input class="form-control" type="email" name="email" value="{{$user->email}}" id="example-email-input1" placeholder="Email address">
+                                    <input class="form-control" type="email" name="email" value="{{$user->email}}" id="example-email-input1" placeholder="{{$newLang->email}}">
                                 </div>
                             </div>
                             <div class="mb-3 ">
-                                <label for="example-email-input1" class="form-label pt-0">Retype Email address </label>
+                                <label for="example-email-input1" class="form-label pt-0">{{$newLang->reemail}} </label>
                                 <div class="">
                                     <input class="form-control" type="email" name="retype_email" value="" id="example-email-input1" placeholder="Retype Email address">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-lg mt-2">submit</button>
+                            <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
 
                         </form>
                     </div>
@@ -182,30 +182,30 @@ HomePage
         <div class="col-md-9 d-none allsetting" id="change_password">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Change password</h5>
+                    <h5 class="card-title">{{$newLang->chgPassword}}</h5>
                     <div>
                     <div>
                         <form method="POST" action="{{url('admin/settings/password')}}">
                             @csrf
                             <div class="mb-3 ">
-                                <label for="example-email-input1" class="form-label pt-0">Old Password </label>
+                                <label for="example-email-input1" class="form-label pt-0">{{$newLang->oldPassword}} </label>
                                 <div class="">
-                                    <input class="form-control" type="password" name="oldPassword" value="" id="example-email-input1" placeholder="password">
+                                    <input class="form-control" type="password" name="oldPassword" value="" id="example-email-input1" placeholder="{{$newLang->oldPassword}}">
                                 </div>
                             </div>
                             <div class="mb-3 ">
-                                <label for="example-email-input1" class="form-label pt-0">New password </label>
+                                <label for="example-email-input1" class="form-label pt-0">{{$newLang->newPassword}} </label>
                                 <div class="">
-                                    <input class="form-control" type="Password" name="password" value="" id="example-email-input1" placeholder="Email address">
+                                    <input class="form-control" type="Password" name="password" value="" id="example-email-input1" placeholder="{{$newLang->newPassword}}">
                                 </div>
                             </div>
                             <div class="mb-3 ">
-                                <label for="example-email-input1" class="form-label pt-0">Retype New password </label>
+                                <label for="example-email-input1" class="form-label pt-0">{{$newLang->renewPassword}} </label>
                                 <div class="">
-                                    <input class="form-control" type="Password" name="password_confirmation" value="" id="example-email-input1" placeholder="Retype Email address">
+                                    <input class="form-control" type="Password" name="password_confirmation" value="" id="example-email-input1" placeholder="{{$newLang->renewPassword}}">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-lg mt-2">submit</button>
+                            <button type="submit" class="btn btn-primary w-lg mt-2">{{$newLang->submit}}</button>
 
                         </form>
                     </div>

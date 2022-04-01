@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\admin\assignmentController;
 use App\Http\Controllers\admin\attendanceController;
+use App\Http\Controllers\admin\boardController;
+use App\Http\Controllers\admin\catehostelController;
 use App\Http\Controllers\admin\chatController;
 use App\Http\Controllers\admin\class_schedulrController;
 use App\Http\Controllers\admin\classes_sectionsController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\admin\examsController;
 use App\Http\Controllers\admin\finalexamContoller;
 use App\Http\Controllers\admin\GradelevelsController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\hostelController;
 use App\Http\Controllers\admin\languagesController;
 use App\Http\Controllers\admin\levelController;
 use App\Http\Controllers\admin\leveltestContoller;
@@ -24,9 +27,11 @@ use App\Http\Controllers\admin\parentController;
 use App\Http\Controllers\admin\questionsController;
 use App\Http\Controllers\admin\recordController;
 use App\Http\Controllers\admin\reportController;
+use App\Http\Controllers\admin\reportsController;
 use App\Http\Controllers\admin\roleController;
 use App\Http\Controllers\admin\ruleController;
 use App\Http\Controllers\admin\settingsController;
+use App\Http\Controllers\admin\static_pagesContoller;
 use App\Http\Controllers\admin\studentController;
 use App\Http\Controllers\admin\subjectController;
 use App\Http\Controllers\admin\teacherController as AdminTeacherController;
@@ -270,10 +275,10 @@ Route::group(['middleware' => ['auth']], function () {
         /************* start  vacation ***************/
         Route::group(['prefix' => 'vacation'], function () {
             Route::get('/request', [vacationController::class, 'request'])->middleware("can:Vacation_reqVacation");
-            Route::post('/submit', [vacationController::class, 'submit'])->middleware("Vacation_reqVacation");
-            Route::get('/approve', [vacationController::class, 'approve'])->middleware("Vacation_appVacation");
-            Route::get('/approve_vacation/{id}/{aprove}', [vacationController::class, 'approveVacation'])->middleware("Vacation_appVacation");
-            Route::get('/my_vacations', [vacationController::class, 'myVacations'])->middleware("Vacation_myVacation");
+            Route::post('/submit', [vacationController::class, 'submit'])->middleware("can:Vacation_reqVacation");
+            Route::get('/approve', [vacationController::class, 'approve'])->middleware("can:Vacation_appVacation");
+            Route::get('/approve_vacation/{id}/{aprove}', [vacationController::class, 'approveVacation'])->middleware("can:Vacation_appVacation");
+            Route::get('/my_vacations', [vacationController::class, 'myVacations'])->middleware("can:Vacation_myVacation");
         });
         /************* end  vacation ***************/
         /************* start  media ***************/
@@ -391,19 +396,62 @@ Route::group(['middleware' => ['auth']], function () {
 
         /************* start languages ***************/
         Route::group(['prefix' => 'languages'], function () {
-            Route::get("/",[languagesController::class,"index"])->name("languages")->middleware("can:Languages_list");
-            Route::get("/create",[languagesController::class,"create"])->name("languages.create")->middleware("can:Languages_addLanguage");
-            Route::post("/submit",[languagesController::class,"submit"])->name("languages.submit")->middleware("can:Languages_addLanguage");
-            Route::get("/edit/{id}",[languagesController::class,"edit"])->name("languages.edit")->middleware("can:Languages_editLanguage");
-            Route::post("/update/{id}",[languagesController::class,"update"])->name("languages.update")->middleware("can:Languages_editLanguage");
-
-
-
-            Route::get("submitLang/{id}",[languagesController::class,"submitLang"])->name("languages.submitLang");
-
+            Route::get("/", [languagesController::class, "index"])->name("languages")->middleware("can:Languages_list");
+            Route::get("/create", [languagesController::class, "create"])->name("languages.create")->middleware("can:Languages_addLanguage");
+            Route::post("/submit", [languagesController::class, "submit"])->name("languages.submit")->middleware("can:Languages_addLanguage");
+            Route::get("/edit/{id}", [languagesController::class, "edit"])->name("languages.edit")->middleware("can:Languages_editLanguage");
+            Route::post("/update/{id}", [languagesController::class, "update"])->name("languages.update")->middleware("can:Languages_editLanguage");
+            Route::get("submitLang/{id}", [languagesController::class, "submitLang"])->name("languages.submitLang");
         });
 
         /************* end languages ***************/
+
+        /************* start board ***************/
+        Route::group(['prefix' => 'board'], function () {
+            Route::get("/", [boardController::class, "index"])->name("board")->middleware("can:newsboard_list");
+            Route::get("/view/{id}", [boardController::class, "view"])->name("board.view")->middleware("can:newsboard_View");
+            Route::get("/create", [boardController::class, "create"])->name("board.create")->middleware("can:newsboard_addNews");
+            Route::post("/submit", [boardController::class, "submit"])->name("board.submit")->middleware("can:newsboard_addNews");
+            Route::get("/edit/{id}", [boardController::class, "edit"])->name("board.edit")->middleware("can:newsboard_editNews");
+            Route::post("/update/{id}", [boardController::class, "update"])->name("board.update")->middleware("can:newsboard_editNews");
+            Route::get("/delete/{id}", [boardController::class, "delete"])->name("board.delete")->middleware("can:newsboard_delNews");
+        });
+
+        /************* end board ***************/
+
+        /************* start hostel ***************/
+        Route::group(['prefix' => 'hostel'], function () {
+            Route::get("/", [hostelController::class, "index"])->name("hostel")->middleware("can:Hostel_list");
+            Route::get("/create", [hostelController::class, "create"])->name("hostel.create")->middleware("can:Hostel_AddHostel");
+            Route::post("/submit", [hostelController::class, "submit"])->name("hostel.submit")->middleware("can:Hostel_AddHostel");
+            Route::get("/edit/{id}", [hostelController::class, "edit"])->name("hostel.edit")->middleware("can:Hostel_list");
+            Route::post("/update/{id}", [hostelController::class, "update"])->name("hostel.update")->middleware("can:Hostel_list");
+            Route::get("/delete/{id}", [hostelController::class, "delete"])->name("hostel.delete")->middleware("can:Hostel_list");
+        });
+        /************* end hostel ***************/
+        /************* start catehostel ***************/
+        Route::group(['prefix' => 'catehostel'], function () {
+            Route::get("/", [catehostelController::class, "index"])->name("catehostel")->middleware("can:Hostel_HostelCat");
+            Route::get("/create", [catehostelController::class, "create"])->name("catehostel.create")->middleware("can:Hostel_HostelCat");
+            Route::post("/submit", [catehostelController::class, "submit"])->name("catehostel.submit")->middleware("can:Hostel_HostelCat");
+            Route::get("/edit/{id}", [catehostelController::class, "edit"])->name("catehostel.edit")->middleware("can:Hostel_HostelCat");
+            Route::post("/update/{id}", [catehostelController::class, "update"])->name("catehostel.update")->middleware("can:Hostel_HostelCat");
+            Route::get("/delete/{id}", [catehostelController::class, "delete"])->name("catehostel.delete")->middleware("can:Hostel_HostelCat");
+        });
+        /************* end catehostel ***************/
+        /************* start static_pages ***************/
+
+        Route::group(['prefix' => 'static_pages'], function () {
+            Route::get("/", [static_pagesContoller::class, "index"])->name("static_pages");
+            Route::post("/save", [static_pagesContoller::class, "save"])->name("static_pages.save");
+            Route::get("/read_page/{id}", [static_pagesContoller::class, "read_page"])->name("static_pages.read_page");
+        });
+
+        /*************************** end static_pages/******************* */
+        Route::group(['prefix' => 'reports'], function () {
+            Route::get("/", [reportsController::class, "index"])->name("reports");
+            Route::get("/reprots_users", [reportsController::class, "reportUser"])->name("reports.user");
+        });
 
 
 

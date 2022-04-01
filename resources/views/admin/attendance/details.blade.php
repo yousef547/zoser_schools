@@ -62,7 +62,7 @@ HomePage
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Attendance Report</h4>
+                <h4 class="mb-0 font-size-18">{{$newLang->attReport}}</h4>
             </div>
         </div>
         <div class="col-12">
@@ -71,22 +71,22 @@ HomePage
 
                     <div>
                         <div class="card-block">
-                            <h4 class="card-title ">Control attendance</h4>
+                            <h4 class="card-title ">{{$newLang->controlAttendance}}</h4>
                             <div class="form table-responsive">
 
                                 <div style="padding:  10px;text-align:  center;font-weight: bold;" class="ng-binding">
-                                    Class : {{$clsse}} <span ng-show="attendanceModel == 'subject'" class="ng-binding ng-hide">Subject: </span>
+                                 {{$newLang->class.":".$clsse}}
                                     <br>
-                                    P : Present - A : Absent - L : Late - E : Late with excuse - D : Early Dismissal
+                                    P : {{$newLang->Present}} - A : {{$newLang->Absent}} - L : {{$newLang->Late}} - E : {{$newLang->LateExecuse}}- D : {{$newLang->earlyDismissal}}
                                 </div>
 
                                 <table class="table table-bordered table-hover">
                                     <tbody>
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th class="ng-binding">Student Name</th>
-                                            <th colspan="5" class="ng-binding">Percentage</th>
-                                            <th>Details</th>
+                                            <th class="ng-binding">{{$newLang->studentName}}</th>
+                                            <th colspan="5" class="ng-binding">{{$newLang->percent}}</th>
+                                            <th>{{$newLang->details}}</th>
                                         </tr>
                                         <tr>
                                             <td style="width: 10px"></td>
@@ -122,22 +122,37 @@ HomePage
                                             <td class="ng-binding"></td>
                                             <td style="white-space: nowrap;">
                                                 <img class="user-image img-circle" style="width:35px; height:35px;" src='{{asset("uploads/")}}/{{$info["username"]->photo}}'>
-                                                <a href="">{{$info['username']->username}}</a>
+                                                <a>{{$info['username']->username}}</a>
                                             </td>
                                             <td class="att_perc ng-binding">{{$info['present']}}%</td>
                                             <td class="att_perc ng-binding">{{$info['absent']}}%</td>
                                             <td class="att_perc ng-binding">{{$info['Late']}}%</td>
                                             <td class="att_perc ng-binding">{{$info['Late_with_xcuse']}}%</td>
                                             <td class="att_perc ng-binding">{{$info['Early_Dismissal']}}%</td>
-                                            @for($i=0; $i < count($dates); $i++)
-                                                <td class="att_perc ng-binding">
-                                                    @for($y = 0;$y < count($infos[$key]['attendance']);$y++)
-                                                        @if(\Carbon\Carbon::parse($dates[$i])->timestamp == $info['attendance'][$y]->date)
-                                                            {{$info['attendance'][$y]->status}}
-                                                        @endif
+                                            @for($i=0; $i < count($dates); $i++) <td class="att_perc ng-binding">
+                                                @for($y = 0;$y < count($infos[$key]['attendance']);$y++) @if(\Carbon\Carbon::parse($dates[$i])->timestamp == $info['attendance'][$y]->date)
+                                                    @switch($info['attendance'][$y]->status)
+                                                    @case("Present")
+                                                    {{$newLang->Present}}
+                                                    @break
+                                                    @case("absent")
+                                                    {{$newLang->Absent}}
+                                                    @break
+                                                    @case("late")
+                                                    {{$newLang->Late}}
+                                                    @break
+                                                    @case("late_with_excuse")
+                                                    {{$newLang->LateExecuse}}
+                                                    @break
+                                                    @case("early_dismissal")
+                                                    {{$newLang->earlyDismissal}}
+                                                    @break
+                                                    @endswitch
+
+                                                    @endif
                                                     @endfor
-                                                </td>
-                                            @endfor
+                                                    </td>
+                                                    @endfor
                                         </tr><!-- end ngRepeat: student in students | object2Array -->
                                         @endforeach
                                     </tbody>
@@ -196,8 +211,5 @@ HomePage
 <script>
 
 </script>
-
 @endsection
 @endsection
-
-
